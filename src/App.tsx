@@ -11,6 +11,7 @@ import AIShowcase from './components/AIShowcase';
 import Features from './components/Features';
 import DashboardPreview from './components/DashboardPreview';
 import WhyChooseUs from './components/WhyChooseUs';
+import ShowcaseGallery from './components/ShowcaseGallery';
 import Testimonials from './components/Testimonials';
 import Pricing from './components/Pricing';
 import CTA from './components/CTA';
@@ -43,6 +44,7 @@ export default function App() {
         <Features />
         <DashboardPreview />
         <WhyChooseUs />
+        <ShowcaseGallery />
         <Testimonials />
         <Pricing />
         <CTA />

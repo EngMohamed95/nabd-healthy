@@ -5,6 +5,7 @@ export const translations = {
     navbar: {
       features: "Features",
       demo: "AI Demo",
+      gallery: "Gallery",
       testimonials: "Testimonials",
       pricing: "Pricing",
       login: "Login",
@@ -144,6 +145,7 @@ export const translations = {
     navbar: {
       features: "المميزات",
       demo: "تجربة الذكاء الاصطناعي",
+      gallery: "المعرض",
       testimonials: "آراء العملاء",
       pricing: "الأسعار",
       login: "تسجيل الدخول",

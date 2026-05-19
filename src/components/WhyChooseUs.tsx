@@ -1,6 +1,7 @@
 import { motion } from 'motion/react';
 import { ArrowRight, ArrowLeft } from 'lucide-react';
 import { useLanguage } from '../lib/LanguageContext';
+import { img4 } from '../images';
 
 export default function WhyChooseUs() {
   const { t, dir } = useLanguage();
@@ -61,9 +62,28 @@ export default function WhyChooseUs() {
           </motion.button>
         </div>
 
-        <div className="relative">
-          <div className="absolute inset-0 bg-gradient-to-tr from-[var(--color-primary)]/20 to-[var(--color-secondary)]/20 rounded-full blur-[100px]" />
+        <div className="relative flex flex-col gap-6">
+          <div className="absolute inset-0 bg-gradient-to-tr from-[var(--color-primary)]/20 to-[var(--color-secondary)]/20 rounded-full blur-[100px] pointer-events-none" />
           
+          {/* Clinical Team Collaboration Image */}
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.95 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            className="relative h-64 rounded-3xl overflow-hidden border border-white/10 shadow-2xl"
+          >
+            <img 
+              src={img4} 
+              alt="Medical Team Collaboration" 
+              className="w-full h-full object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/25 to-transparent pointer-events-none" />
+            <div className="absolute bottom-4 start-6 text-start z-10">
+              <span className="px-2.5 py-0.5 bg-[var(--color-primary)]/20 border border-[var(--color-primary)]/30 rounded text-xs font-mono text-[var(--color-primary)]">Collaboration</span>
+              <h4 className="text-lg font-bold text-white mt-1">Focusing on the Patient, Not the Screen</h4>
+            </div>
+          </motion.div>
+
           <div className="relative space-y-4">
              {/* Comparison Cards */}
              <motion.div 
@@ -81,7 +101,7 @@ export default function WhyChooseUs() {
                whileInView={{ opacity: 1, x: 0 }}
                viewport={{ once: true }}
                transition={{ delay: 0.2 }}
-               className="glass-card p-8 rounded-2xl border border-[var(--color-primary)]/30 scale-105 shadow-[0_0_40px_rgba(0,240,255,0.1)] relative z-10"
+               className="glass-card p-8 rounded-2xl border border-[var(--color-primary)]/30 scale-105 shadow-[0_0_40px_rgba(14,165,233,0.15)] relative z-10"
              >
                <div className="absolute top-0 end-0 p-4">
                  <span className="flex h-3 w-3">

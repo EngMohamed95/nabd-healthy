@@ -20,6 +20,7 @@ export default function Navbar() {
       <div className="hidden md:flex items-center gap-8 text-sm font-medium text-white/70">
         <a href="#features" className="hover:text-white transition-colors">{t.navbar.features}</a>
         <a href="#demo" className="hover:text-white transition-colors">{t.navbar.demo}</a>
+        <a href="#gallery" className="hover:text-white transition-colors">{t.navbar.gallery}</a>
         <a href="#testimonials" className="hover:text-white transition-colors">{t.navbar.testimonials}</a>
         <a href="#pricing" className="hover:text-white transition-colors">{t.navbar.pricing}</a>
       </div>

@@ -2,6 +2,7 @@ import { motion, useScroll, useTransform } from 'motion/react';
 import { useRef, useState, useEffect } from 'react';
 import { Mic, FileText, CheckCircle2 } from 'lucide-react';
 import { useLanguage } from '../lib/LanguageContext';
+import { img1, img2 } from '../images';
 
 export default function AIShowcase() {
   const { t, language } = useLanguage();
@@ -47,6 +48,11 @@ export default function AIShowcase() {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 relative z-10">
         {/* Left Side: Recording UI */}
         <motion.div style={{ y: y1 }} className="glass-card rounded-3xl p-8 border border-white/5 relative overflow-hidden group">
+          <img 
+            src={img1} 
+            alt="AI Acoustic Background" 
+            className="absolute inset-0 w-full h-full object-cover opacity-[0.04] pointer-events-none mix-blend-overlay"
+          />
           <div className="absolute top-0 inset-x-0 w-full h-1 bg-gradient-to-r from-transparent via-[var(--color-primary)] to-transparent opacity-50" />
           
           <div className="flex items-center justify-between mb-8">
@@ -86,7 +92,12 @@ export default function AIShowcase() {
         </motion.div>
 
         {/* Right Side: Generated Report */}
-        <motion.div style={{ y: y2 }} className="glass-card rounded-3xl p-8 border border-white/5 flex flex-col justify-between relative">
+        <motion.div style={{ y: y2 }} className="glass-card rounded-3xl p-8 border border-white/5 flex flex-col justify-between relative overflow-hidden">
+          <img 
+            src={img2} 
+            alt="Medical Report Background" 
+            className="absolute inset-0 w-full h-full object-cover opacity-[0.04] pointer-events-none mix-blend-overlay"
+          />
           <div className="absolute inset-x-0 bottom-0 top-1/2 bg-gradient-to-t from-[var(--color-secondary)]/10 to-transparent pointer-events-none rounded-b-3xl" />
           
           <div className="flex items-center gap-3 mb-8">

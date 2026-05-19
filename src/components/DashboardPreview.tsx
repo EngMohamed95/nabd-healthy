@@ -1,6 +1,7 @@
 import { motion, useScroll, useTransform } from 'motion/react';
 import { useRef } from 'react';
 import { useLanguage } from '../lib/LanguageContext';
+import { img5 } from '../images';
 
 export default function DashboardPreview() {
   const { t, dir } = useLanguage();
@@ -26,7 +27,7 @@ export default function DashboardPreview() {
         style={{ scale, rotateX, opacity }}
         className="w-full max-w-[1400px] mx-auto px-6 relative perspective-[2000px]"
       >
-        <div className="relative rounded-3xl overflow-hidden glass border border-white/20 p-2 shadow-[0_0_100px_rgba(0,240,255,0.1)]" dir="ltr">
+        <div className="relative rounded-3xl overflow-hidden glass border border-white/20 p-2 shadow-[0_0_100px_rgba(14,165,233,0.15)]" dir="ltr">
           {/* Header Bar Mock */}
           <div className="flex items-center justify-between px-6 py-4 border-b border-white/5 bg-black/50">
              <div className="flex gap-2">
@@ -52,6 +53,11 @@ export default function DashboardPreview() {
 
             {/* Main Canvas */}
             <div className="col-span-7 bg-[#0a0a0a] p-8 flex flex-col gap-6 overflow-hidden relative">
+              <img 
+                src={img5} 
+                alt="EMR Interactive Panel" 
+                className="absolute inset-0 w-full h-full object-cover opacity-25 mix-blend-screen pointer-events-none"
+              />
               <div className="absolute top-0 end-0 w-64 h-64 bg-[var(--color-accent)]/10 blur-[100px]" />
               
               <div className="flex justify-between items-end mb-4">

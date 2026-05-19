@@ -48,7 +48,7 @@ export default function Pricing() {
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.1 }}
-              className={`rounded-3xl p-8 border ${plan.popular ? 'bg-gradient-to-b from-white/[0.08] to-transparent border-[var(--color-primary)]/50 scale-105 shadow-[0_0_40px_rgba(0,240,255,0.1)] relative z-10' : 'glass border-white/10'}`}
+              className={`rounded-3xl p-8 border ${plan.popular ? 'bg-gradient-to-b from-white/[0.08] to-transparent border-[var(--color-primary)]/50 scale-105 shadow-[0_0_40px_rgba(14,165,233,0.15)] relative z-10' : 'glass border-white/10'}`}
             >
               {plan.popular && (
                 <div className="absolute -top-4 start-1/2 -translate-x-1/2 rtl:translate-x-1/2 px-4 py-1 rounded-full bg-[var(--color-primary)] text-black text-xs font-bold uppercase tracking-wider">
