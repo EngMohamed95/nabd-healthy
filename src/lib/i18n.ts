@@ -12,7 +12,7 @@ export const translations = {
       getStarted: "Get Started"
     },
     hero: {
-      live: "NexusAI Health 2.0 is now live",
+      live: "Nabd 2.0 is now live",
       title1: "Transform Voice Notes Into",
       title2: "Smart Medical Reports",
       desc: "The enterprise-grade clinic management system that uses AI to automatically generate professional medical reports from patient conversations in real-time.",
@@ -62,7 +62,7 @@ export const translations = {
     whyChooseUs: {
       titleLine1: "Goodbye, Burnout.",
       titleLine2: "Hello, Patient Care.",
-      desc: "Doctors spend over 15 hours a week solely on paperwork. NexusAI cuts administrative load by 80%, allowing clinicians to focus on what actually matters: looking at the patient, not the screen.",
+      desc: "Doctors spend over 15 hours a week solely on paperwork. Nabd cuts administrative load by 80%, allowing clinicians to focus on what actually matters: looking at the patient, not the screen.",
       s1_val: "4hrs",
       s1_label: "Saved Per Doctor/Day",
       s2_val: "99%",
@@ -74,7 +74,7 @@ export const translations = {
       readStudy: "Read the clinical study",
       tradEMR: "Traditional EMR",
       tradEMRDesc: "Manual typing, dropdown menus, clicking through 15 screens for a standard consultation. Average time: 12 mins per patient.",
-      nexusFlow: "NexusAI Flow",
+      nexusFlow: "Nabd Flow",
       nexusFlowDesc: "Doctor speaks naturally. AI extracts symptoms, vitals, and plan. Report is ready before the patient leaves the room. Average time: 0 active minutes."
     },
     testimonials: {
@@ -82,7 +82,7 @@ export const translations = {
       t1_quote: "It's like having a world-class medical scribe in my pocket. My documentation quality has improved, and I'm home by 6 PM every day.",
       t1_author: "Dr. Sarah Jenkins",
       t1_role: "Cardiologist, Mayo Clinic",
-      t2_quote: "Our clinic saw a 40% increase in patient throughput within two months of implementing NexusAI. It pays for itself tenfold.",
+      t2_quote: "Our clinic saw a 40% increase in patient throughput within two months of implementing Nabd. It pays for itself tenfold.",
       t2_author: "James Chen",
       t2_role: "Clinic Director, CityHealth",
       t3_quote: "The billing extraction is flawless. Getting exact ICD-10 codes directly from my voice notes has completely eliminated our coding backlog.",
@@ -152,7 +152,7 @@ export const translations = {
       getStarted: "ابدأ الآن"
     },
     hero: {
-      live: "الإصدار 2.0 من NexusAI Health متاح الآن",
+      live: "الإصدار 2.0 من نبض متاح الآن",
       title1: "حوّل الملاحظات الصوتية إلى",
       title2: "تقارير طبية ذكية",
       desc: "نظام إدارة العيادات المؤسسي الذي يستخدم الذكاء الاصطناعي لإنشاء تقارير طبية احترافية تلقائيًا من محادثات المرضى في الوقت الفعلي.",
@@ -202,7 +202,7 @@ export const translations = {
     whyChooseUs: {
       titleLine1: "وداعاً للإرهاق.",
       titleLine2: "مرحباً برعاية المرضى.",
-      desc: "يقضي الأطباء أكثر من 15 ساعة أسبوعيًا فقط في الأعمال الورقية. يقلل NexusAI من العبء الإداري بنسبة 80%، مما يسمح للأطباء بالتركيز على ما يهم حقًا: النظر إلى المريض، وليس الشاشة.",
+      desc: "يقضي الأطباء أكثر من 15 ساعة أسبوعيًا فقط في الأعمال الورقية. يقلل نبض من العبء الإداري بنسبة 80%، مما يسمح للأطباء بالتركيز على ما يهم حقًا: النظر إلى المريض، وليس الشاشة.",
       s1_val: "4 ساعات",
       s1_label: "توفير يومي للطبيب",
       s2_val: "99%",
@@ -214,7 +214,7 @@ export const translations = {
       readStudy: "اقرأ الدراسة السريرية",
       tradEMR: "السجل الطبي التقليدي",
       tradEMRDesc: "كتابة يدوية، قوائم منسدلة، النقر عبر 15 شاشة لاستشارة قياسية. متوسط الوقت: 12 دقيقة لكل مريض.",
-      nexusFlow: "تدفق عمل NexusAI",
+      nexusFlow: "تدفق عمل نبض",
       nexusFlowDesc: "يتحدث الطبيب بشكل طبيعي. يستخرج الذكاء الاصطناعي الأعراض والحيوية والخطة. التقرير جاهز قبل أن يغادر المريض الغرفة. متوسط الوقت: 0 دقائق نشطة."
     },
     testimonials: {
@@ -222,7 +222,7 @@ export const translations = {
       t1_quote: "إنه أشبه بامتلاك كاتب طبي عالمي المستوى في جيبي. تحسنت جودة توثيقي بشكل كبير، وأغادر العيادة في تمام الساعة 6 مساءً يومياً.",
       t1_author: "د. سارة جينكينز",
       t1_role: "طبيبة قلب، مايو كلينك",
-      t2_quote: "شهدت عيادتنا زيادة بنسبة 40٪ في إنتاجية استقبال المرضى خلال شهرين من تطبيق NexusAI. النظام يدفع تكلفته أضعافاً مضاعفة.",
+      t2_quote: "شهدت عيادتنا زيادة بنسبة 40٪ في إنتاجية استقبال المرضى خلال شهرين من تطبيق نبض. النظام يدفع تكلفته أضعافاً مضاعفة.",
       t2_author: "جيمس تشين",
       t2_role: "مدير عيادة، CityHealth",
       t3_quote: "استخراج الفوترة خالي من العيوب. الحصول على أكواد ICD-10 دقيقة مباشرة من ملاحظاتي الصوتية أدى إلى القضاء تمامًا على تراكمات الترميز الطبي.",

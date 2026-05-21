@@ -89,7 +89,7 @@ export default function Hero() {
             <div className="flex-1 relative overflow-hidden bg-black/40 flex flex-col justify-end p-6 md:p-8">
               <img 
                 src={img5} 
-                alt="NexusAI Healthcare System" 
+                alt="Nabd Healthcare System" 
                 className="absolute inset-0 w-full h-full object-cover opacity-60 mix-blend-screen md:mix-blend-normal"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-[var(--color-darker)] via-transparent to-transparent md:from-black/85 md:via-black/30" />
@@ -119,7 +119,7 @@ export default function Hero() {
             <div className="relative aspect-[9/16] rounded-xl overflow-hidden bg-black/60">
               <img 
                 src={img7} 
-                alt="NexusAI Companion Mobile App" 
+                alt="Nabd Companion Mobile App" 
                 className="absolute inset-0 w-full h-full object-cover"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />

@@ -7,7 +7,7 @@ export default function Footer() {
     <footer className="w-full py-12 border-t border-white/5 mt-20 relative z-10 bg-black/40 backdrop-blur-md">
       <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-12">
         <div>
-          <span className="text-xl font-bold heading-display text-white" dir="ltr">NexusAI.</span>
+          <span className="text-xl font-bold heading-display text-white" dir="ltr">Nabd.</span>
           <p className="mt-4 text-white/50 text-sm">
             {t.footer.desc}
           </p>
@@ -38,7 +38,7 @@ export default function Footer() {
         </div>
       </div>
       <div className="max-w-7xl mx-auto px-6 mt-12 pt-8 border-t border-white/5 text-sm text-white/30 text-center" dir="ltr">
-        © 2026 NexusAI Health. All rights reserved.
+        © 2026 Nabd. All rights reserved.
       </div>
     </footer>
   );

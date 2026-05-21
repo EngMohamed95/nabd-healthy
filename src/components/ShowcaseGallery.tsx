@@ -78,8 +78,8 @@ export default function ShowcaseGallery() {
 
   const title = language === 'ar' ? "الذكاء الاصطناعي في العمل السريري" : "AI in Clinical Action";
   const desc = language === 'ar' 
-    ? "مجموعة صور كاملة توضح مساحات عمل الرعاية الصحية الذكية المدعومة بنظام NexusAI Health." 
-    : "A full gallery showcase of smart healthcare workspaces powered by NexusAI Health.";
+    ? "مجموعة صور كاملة توضح مساحات عمل الرعاية الصحية الذكية المدعومة بنظام Nabd." 
+    : "A full gallery showcase of smart healthcare workspaces powered by Nabd.";
 
   return (
     <section id="gallery" className="relative w-full py-20 border-t border-white/5 bg-black/20">

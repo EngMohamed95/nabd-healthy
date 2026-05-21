@@ -14,7 +14,7 @@ export default function Navbar() {
     >
       <div className="flex items-center gap-2" dir="ltr">
         <Activity className="w-6 h-6 text-[var(--color-primary)]" />
-        <span className="text-xl font-bold heading-display text-white">NexusAI</span>
+        <span className="text-xl font-bold heading-display text-white">Nabd</span>
       </div>
       
       <div className="hidden md:flex items-center gap-8 text-sm font-medium text-white/70">
