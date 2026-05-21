@@ -36,7 +36,7 @@ export default function App() {
   }, []);
 
   return (
-    <div className="relative w-full min-h-screen bg-[var(--color-darker)] text-white overflow-hidden">
+    <div className="relative w-full min-h-screen bg-[var(--color-darker)] text-slate-800 overflow-hidden">
       <Navbar />
       <main className="relative z-10 flex flex-col items-center w-full">
         <Hero />

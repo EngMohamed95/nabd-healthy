@@ -82,16 +82,16 @@ export default function ShowcaseGallery() {
     : "A full gallery showcase of smart healthcare workspaces powered by Nabd.";
 
   return (
-    <section id="gallery" className="relative w-full py-20 border-t border-white/5 bg-black/20">
+    <section id="gallery" className="relative w-full py-20 border-t border-blue-100/40 bg-slate-100/30">
       {/* Background glow */}
       <div className="absolute top-1/2 start-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-[var(--color-primary)]/5 rounded-full blur-[120px] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-6">
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold heading-display mb-4 text-white">
+          <h2 className="text-4xl md:text-5xl font-bold heading-display mb-4 text-slate-900">
             {title}
           </h2>
-          <p className="text-xl text-white/50 max-w-2xl mx-auto">
+          <p className="text-xl text-slate-600 max-w-2xl mx-auto">
             {desc}
           </p>
         </div>
@@ -110,7 +110,7 @@ export default function ShowcaseGallery() {
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.05 }}
                 onClick={() => setSelectedImg(item.src)}
-                className="glass-card rounded-2xl overflow-hidden border border-white/10 group cursor-pointer relative aspect-video shadow-lg hover:shadow-2xl transition-all"
+                className="glass-card rounded-2xl overflow-hidden border border-blue-100/40 group cursor-pointer relative aspect-video shadow-lg hover:shadow-2xl transition-all"
               >
                 <img 
                   src={item.src} 

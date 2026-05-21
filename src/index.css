@@ -6,17 +6,17 @@
   --font-display: "Space Grotesk", sans-serif;
   --font-arabic: "Tajawal", sans-serif;
 
-  --color-dark: #0b0f19;
-  --color-darker: #05070c;
+  --color-dark: #e2e8f0;
+  --color-darker: #f8fafc;
   
-  --color-primary: #0ea5e9; /* Sky Blue */
-  --color-secondary: #0d9488; /* Teal */
-  --color-accent: #38bdf8; /* Light Sky Blue */
+  --color-primary: #2563eb; /* Blue 600 */
+  --color-secondary: #0ea5e9; /* Sky 500 */
+  --color-accent: #1d4ed8; /* Blue 700 */
 }
 
 body {
   background-color: var(--color-darker);
-  color: #FFFFFF;
+  color: #1e293b;
   font-family: var(--font-sans);
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
@@ -33,23 +33,23 @@ body {
 
 
 .glass {
-  background: rgba(10, 10, 10, 0.4);
+  background: rgba(255, 255, 255, 0.7);
   backdrop-filter: blur(24px);
   -webkit-backdrop-filter: blur(24px);
-  border: 1px solid rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(14, 165, 233, 0.1);
 }
 
 .glass-card {
-  background: linear-gradient(180deg, rgba(20, 20, 20, 0.6) 0%, rgba(10, 10, 10, 0.8) 100%);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.9) 0%, rgba(240, 249, 255, 0.95) 100%);
   backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(14, 165, 233, 0.1);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.03);
   transition: all 0.3s ease;
 }
 
 .glass-card:hover {
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  box-shadow: 0 8px 32px rgba(14, 165, 233, 0.15);
+  border: 1px solid rgba(14, 165, 233, 0.25);
+  box-shadow: 0 8px 32px rgba(14, 165, 233, 0.08);
 }
 
 .heading-display {
@@ -58,7 +58,7 @@ body {
 }
 
 .text-gradient {
-  background: linear-gradient(135deg, #FFFFFF 0%, #888888 100%);
+  background: linear-gradient(135deg, #0f172a 0%, #475569 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -74,8 +74,8 @@ body {
 .bg-grid {
   background-size: 50px 50px;
   background-image: 
-    linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+    linear-gradient(to right, rgba(37, 99, 235, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(37, 99, 235, 0.04) 1px, transparent 1px);
   animation: grid-scroll 20s linear infinite;
 }
 

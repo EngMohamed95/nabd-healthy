@@ -14,14 +14,14 @@ export default function WhyChooseUs() {
   ];
 
   return (
-    <section className="relative w-full py-20 border-t border-white/5 bg-black/50">
+    <section className="relative w-full py-20 border-t border-blue-100/40 bg-slate-100/30">
       <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
         <div>
           <motion.h2 
             initial={{ opacity: 0, x: dir === 'rtl' ? 30 : -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            className="text-4xl md:text-5xl font-bold heading-display mb-8 leading-tight"
+            className="text-4xl md:text-5xl font-bold heading-display mb-8 leading-tight text-slate-900"
           >
             {t.whyChooseUs.titleLine1} <br/>
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-[var(--color-primary)] to-[var(--color-accent)]">{t.whyChooseUs.titleLine2}</span>
@@ -31,7 +31,7 @@ export default function WhyChooseUs() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
-            className="text-lg text-white/60 mb-10 leading-relaxed"
+            className="text-lg text-slate-650 mb-10 leading-relaxed"
           >
             {t.whyChooseUs.desc}
           </motion.p>
@@ -45,7 +45,7 @@ export default function WhyChooseUs() {
                 viewport={{ once: true }}
                 transition={{ delay: 0.2 + i * 0.1 }}
               >
-                <div className="text-4xl font-bold font-mono text-white mb-2" dir="ltr" style={{ textAlign: dir === 'rtl' ? 'right' : 'left' }}>{stat.value}</div>
+                <div className="text-4xl font-bold font-mono text-slate-900 mb-2" dir="ltr" style={{ textAlign: dir === 'rtl' ? 'right' : 'left' }}>{stat.value}</div>
                 <div className="text-sm font-medium text-[var(--color-primary)] uppercase tracking-wider">{stat.label}</div>
               </motion.div>
             ))}
@@ -55,7 +55,7 @@ export default function WhyChooseUs() {
              initial={{ opacity: 0 }}
              whileInView={{ opacity: 1 }}
              viewport={{ once: true }}
-             className="flex items-center gap-2 text-white hover:text-[var(--color-primary)] transition-colors group"
+             className="flex items-center gap-2 text-slate-800 hover:text-[var(--color-primary)] transition-colors group font-medium"
           >
              {t.whyChooseUs.readStudy} 
              {dir === 'rtl' ? <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" /> : <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />}
@@ -70,7 +70,7 @@ export default function WhyChooseUs() {
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            className="relative h-64 rounded-3xl overflow-hidden border border-white/10 shadow-2xl"
+            className="relative h-64 rounded-3xl overflow-hidden border border-blue-100/30 shadow-2xl"
           >
             <img 
               src={img4} 
@@ -90,10 +90,10 @@ export default function WhyChooseUs() {
                initial={{ opacity: 0, x: dir === 'rtl' ? -30 : 30 }}
                whileInView={{ opacity: 1, x: 0 }}
                viewport={{ once: true }}
-               className="glass-card p-6 rounded-2xl border border-red-500/20 opacity-50 grayscale"
+               className="glass-card p-6 rounded-2xl border border-red-200 bg-red-50/10 opacity-60 grayscale"
              >
-               <div className="text-sm text-red-500 font-semibold mb-2 uppercase tracking-wide">{t.whyChooseUs.tradEMR}</div>
-               <p className="text-white/60">{t.whyChooseUs.tradEMRDesc}</p>
+               <div className="text-sm text-red-550 font-semibold mb-2 uppercase tracking-wide">{t.whyChooseUs.tradEMR}</div>
+               <p className="text-slate-600">{t.whyChooseUs.tradEMRDesc}</p>
              </motion.div>
 
              <motion.div 
@@ -101,7 +101,7 @@ export default function WhyChooseUs() {
                whileInView={{ opacity: 1, x: 0 }}
                viewport={{ once: true }}
                transition={{ delay: 0.2 }}
-               className="glass-card p-8 rounded-2xl border border-[var(--color-primary)]/30 scale-105 shadow-[0_0_40px_rgba(14,165,233,0.15)] relative z-10"
+               className="glass-card p-8 rounded-2xl border border-[var(--color-primary)]/30 scale-105 shadow-[0_8px_32px_rgba(37,99,235,0.06)] relative z-10"
              >
                <div className="absolute top-0 end-0 p-4">
                  <span className="flex h-3 w-3">
@@ -110,7 +110,7 @@ export default function WhyChooseUs() {
                  </span>
                </div>
                <div className="text-sm text-[var(--color-primary)] font-semibold mb-2 uppercase tracking-wide">{t.whyChooseUs.nexusFlow}</div>
-               <p className="text-white text-lg">{t.whyChooseUs.nexusFlowDesc}</p>
+               <p className="text-slate-800 text-lg font-medium">{t.whyChooseUs.nexusFlowDesc}</p>
              </motion.div>
           </div>
         </div>

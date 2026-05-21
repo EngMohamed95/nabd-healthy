@@ -27,7 +27,7 @@ export default function Testimonials() {
     <section id="testimonials" className="relative w-full py-20 overflow-hidden">
       <div className="max-w-7xl mx-auto px-6">
         <div className="text-center mb-20">
-          <h2 className="text-4xl md:text-5xl font-bold heading-display mb-6">{t.testimonials.title}</h2>
+          <h2 className="text-4xl md:text-5xl font-bold heading-display mb-6 text-slate-900">{t.testimonials.title}</h2>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -38,21 +38,21 @@ export default function Testimonials() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.15 }}
-              className="glass-card rounded-3xl p-8 flex flex-col justify-between"
+              className="glass-card rounded-3xl p-8 flex flex-col justify-between border border-blue-100/50"
             >
               <div>
-                <div className="flex gap-1 mb-6 text-yellow-500" dir="ltr">
+                <div className="flex gap-1 mb-6 text-amber-450" dir="ltr">
                   {[...Array(5)].map((_, j) => <Star key={j} className="w-4 h-4 fill-current" />)}
                 </div>
-                <p className="text-lg text-white/80 leading-relaxed mb-8">"{testimonial.quote}"</p>
+                <p className="text-lg text-slate-700 leading-relaxed mb-8">"{testimonial.quote}"</p>
               </div>
               <div className="flex items-center gap-4">
-                <div className="w-12 h-12 rounded-full bg-gradient-to-br from-white/10 to-white/5 border border-white/10 flex items-center justify-center font-bold text-lg">
+                <div className="w-12 h-12 rounded-full bg-gradient-to-br from-blue-50 to-sky-100 border border-blue-100/60 flex items-center justify-center font-bold text-lg text-blue-600">
                   {testimonial.author.charAt(0)}
                 </div>
                 <div>
-                  <div className="font-semibold">{testimonial.author}</div>
-                  <div className="text-sm text-white/50">{testimonial.role}</div>
+                  <div className="font-semibold text-slate-900">{testimonial.author}</div>
+                  <div className="text-sm text-slate-500">{testimonial.role}</div>
                 </div>
               </div>
             </motion.div>

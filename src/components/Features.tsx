@@ -21,7 +21,7 @@ export default function Features() {
 
       <div className="text-center mb-20">
         <h2 className="text-4xl md:text-5xl font-bold heading-display mb-6">{t.features.title}</h2>
-        <p className="text-xl text-white/50 max-w-2xl mx-auto">{t.features.desc}</p>
+        <p className="text-xl text-slate-600 max-w-2xl mx-auto">{t.features.desc}</p>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -34,10 +34,10 @@ export default function Features() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-100px" }}
               transition={{ duration: 0.5, delay: i * 0.1 }}
-              className={`glass-card rounded-3xl group hover:-translate-y-1.5 transition-all duration-500 ${feat.colSpan} relative overflow-hidden flex flex-col justify-between min-h-[380px] h-[400px] border border-white/5 bg-[#090d16]`}
+              className={`glass-card rounded-3xl group hover:-translate-y-1.5 transition-all duration-500 ${feat.colSpan} relative overflow-hidden flex flex-col justify-between min-h-[380px] h-[400px] border border-blue-100/50`}
             >
               {/* Subtle background glow for each card */}
-              <div className="absolute inset-0 bg-gradient-to-br from-white/[0.02] to-transparent opacity-100 group-hover:opacity-80 transition-opacity" />
+              <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent opacity-100 group-hover:opacity-80 transition-opacity" />
               
               {/* Radial glow active on hover */}
               <div className="absolute -inset-px bg-gradient-to-r from-[var(--color-primary)]/10 to-[var(--color-secondary)]/10 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none rounded-3xl" />
@@ -47,11 +47,11 @@ export default function Features() {
                   {/* Left Side: Content */}
                   <div className="md:col-span-7 p-8 md:p-10 flex flex-col justify-between h-full text-start">
                     <div>
-                      <div className="w-12 h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center mb-6 group-hover:bg-[var(--color-primary)]/20 group-hover:border-[var(--color-primary)]/30 transition-all duration-300 shadow-inner">
-                        <feat.icon className="w-6 h-6 text-white/70 group-hover:text-[var(--color-primary)] transition-colors" />
+                      <div className="w-12 h-12 rounded-xl bg-blue-50 border border-blue-100/80 flex items-center justify-center mb-6 group-hover:bg-[var(--color-primary)]/20 group-hover:border-[var(--color-primary)]/30 transition-all duration-300 shadow-inner">
+                        <feat.icon className="w-6 h-6 text-slate-650 group-hover:text-[var(--color-primary)] transition-colors" />
                       </div>
-                      <h3 className="text-2xl font-bold heading-display text-white mb-4 group-hover:text-[var(--color-primary)] transition-colors">{feat.title}</h3>
-                      <p className="text-white/60 text-sm leading-relaxed max-w-sm">{feat.desc}</p>
+                      <h3 className="text-2xl font-bold heading-display text-slate-900 mb-4 group-hover:text-[var(--color-primary)] transition-colors">{feat.title}</h3>
+                      <p className="text-slate-600 text-sm leading-relaxed max-w-sm">{feat.desc}</p>
                     </div>
                     
                     <div className="flex items-center gap-2 text-sm text-[var(--color-primary)] font-semibold opacity-0 group-hover:opacity-100 transition-all duration-300">
@@ -69,8 +69,8 @@ export default function Features() {
                         className="absolute inset-0 w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700" 
                       />
                       {/* Gradient Mask to fade image into card background */}
-                      <div className="absolute inset-y-0 start-0 w-20 bg-gradient-to-r from-[#090d16] to-transparent pointer-events-none" />
-                      <div className="absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-[#090d16] to-transparent md:hidden pointer-events-none" />
+                      <div className="absolute inset-y-0 start-0 w-20 bg-gradient-to-r from-white to-transparent pointer-events-none" />
+                      <div className="absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-white to-transparent md:hidden pointer-events-none" />
                     </div>
                   )}
                 </div>
@@ -78,11 +78,11 @@ export default function Features() {
                 <div className="flex flex-col h-full w-full justify-between relative z-10">
                   {/* Top Content */}
                   <div className="p-8 text-start">
-                    <div className="w-12 h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center mb-6 group-hover:bg-[var(--color-primary)]/20 group-hover:border-[var(--color-primary)]/30 transition-all duration-300 shadow-inner">
-                      <feat.icon className="w-6 h-6 text-white/70 group-hover:text-[var(--color-primary)] transition-colors" />
+                    <div className="w-12 h-12 rounded-xl bg-blue-50 border border-blue-100/80 flex items-center justify-center mb-6 group-hover:bg-[var(--color-primary)]/20 group-hover:border-[var(--color-primary)]/30 transition-all duration-300 shadow-inner">
+                      <feat.icon className="w-6 h-6 text-slate-650 group-hover:text-[var(--color-primary)] transition-colors" />
                     </div>
-                    <h3 className="text-2xl font-bold heading-display text-white mb-3 group-hover:text-[var(--color-primary)] transition-colors">{feat.title}</h3>
-                    <p className="text-white/60 text-sm leading-relaxed">{feat.desc}</p>
+                    <h3 className="text-2xl font-bold heading-display text-slate-900 mb-3 group-hover:text-[var(--color-primary)] transition-colors">{feat.title}</h3>
+                    <p className="text-slate-600 text-sm leading-relaxed">{feat.desc}</p>
                   </div>
                   
                   {/* Bottom Bleeding Image */}
@@ -94,7 +94,7 @@ export default function Features() {
                         className="absolute inset-0 w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700" 
                       />
                       {/* Gradient Mask to fade image upwards */}
-                      <div className="absolute inset-x-0 top-0 h-16 bg-gradient-to-b from-[#090d16] to-transparent pointer-events-none" />
+                      <div className="absolute inset-x-0 top-0 h-16 bg-gradient-to-b from-white to-transparent pointer-events-none" />
                     </div>
                   )}
                 </div>
