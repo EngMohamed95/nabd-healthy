@@ -1,104 +1,128 @@
 import { motion } from 'motion/react';
-import { Users, Calendar, Activity, Pill, CreditCard, BarChart3 } from 'lucide-react';
+import { Mic, FileText, Users, FolderHeart, Printer, BarChart3, Sparkles, ArrowRight, ArrowLeft } from 'lucide-react';
 import { useLanguage } from '../lib/LanguageContext';
-import { img1, img3, img6, img7, img8, img11 } from '../images';
+import { img1, img2, img3, img6, img7, img11 } from '../images';
 
 export default function Features() {
   const { t, language, dir } = useLanguage();
   
-  const features = [
-    { icon: Users, title: t.features.f1_title, desc: t.features.f1_desc, colSpan: "md:col-span-2", image: img6 },
-    { icon: Calendar, title: t.features.f2_title, desc: t.features.f2_desc, colSpan: "md:col-span-1", image: img7 },
-    { icon: Activity, title: t.features.f3_title, desc: t.features.f3_desc, colSpan: "md:col-span-1", image: img1 },
-    { icon: Pill, title: t.features.f4_title, desc: t.features.f4_desc, colSpan: "md:col-span-2", image: img11 },
-    { icon: CreditCard, title: t.features.f5_title, desc: t.features.f5_desc, colSpan: "md:col-span-2", image: img8 },
-    { icon: BarChart3, title: t.features.f6_title, desc: t.features.f6_desc, colSpan: "md:col-span-1", image: img3 }
+  const featureList = [
+    {
+      icon: Mic,
+      title: t.features.f1_title,
+      desc: t.features.f1_desc,
+      image: img1,
+      tag: "Speech-to-Text AI",
+      colSpan: "md:col-span-8"
+    },
+    {
+      icon: FileText,
+      title: t.features.f2_title,
+      desc: t.features.f2_desc,
+      image: img2,
+      tag: "SOAP & ICD-10",
+      colSpan: "md:col-span-4"
+    },
+    {
+      icon: Users,
+      title: t.features.f3_title,
+      desc: t.features.f3_desc,
+      image: img7,
+      tag: "Waiting List & Triage",
+      colSpan: "md:col-span-4"
+    },
+    {
+      icon: FolderHeart,
+      title: t.features.f4_title,
+      desc: t.features.f4_desc,
+      image: img6,
+      tag: "Unified EMR",
+      colSpan: "md:col-span-8"
+    },
+    {
+      icon: Printer,
+      title: t.features.f5_title,
+      desc: t.features.f5_desc,
+      image: img11,
+      tag: "Requisition & Barcode",
+      colSpan: "md:col-span-6"
+    },
+    {
+      icon: BarChart3,
+      title: t.features.f6_title,
+      desc: t.features.f6_desc,
+      image: img3,
+      tag: "Clinic Insights",
+      colSpan: "md:col-span-6"
+    }
   ];
 
   return (
     <section id="features" className="relative w-full max-w-7xl mx-auto py-24 px-6 xl:px-0">
-      <div className="absolute top-0 end-0 w-[500px] h-[500px] bg-[var(--color-secondary)]/10 rounded-full blur-[150px] pointer-events-none" />
+      {/* Background radial glow */}
+      <div className="absolute top-1/3 end-0 w-[500px] h-[500px] bg-[#60A5FA]/10 rounded-full blur-[140px] pointer-events-none" />
 
-      <div className="text-center mb-20">
-        <h2 className="text-4xl md:text-5xl font-bold heading-display mb-6">{t.features.title}</h2>
-        <p className="text-xl text-slate-600 max-w-2xl mx-auto">{t.features.desc}</p>
+      {/* Header */}
+      <div className="text-center mb-16">
+        <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-indigo-50 border border-indigo-200 text-[#7E6FFF] text-xs font-bold mb-4">
+          <Sparkles className="w-3.5 h-3.5" />
+          <span>{t.features.badge}</span>
+        </div>
+        <h2 className="text-3xl sm:text-5xl font-extrabold heading-display text-slate-900 mb-4 tracking-tight">
+          {t.features.title}
+        </h2>
+        <p className="text-base sm:text-lg text-slate-600 max-w-2xl mx-auto">
+          {t.features.desc}
+        </p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-        {features.map((feat, i) => {
-          const isLarge = feat.colSpan.includes("md:col-span-2");
+      {/* Bento Grid */}
+      <div className="grid grid-cols-1 md:grid-cols-12 gap-6">
+        {featureList.map((feat, i) => {
           return (
             <motion.div
               key={i}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 0.5, delay: i * 0.1 }}
-              className={`glass-card rounded-3xl group hover:-translate-y-1.5 transition-all duration-500 ${feat.colSpan} relative overflow-hidden flex flex-col justify-between min-h-[380px] h-[400px] border border-blue-100/50`}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.5, delay: i * 0.08 }}
+              className={`glass-card rounded-3xl ${feat.colSpan} relative overflow-hidden flex flex-col justify-between group border border-indigo-100/70 p-6 sm:p-8 min-h-[360px]`}
             >
-              {/* Subtle background glow for each card */}
-              <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent opacity-100 group-hover:opacity-80 transition-opacity" />
-              
-              {/* Radial glow active on hover */}
-              <div className="absolute -inset-px bg-gradient-to-r from-[var(--color-primary)]/10 to-[var(--color-secondary)]/10 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none rounded-3xl" />
-              
-              {isLarge ? (
-                <div className="grid grid-cols-1 md:grid-cols-12 h-full w-full relative z-10">
-                  {/* Left Side: Content */}
-                  <div className="md:col-span-7 p-8 md:p-10 flex flex-col justify-between h-full text-start">
-                    <div>
-                      <div className="w-12 h-12 rounded-xl bg-blue-50 border border-blue-100/80 flex items-center justify-center mb-6 group-hover:bg-[var(--color-primary)]/20 group-hover:border-[var(--color-primary)]/30 transition-all duration-300 shadow-inner">
-                        <feat.icon className="w-6 h-6 text-slate-650 group-hover:text-[var(--color-primary)] transition-colors" />
-                      </div>
-                      <h3 className="text-2xl font-bold heading-display text-slate-900 mb-4 group-hover:text-[var(--color-primary)] transition-colors">{feat.title}</h3>
-                      <p className="text-slate-600 text-sm leading-relaxed max-w-sm">{feat.desc}</p>
-                    </div>
-                    
-                    <div className="flex items-center gap-2 text-sm text-[var(--color-primary)] font-semibold opacity-0 group-hover:opacity-100 transition-all duration-300">
-                      <span>{language === 'ar' ? 'تعرف على المزيد' : 'Learn more'}</span>
-                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className={dir === 'rtl' ? 'rotate-180' : ''}><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
-                    </div>
+              {/* Top Details */}
+              <div className="relative z-10 text-start">
+                <div className="flex items-center justify-between mb-4">
+                  <div className="w-12 h-12 rounded-2xl bg-indigo-50 text-[#7E6FFF] flex items-center justify-center group-hover:scale-110 group-hover:bg-[#7E6FFF] group-hover:text-white transition-all shadow-xs">
+                    <feat.icon className="w-6 h-6" />
                   </div>
-                  
-                  {/* Right Side: Bleeding Image */}
-                  {feat.image && (
-                    <div className="md:col-span-5 relative h-full min-h-[200px] md:min-h-0 overflow-hidden">
-                      <img 
-                        src={feat.image} 
-                        alt={feat.title} 
-                        className="absolute inset-0 w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700" 
-                      />
-                      {/* Gradient Mask to fade image into card background */}
-                      <div className="absolute inset-y-0 start-0 w-20 bg-gradient-to-r from-white to-transparent pointer-events-none" />
-                      <div className="absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-white to-transparent md:hidden pointer-events-none" />
-                    </div>
-                  )}
+                  <span className="text-[11px] font-bold font-mono px-3 py-1 bg-slate-100 text-slate-600 rounded-full">
+                    {feat.tag}
+                  </span>
                 </div>
-              ) : (
-                <div className="flex flex-col h-full w-full justify-between relative z-10">
-                  {/* Top Content */}
-                  <div className="p-8 text-start">
-                    <div className="w-12 h-12 rounded-xl bg-blue-50 border border-blue-100/80 flex items-center justify-center mb-6 group-hover:bg-[var(--color-primary)]/20 group-hover:border-[var(--color-primary)]/30 transition-all duration-300 shadow-inner">
-                      <feat.icon className="w-6 h-6 text-slate-650 group-hover:text-[var(--color-primary)] transition-colors" />
-                    </div>
-                    <h3 className="text-2xl font-bold heading-display text-slate-900 mb-3 group-hover:text-[var(--color-primary)] transition-colors">{feat.title}</h3>
-                    <p className="text-slate-600 text-sm leading-relaxed">{feat.desc}</p>
-                  </div>
-                  
-                  {/* Bottom Bleeding Image */}
-                  {feat.image && (
-                    <div className="relative w-full h-44 overflow-hidden mt-auto">
-                      <img 
-                        src={feat.image} 
-                        alt={feat.title} 
-                        className="absolute inset-0 w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700" 
-                      />
-                      {/* Gradient Mask to fade image upwards */}
-                      <div className="absolute inset-x-0 top-0 h-16 bg-gradient-to-b from-white to-transparent pointer-events-none" />
-                    </div>
-                  )}
+
+                <h3 className="text-xl sm:text-2xl font-bold heading-display text-slate-900 mb-2 group-hover:text-[#7E6FFF] transition-colors">
+                  {feat.title}
+                </h3>
+                <p className="text-xs sm:text-sm text-slate-600 leading-relaxed max-w-md">
+                  {feat.desc}
+                </p>
+              </div>
+
+              {/* Bottom Image Preview with fading mask */}
+              <div className="relative w-full h-44 rounded-2xl overflow-hidden mt-6 bg-slate-900">
+                <img 
+                  src={feat.image} 
+                  alt={feat.title}
+                  className="w-full h-full object-cover opacity-85 group-hover:scale-105 group-hover:opacity-100 transition-all duration-700" 
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent" />
+                
+                <div className="absolute bottom-3 start-3 end-3 flex items-center justify-between text-white text-xs font-bold">
+                  <span className="opacity-0 group-hover:opacity-100 transition-opacity flex items-center gap-1 text-[#A399FF]">
+                    <span>استكشف في البرنامج</span>
+                    {dir === 'rtl' ? <ArrowLeft className="w-3.5 h-3.5" /> : <ArrowRight className="w-3.5 h-3.5" />}
+                  </span>
                 </div>
-              )}
+              </div>
             </motion.div>
           );
         })}

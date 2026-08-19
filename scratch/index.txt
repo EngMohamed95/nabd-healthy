@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl"><head><meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <base href="/">  
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet">
+    <link href="css/app-v4.css?v=3" rel="stylesheet">
+    <link href="css/waiting-list.css?v=1" rel="stylesheet">
+    <link href="_content/MudBlazor/MudBlazor.min.7c7lhmh1j6.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin>
+    <script type="importmap">{
+  "imports": {
+    "./_content/MudBlazor/MudBlazor.min.js": "./_content/MudBlazor/MudBlazor.min.f96y5mhlyw.js",
+    "./js/audio-recorder.js": "./js/audio-recorder.958j2nu600.js",
+    "./js/audio-waves.js": "./js/audio-waves.t0iv37nytj.js",
+    "./js/barcode-scanner-listener.js": "./js/barcode-scanner-listener.6v9jbkr1ja.js",
+    "./js/file-input-helper.js": "./js/file-input-helper.qmlxya9qzd.js",
+    "./js/location-picker.js": "./js/location-picker.qashsxsboh.js",
+    "./js/medical-requisition-print.js": "./js/medical-requisition-print.az9g158amx.js",
+    "./js/speechToText.js": "./js/speechToText.viqhargzk9.js"
+  },
+  "integrity": {
+    "./_content/MudBlazor/MudBlazor.min.f96y5mhlyw.js": "sha256-zR6goaoMpR/YVMMSTfCmVNo3kuPgOkjF/ovhkUhAkbk=",
+    "./_content/MudBlazor/MudBlazor.min.js": "sha256-zR6goaoMpR/YVMMSTfCmVNo3kuPgOkjF/ovhkUhAkbk=",
+    "./js/audio-recorder.958j2nu600.js": "sha256-/Q2/mmAPYjZivaDz16h8AWBqL4J/wNB23iChNZcpXLk=",
+    "./js/audio-recorder.js": "sha256-/Q2/mmAPYjZivaDz16h8AWBqL4J/wNB23iChNZcpXLk=",
+    "./js/audio-waves.js": "sha256-A0TK7WIxK5Tn/OOtYZIGh2G6vIvtbtVb/fbO8cjh2mk=",
+    "./js/audio-waves.t0iv37nytj.js": "sha256-A0TK7WIxK5Tn/OOtYZIGh2G6vIvtbtVb/fbO8cjh2mk=",
+    "./js/barcode-scanner-listener.6v9jbkr1ja.js": "sha256-TpwjA+WI2pSKMaMpDRA8SQew6xD3JaQm1ZyYR6CBugc=",
+    "./js/barcode-scanner-listener.js": "sha256-TpwjA+WI2pSKMaMpDRA8SQew6xD3JaQm1ZyYR6CBugc=",
+    "./js/file-input-helper.js": "sha256-PjoFZn5v2/6R4ZLx050hoookKoyX/OP8Fh2g5f/5wd4=",
+    "./js/file-input-helper.qmlxya9qzd.js": "sha256-PjoFZn5v2/6R4ZLx050hoookKoyX/OP8Fh2g5f/5wd4=",
+    "./js/location-picker.js": "sha256-gulnKqOX845VlfvwtjBj7fEk7SpdIfrJ+M0bRi/BBEw=",
+    "./js/location-picker.qashsxsboh.js": "sha256-gulnKqOX845VlfvwtjBj7fEk7SpdIfrJ+M0bRi/BBEw=",
+    "./js/medical-requisition-print.az9g158amx.js": "sha256-hmt7kL5OuXRtWhyPLRu8NjB7PseDKw8OvIkSVInWKKI=",
+    "./js/medical-requisition-print.js": "sha256-hmt7kL5OuXRtWhyPLRu8NjB7PseDKw8OvIkSVInWKKI=",
+    "./js/speechToText.js": "sha256-h/bXEjW4O3wmybFdfLuEq1WXvdqSRm4TaM2gD+dHROU=",
+    "./js/speechToText.viqhargzk9.js": "sha256-h/bXEjW4O3wmybFdfLuEq1WXvdqSRm4TaM2gD+dHROU="
+  }
+}</script>
+    <link rel="icon" type="image/ico" href="favicon.ico">
+    <!--Blazor:{"type":"server","prerenderId":"dcfd26ab1d5f46cdbde7f620f7b1349b","key":{"locationHash":"77D12F14A8105320B1AAED6AE7E689DA0EC4483270A645E84079EAA0FFDF550D:12","formattedComponentKey":""},"sequence":0,"descriptor":"CfDJ8LQUMvq/WF5PqSbqkn/8UB413TnSpoJ\u002B4zJ5OnBfdMicZbT3GarE/Vhe1c1ooZHP1QPR4jnahS8ebYa5sVt06j1RtCEyFrjJaa4\u002BLpxrqbb1e7F1vRd3cNnhbNXJeEseaYp1dZuVVrhLAMlRDu/Pa6X\u002Bvoes4f2uwOhYkliWZQAE62j8ubaFBZtKsqLe2V2vBxETdv8VhLlR7UJjAPJwN/pm5XjoDGBh1copnK7Qh4UlgGipLNc3mM0fmpcd0j2y3Xxk\u002BH/PbcYi5/8Kxnhr\u002BmOERg1j2B6\u002BQMzyJwb9s1X6z8qmKLXUC2oofHnDBfM6EGxwLbCmCDyn1jjZw9TXZo5f2iNgGRDwVyPWIhjPlKv\u002B76\u002BzA3fV\u002B1ovxL62gjpFaKxPViIODSRbp\u002BdDl23njgG2XcG\u002ByP5jgcNXhKyl2HGMY7gZpZq2Bb6qGCLCXLmsdgAYig8mdyRxvuWs2aNdq8zq\u002B\u002BBFkNCSRQBECuycMvooIO5\u002BQW0Qeop4pNlMZZmz/F4RQQW18HnBvSAIyER/QLNFrz4xy0HFkPBfSvTfSgzY7rD1RQ8bzBRA4YkjsoKDPNqNSEMGu2nl7AdmBrd7D6o="}--><title>مساعد نبض - الصفحة الرئيسية</title><!--Blazor:{"prerenderId":"dcfd26ab1d5f46cdbde7f620f7b1349b"}--></head>
+
+<body><!--Blazor:{"type":"server","prerenderId":"f511cf61106b4271be5b847d6c341508","key":{"locationHash":"94F604141C71A40063F828A64A599D89CD504D336DC5A6DD62BAC27596916C08:17","formattedComponentKey":""},"sequence":1,"descriptor":"CfDJ8LQUMvq/WF5PqSbqkn/8UB4YDcqdajFSomTN0N/nKAsTfvzTa3OpNxgKdsttCdDXXtI3B/hBEC\u002B/C5HxYqZyIHYWJny76EFyl4mRMoMcFU9y8tD8kx88SMVn5Z9QuBfcdPjVlg58dzT4fA1jwNEuKvCzjj07BhIaPpqfMakA6QcV42syJEM51vtQjq4bHt/KBRC0gSACF6VHzJ7luH1lznW6pgBch96YghYfavNECsLuxy\u002BdZh6HgGTVCsxCgo7W4YHgqZ/YVvShTS9/DYF/ZFKTct7voYDvzYFkZk55gfH2jmB52g67aDAZqOwHe3Q5ocmggOxq3LffGcEgAwRmr9vEu1KWx3QC5a4nu01h8CNQ/uuEuoFOBO1sEILivnmey7DFzFzrEPt5dH9HeTugO5Y\u002Bj/xL9JAW8pzi1M3CZKMUq86gBHNvy1h4GsZG2mQl2//HNO1t3KwTVdEMUNWB6k0UFkLh8u6A0hAvFvNwUrnEGeupnJ2aiBnlNG5j8EWEco\u002BGF1o/uE5V8iZa34\u002BMtkc="}--><style>
+::-webkit-scrollbar {width: 8px;height: 8px;z-index: 1;}
+::-webkit-scrollbar-track {background: transparent;}
+::-webkit-scrollbar-thumb {background: #c4c4c4;border-radius: 1px;}
+::-webkit-scrollbar-thumb:hover {background: #a6a6a6;}
+html, body * {scrollbar-color: #c4c4c4 transparent;scrollbar-width: thin;}
+</style>
+<style>
+    .mud-chart-serie:hover {
+        filter: url(#lighten);
+    }
+
+    .mud-chart-serie-hovered 
+    {
+        filter: url(#lighten);
+    }
+</style>
+
+<style class='mud-theme-provider'>
+:root{
+--mud-palette-black: rgba(39,39,47,1);
+--mud-palette-white: rgba(255,255,255,1);
+--mud-palette-primary: rgba(126,111,255,1);
+--mud-palette-primary-rgb: 126,111,255;
+--mud-palette-primary-text: rgba(255,255,255,1);
+--mud-palette-primary-darken: rgb(90,71,255);
+--mud-palette-primary-lighten: rgb(163,153,255);
+--mud-palette-primary-hover: rgba(126,111,255,0.058823529411764705);
+--mud-palette-secondary: rgba(255,64,129,1);
+--mud-palette-secondary-rgb: 255,64,129;
+--mud-palette-secondary-text: rgba(255,255,255,1);
+--mud-palette-secondary-darken: rgb(255,31,105);
+--mud-palette-secondary-lighten: rgb(255,102,153);
+--mud-palette-secondary-hover: rgba(255,64,129,0.058823529411764705);
+--mud-palette-tertiary: rgba(30,200,165,1);
+--mud-palette-tertiary-rgb: 30,200,165;
+--mud-palette-tertiary-text: rgba(255,255,255,1);
+--mud-palette-tertiary-darken: rgb(25,169,140);
+--mud-palette-tertiary-lighten: rgb(42,223,187);
+--mud-palette-tertiary-hover: rgba(30,200,165,0.058823529411764705);
+--mud-palette-info: rgba(74,134,255,1);
+--mud-palette-info-rgb: 74,134,255;
+--mud-palette-info-text: rgba(255,255,255,1);
+--mud-palette-info-darken: rgb(41,112,255);
+--mud-palette-info-lighten: rgb(112,160,255);
+--mud-palette-info-hover: rgba(74,134,255,0.058823529411764705);
+--mud-palette-success: rgba(61,203,108,1);
+--mud-palette-success-rgb: 61,203,108;
+--mud-palette-success-text: rgba(255,255,255,1);
+--mud-palette-success-darken: rgb(47,177,91);
+--mud-palette-success-lighten: rgb(94,212,133);
+--mud-palette-success-hover: rgba(61,203,108,0.058823529411764705);
+--mud-palette-warning: rgba(255,181,69,1);
+--mud-palette-warning-rgb: 255,181,69;
+--mud-palette-warning-text: rgba(255,255,255,1);
+--mud-palette-warning-darken: rgb(255,167,36);
+--mud-palette-warning-lighten: rgb(255,198,112);
+--mud-palette-warning-hover: rgba(255,181,69,0.058823529411764705);
+--mud-palette-error: rgba(255,63,95,1);
+--mud-palette-error-rgb: 255,63,95;
+--mud-palette-error-text: rgba(255,255,255,1);
+--mud-palette-error-darken: rgb(255,26,64);
+--mud-palette-error-lighten: rgb(255,102,128);
+--mud-palette-error-hover: rgba(255,63,95,0.058823529411764705);
+--mud-palette-dark: rgba(39,39,47,1);
+--mud-palette-dark-rgb: 39,39,47;
+--mud-palette-dark-text: rgba(255,255,255,1);
+--mud-palette-dark-darken: rgb(23,23,28);
+--mud-palette-dark-lighten: rgb(56,56,67);
+--mud-palette-dark-hover: rgba(39,39,47,0.058823529411764705);
+--mud-palette-text-primary: rgba(178,176,191,1);
+--mud-palette-text-primary-rgb: 178,176,191;
+--mud-palette-text-secondary: rgba(146,146,159,1);
+--mud-palette-text-secondary-rgb: 146,146,159;
+--mud-palette-text-disabled: rgba(255,255,255,0.2);
+--mud-palette-text-disabled-rgb: 255,255,255;
+--mud-palette-action-default: rgba(173,173,177,1);
+--mud-palette-action-default-hover: rgba(173,173,177,0.058823529411764705);
+--mud-palette-action-disabled: rgba(255,255,255,0.25882352941176473);
+--mud-palette-action-disabled-background: rgba(255,255,255,0.11764705882352941);
+--mud-palette-surface: rgba(30,30,45,1);
+--mud-palette-surface-rgb: 30,30,45;
+--mud-palette-background: rgba(26,26,39,1);
+--mud-palette-background-gray: rgba(21,21,33,1);
+--mud-palette-drawer-background: rgba(26,26,39,1);
+--mud-palette-drawer-text: rgba(146,146,159,1);
+--mud-palette-drawer-icon: rgba(255,255,255,0.4980392156862745);
+--mud-palette-appbar-background: rgba(26,26,39,0.8);
+--mud-palette-appbar-text: rgba(146,146,159,1);
+--mud-palette-lines-default: rgba(51,50,62,1);
+--mud-palette-lines-inputs: rgba(255,255,255,0.2980392156862745);
+--mud-palette-table-lines: rgba(255,255,255,0.11764705882352941);
+--mud-palette-table-striped: rgba(255,255,255,0.2);
+--mud-palette-table-hover: rgba(0,0,0,0.0392156862745098);
+--mud-palette-divider: rgba(41,40,56,1);
+--mud-palette-divider-rgb: 41,40,56;
+--mud-palette-divider-light: rgba(255,255,255,0.058823529411764705);
+--mud-palette-skeleton: rgba(255,255,255,0.10980392156862745);
+--mud-palette-gray-default: #9E9E9E;
+--mud-palette-gray-light: #2a2833;
+--mud-palette-gray-lighter: #1e1e2d;
+--mud-palette-gray-dark: #757575;
+--mud-palette-gray-darker: #616161;
+--mud-palette-overlay-dark: rgba(33,33,33,0.4980392156862745);
+--mud-palette-overlay-light: rgba(255,255,255,0.4980392156862745);
+--mud-palette-border-opacity: 1;
+--mud-ripple-color: var(--mud-palette-text-primary);
+--mud-ripple-opacity: 0.1;
+--mud-ripple-opacity-secondary: 0.2;
+--mud-elevation-0: none;
+--mud-elevation-1: 0px 2px 1px -1px rgba(0,0,0,0.2),0px 1px 1px 0px rgba(0,0,0,0.14),0px 1px 3px 0px rgba(0,0,0,0.12);
+--mud-elevation-2: 0px 3px 1px -2px rgba(0,0,0,0.2),0px 2px 2px 0px rgba(0,0,0,0.14),0px 1px 5px 0px rgba(0,0,0,0.12);
+--mud-elevation-3: 0px 3px 3px -2px rgba(0,0,0,0.2),0px 3px 4px 0px rgba(0,0,0,0.14),0px 1px 8px 0px rgba(0,0,0,0.12);
+--mud-elevation-4: 0px 2px 4px -1px rgba(0,0,0,0.2),0px 4px 5px 0px rgba(0,0,0,0.14),0px 1px 10px 0px rgba(0,0,0,0.12);
+--mud-elevation-5: 0px 3px 5px -1px rgba(0,0,0,0.2),0px 5px 8px 0px rgba(0,0,0,0.14),0px 1px 14px 0px rgba(0,0,0,0.12);
+--mud-elevation-6: 0px 3px 5px -1px rgba(0,0,0,0.2),0px 6px 10px 0px rgba(0,0,0,0.14),0px 1px 18px 0px rgba(0,0,0,0.12);
+--mud-elevation-7: 0px 4px 5px -2px rgba(0,0,0,0.2),0px 7px 10px 1px rgba(0,0,0,0.14),0px 2px 16px 1px rgba(0,0,0,0.12);
+--mud-elevation-8: 0px 5px 5px -3px rgba(0,0,0,0.2),0px 8px 10px 1px rgba(0,0,0,0.14),0px 3px 14px 2px rgba(0,0,0,0.12);
+--mud-elevation-9: 0px 5px 6px -3px rgba(0,0,0,0.2),0px 9px 12px 1px rgba(0,0,0,0.14),0px 3px 16px 2px rgba(0,0,0,0.12);
+--mud-elevation-10: 0px 6px 6px -3px rgba(0,0,0,0.2),0px 10px 14px 1px rgba(0,0,0,0.14),0px 4px 18px 3px rgba(0,0,0,0.12);
+--mud-elevation-11: 0px 6px 7px -4px rgba(0,0,0,0.2),0px 11px 15px 1px rgba(0,0,0,0.14),0px 4px 20px 3px rgba(0,0,0,0.12);
+--mud-elevation-12: 0px 7px 8px -4px rgba(0,0,0,0.2),0px 12px 17px 2px rgba(0,0,0,0.14),0px 5px 22px 4px rgba(0,0,0,0.12);
+--mud-elevation-13: 0px 7px 8px -4px rgba(0,0,0,0.2),0px 13px 19px 2px rgba(0,0,0,0.14),0px 5px 24px 4px rgba(0,0,0,0.12);
+--mud-elevation-14: 0px 7px 9px -4px rgba(0,0,0,0.2),0px 14px 21px 2px rgba(0,0,0,0.14),0px 5px 26px 4px rgba(0,0,0,0.12);
+--mud-elevation-15: 0px 8px 9px -5px rgba(0,0,0,0.2),0px 15px 22px 2px rgba(0,0,0,0.14),0px 6px 28px 5px rgba(0,0,0,0.12);
+--mud-elevation-16: 0px 8px 10px -5px rgba(0,0,0,0.2),0px 16px 24px 2px rgba(0,0,0,0.14),0px 6px 30px 5px rgba(0,0,0,0.12);
+--mud-elevation-17: 0px 8px 11px -5px rgba(0,0,0,0.2),0px 17px 26px 2px rgba(0,0,0,0.14),0px 6px 32px 5px rgba(0,0,0,0.12);
+--mud-elevation-18: 0px 9px 11px -5px rgba(0,0,0,0.2),0px 18px 28px 2px rgba(0,0,0,0.14),0px 7px 34px 6px rgba(0,0,0,0.12);
+--mud-elevation-19: 0px 9px 12px -6px rgba(0,0,0,0.2),0px 19px 29px 2px rgba(0,0,0,0.14),0px 7px 36px 6px rgba(0,0,0,0.12);
+--mud-elevation-20: 0px 10px 13px -6px rgba(0,0,0,0.2),0px 20px 31px 3px rgba(0,0,0,0.14),0px 8px 38px 7px rgba(0,0,0,0.12);
+--mud-elevation-21: 0px 10px 13px -6px rgba(0,0,0,0.2),0px 21px 33px 3px rgba(0,0,0,0.14),0px 8px 40px 7px rgba(0,0,0,0.12);
+--mud-elevation-22: 0px 10px 14px -6px rgba(0,0,0,0.2),0px 22px 35px 3px rgba(0,0,0,0.14),0px 8px 42px 7px rgba(0,0,0,0.12);
+--mud-elevation-23: 0px 11px 14px -7px rgba(0,0,0,0.2),0px 23px 36px 3px rgba(0,0,0,0.14),0px 9px 44px 8px rgba(0,0,0,0.12);
+--mud-elevation-24: 0px 11px 15px -7px rgba(0,0,0,0.2),0px 24px 38px 3px rgba(0,0,0,0.14),0px 9px 46px 8px rgba(0,0,0,0.12);
+--mud-elevation-25: 0 5px 5px -3px rgba(0,0,0,.06), 0 8px 10px 1px rgba(0,0,0,.042), 0 3px 14px 2px rgba(0,0,0,.036);
+--mud-default-borderradius: 4px;
+--mud-drawer-width-left: 240px;
+--mud-drawer-width-right: 240px;
+--mud-drawer-width-mini-left: 56px;
+--mud-drawer-width-mini-right: 56px;
+--mud-appbar-height: 64px;
+--mud-typography-default-family: Roboto, Helvetica, Arial, sans-serif;
+--mud-typography-default-size: .875rem;
+--mud-typography-default-weight: 400;
+--mud-typography-default-lineheight: 1.43;
+--mud-typography-default-letterspacing: .01071em;
+--mud-typography-default-text-transform: none;
+--mud-typography-h1-family: Roboto, Helvetica, Arial, sans-serif;
+--mud-typography-h1-size: 6rem;
+--mud-typography-h1-weight: 300;
+--mud-typography-h1-lineheight: 1.167;
+--mud-typography-h1-letterspacing: -.01562em;
+--mud-typography-h1-text-transform: none;
+--mud-typography-h2-family: Roboto, Helvetica, Arial, sans-serif;
+--mud-typography-h2-size: 3.75rem;
+--mud-typography-h2-weight: 300;
+--mud-typography-h2-lineheight: 1.2;
+--mud-typography-h2-letterspacing: -.00833em;
+--mud-typography-h2-text-transform: none;
+--mud-typography-h3-family: Roboto, Helvetica, Arial, sans-serif;
+--mud-typography-h3-size: 3rem;
+--mud-typography-h3-weight: 400;
+--mud-typography-h3-lineheight: 1.167;
+--mud-typography-h3-letterspacing: 0;
+--mud-typography-h3-text-transform: none;
+--mud-typography-h4-family: Roboto, Helvetica, Arial, sans-serif;
+--mud-typography-h4-size: 2.125rem;
+--mud-typography-h4-weight: 400;
+--mud-typography-h4-lineheight: 1.235;
+--mud-typography-h4-letterspacing: .00735em;
+--mud-typography-h4-text-transform: none;
+--mud-typography-h5-family: Roboto, Helvetica, Arial, sans-serif;
+--mud-typography-h5-size: 1.5rem;
+--mud-typography-h5-weight: 400;
+--mud-typography-h5-lineheight: 1.334;
+--mud-typography-h5-letterspacing: 0;
+--mud-typography-h5-text-transform: none;
+--mud-typography-h6-family: Roboto, Helvetica, Arial, sans-serif;
+--mud-typography-h6-size: 1.25rem;
+--mud-typography-h6-weight: 500;
+--mud-typography-h6-lineheight: 1.6;
+--mud-typography-h6-letterspacing: .0075em;
+--mud-typography-h6-text-transform: none;
+--mud-typography-subtitle1-family: Roboto, Helvetica, Arial, sans-serif;
+--mud-typography-subtitle1-size: 1rem;
+--mud-typography-subtitle1-weight: 400;
+--mud-typography-subtitle1-lineheight: 1.75;
+--mud-typography-subtitle1-letterspacing: .00938em;
+--mud-typography-subtitle1-text-transform: none;
+--mud-typography-subtitle2-family: Roboto, Helvetica, Arial, sans-serif;
+--mud-typography-subtitle2-size: .875rem;
+--mud-typography-subtitle2-weight: 500;
+--mud-typography-subtitle2-lineheight: 1.57;
+--mud-typography-subtitle2-letterspacing: .00714em;
+--mud-typography-subtitle2-text-transform: none;
+--mud-typography-body1-family: Roboto, Helvetica, Arial, sans-serif;
+--mud-typography-body1-size: 1rem;
+--mud-typography-body1-weight: 400;
+--mud-typography-body1-lineheight: 1.5;
+--mud-typography-body1-letterspacing: .00938em;
+--mud-typography-body1-text-transform: none;
+--mud-typography-body2-family: Roboto, Helvetica, Arial, sans-serif;
+--mud-typography-body2-size: .875rem;
+--mud-typography-body2-weight: 400;
+--mud-typography-body2-lineheight: 1.43;
+--mud-typography-body2-letterspacing: .01071em;
+--mud-typography-body2-text-transform: none;
+--mud-typography-button-family: Roboto, Helvetica, Arial, sans-serif;
+--mud-typography-button-size: .875rem;
+--mud-typography-button-weight: 500;
+--mud-typography-button-lineheight: 1.75;
+--mud-typography-button-letterspacing: .02857em;
+--mud-typography-button-text-transform: uppercase;
+--mud-typography-caption-family: Roboto, Helvetica, Arial, sans-serif;
+--mud-typography-caption-size: .75rem;
+--mud-typography-caption-weight: 400;
+--mud-typography-caption-lineheight: 1.66;
+--mud-typography-caption-letterspacing: .03333em;
+--mud-typography-caption-text-transform: none;
+--mud-typography-overline-family: Roboto, Helvetica, Arial, sans-serif;
+--mud-typography-overline-size: .75rem;
+--mud-typography-overline-weight: 400;
+--mud-typography-overline-lineheight: 2.66;
+--mud-typography-overline-letterspacing: .08333em;
+--mud-typography-overline-text-transform: none;
+--mud-zindex-drawer: 1100;
+--mud-zindex-appbar: 1300;
+--mud-zindex-dialog: 1400;
+--mud-zindex-popover: 1200;
+--mud-zindex-snackbar: 1500;
+--mud-zindex-tooltip: 1600;
+--mud-native-html-color-scheme: dark;
+}
+</style>
+
+<div class="mud-popover-provider"></div>
+
+<div id="mud-snackbar-container" class="mud-snackbar-location-top-right"></div>
+
+<div Dir="rtl" class="mud-layout" style=""><header class="mud-appbar mud-appbar-fixed-top mud-elevation-1"><div role="toolbar" class="mud-toolbar mud-toolbar-gutters mud-toolbar-appbar"><button type="button" class="mud-button-root mud-icon-button mud-inherit-text hover:mud-inherit-hover mud-ripple mud-ripple-icon" __internal_stopPropagation_onclick><span class="mud-icon-button-label"><svg class="mud-icon-root mud-svg-icon mud-icon-size-medium" focusable="false" viewBox="0 0 24 24" aria-hidden="true" role="img"><g><rect fill="none" height="24" width="24"/><rect fill="none" height="24" width="24"/></g><g><g><path d="M18.06,2.83c-1.15-0.77-2.46-1.32-3.86-1.61C13.58,1.1,13,1.57,13,2.21v0c0,0.46,0.31,0.88,0.76,0.97 c1.17,0.23,2.26,0.7,3.21,1.34c0.39,0.26,0.9,0.19,1.23-0.14l0,0C18.66,3.93,18.59,3.18,18.06,2.83z"/><path d="M11,2.21L11,2.21c0-0.64-0.58-1.11-1.2-0.99c-1.4,0.29-2.71,0.84-3.86,1.61c-0.52,0.35-0.59,1.1-0.15,1.54l0,0 c0.33,0.33,0.84,0.4,1.23,0.14c0.96-0.64,2.04-1.1,3.21-1.34C10.69,3.09,11,2.67,11,2.21z"/><path d="M4.38,5.79L4.38,5.79C3.93,5.34,3.18,5.42,2.84,5.94C2.07,7.09,1.51,8.39,1.23,9.8C1.1,10.42,1.58,11,2.21,11h0 c0.46,0,0.88-0.31,0.97-0.76c0.23-1.17,0.7-2.26,1.34-3.22C4.77,6.64,4.7,6.12,4.38,5.79z"/><path d="M21.79,11L21.79,11c0.63,0,1.11-0.58,0.98-1.2c-0.29-1.4-0.84-2.7-1.61-3.86c-0.35-0.52-1.1-0.6-1.54-0.15l0,0 c-0.33,0.33-0.4,0.84-0.14,1.23c0.64,0.96,1.1,2.05,1.34,3.22C20.91,10.69,21.33,11,21.79,11z"/><path d="M8,12.46l2.44,1.11L11.54,16c0.18,0.39,0.73,0.39,0.91,0l1.11-2.44L16,12.46c0.39-0.18,0.39-0.73,0-0.91l-2.44-1.11 L12.46,8c-0.18-0.39-0.73-0.39-0.91,0l-1.11,2.44L8,11.54C7.61,11.72,7.61,12.28,8,12.46z"/><path d="M12,21c-3.11,0-5.85-1.59-7.46-4H6c0.55,0,1-0.45,1-1v0c0-0.55-0.45-1-1-1H2c-0.55,0-1,0.45-1,1v4c0,0.55,0.45,1,1,1h0 c0.55,0,1-0.45,1-1v-1.7c1.99,2.84,5.27,4.7,9,4.7c4.45,0,8.27-2.64,10-6.43c0.26-0.57-0.08-1.25-0.69-1.39l0,0 c-0.45-0.1-0.93,0.11-1.12,0.54C18.77,18.83,15.64,21,12,21z"/></g></g></svg></span></button></div></header>
+
+    
+    <div class="mud-main-content pt-16 pa-4"><div class="mud-container mud-container-maxwidth-lg mud-container--gutters d-flex justify-center align-center auth-container">
+
+<div class="mud-container mud-container-maxwidth-false mud-container--gutters pa-0" style="overflow-x: hidden;"><style>
+        .hero-container {
+            position: relative;
+            padding: 6rem 0;
+            min-height: 80vh;
+            display: flex;
+            align-items: center;
+        }
+
+        /* Gradient Background Blobs */
+        .bg-blob {
+            position: absolute;
+            top: -10%;
+            left: -10%;
+            width: 50vw;
+            height: 50vw;
+            background: radial-gradient(circle, rgba(126,111,255,0.12) 0%, rgba(126,111,255,0) 70%);
+            border-radius: 50%;
+            z-index: 0;
+            animation: floatBlob 10s infinite alternate ease-in-out;
+        }
+
+        .bg-blob-2 {
+            position: absolute;
+            bottom: -20%;
+            right: -10%;
+            width: 40vw;
+            height: 40vw;
+            background: radial-gradient(circle, rgba(255,111,155,0.08) 0%, rgba(255,111,155,0) 70%);
+            border-radius: 50%;
+            z-index: 0;
+            animation: floatBlob2 12s infinite alternate ease-in-out;
+        }
+
+        @keyframes floatBlob {
+            0% { transform: translate(0, 0) scale(1); }
+            100% { transform: translate(50px, 50px) scale(1.1); }
+        }
+        @keyframes floatBlob2 {
+            0% { transform: translate(0, 0) scale(1); }
+            100% { transform: translate(-40px, -60px) scale(1.05); }
+        }
+
+        .content-relative {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Hero Text Styles */
+        .hero-title {
+            font-size: 4rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, var(--mud-palette-primary) 0%, #a033ff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-subtitle {
+            font-size: 1.3rem;
+            color: var(--mud-palette-text-secondary);
+            line-height: 1.8;
+            margin-bottom: 2rem;
+        }
+
+        /* Modern Glass Card for Features */
+        .feature-card {
+            border-radius: 24px !important;
+            padding: 2.5rem;
+            height: 100%;
+        }
+
+        .icon-wrapper {
+            width: 64px;
+            height: 64px;
+            border-radius: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.8rem;
+            background: linear-gradient(135deg, rgba(126,111,255,0.1) 0%, rgba(126,111,255,0.2) 100%);
+            color: var(--mud-palette-primary);
+        }
+
+
+
+        /* List styling */
+        .check-list {
+            list-style: none;
+            padding: 0;
+        }
+        .check-list li {
+            position: relative;
+            padding-right: 36px;
+            margin-bottom: 16px;
+            font-size: 1.15rem;
+            color: var(--mud-palette-text-primary);
+            line-height: 1.6;
+        }
+        .check-list li::before {
+            content: '✨';
+            position: absolute;
+            right: 0;
+            top: 2px;
+            font-size: 1.3rem;
+        }
+
+        /* Floating Image */
+        .hero-image-container {
+            position: relative;
+            animation: float 6s ease-in-out infinite;
+        }
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        .glass-badge {
+            position: absolute;
+            top: 15%;
+            right: -15%;
+            padding: 16px 24px;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            animation: float 5s ease-in-out infinite 1s;
+        }
+
+        .pulse-icon {
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.1); opacity: 0.8; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+    </style>
+
+    <div class="hero-container"><div class="bg-blob"></div>
+        <div class="bg-blob-2"></div>
+        
+        <div class="mud-container mud-container-maxwidth-lg mud-container--gutters content-relative"><div AlignItems="AlignItems.Center" class="mud-grid mud-grid-spacing-xs-8 justify-start"><div class="mud-grid-item mud-grid-item-xs-12 mud-grid-item-md-6 pr-md-8"><div class="mud-chip-container" id="chip-container-e500be30-6fb6-4264-a1a8-472a6549700c"><div tabindex="-1" class="mud-chip mud-chip-outlined mud-chip-size-large mud-chip-color-primary mb-6 px-4" style="border-radius: 12px; font-weight: 600;"><span class="mud-chip-content"><svg class="mud-icon-root mud-svg-icon mud-icon-size-medium me-2 pulse-icon" focusable="false" viewBox="0 0 24 24" aria-hidden="true" role="img"><path d="M0 0h24v24H0z" fill="none"/><path d="M19 9l1.25-2.75L23 5l-2.75-1.25L19 1l-1.25 2.75L15 5l2.75 1.25L19 9zm-7.5.5L9 4 6.5 9.5 1 12l5.5 2.5L9 20l2.5-5.5L17 12l-5.5-2.5zM19 15l-1.25 2.75L15 19l2.75 1.25L19 23l1.25-2.75L23 19l-2.75-1.25L19 15z"/></svg>
+                        الجيل الجديد من الذكاء الاصطناعي الطبي
+                    </span></div></div>
+                    
+                    <h1 class="hero-title">
+                        مرحباً بك في <br>  نبض
+                    </h1>
+                    
+                    <p class="hero-subtitle">
+                        سجّل شكواك الصوتية واحصل على <strong style="color: var(--mud-palette-primary);">تقرير طبي منظم في ثوانٍ</strong>. لا حاجة للكتابة اليدوية بعد اليوم!
+                    </p>
+
+                    <div class="mb-10"><p class="mb-4 text-muted" style="font-size: 1.15rem; font-weight: 500;">فقط ارفع ملف صوتي (محادثة أو وصف أعراض)، وسيقوم النظام بـ:</p>
+                        <ul class="check-list"><li>استخراج النص بدقة عالية وفهم المصطلحات الطبية.</li>
+                            <li>كتابة تقرير احترافي (الشكوى، التاريخ المرضي، الفحص، التشخيص، الخطة).</li></ul></div>
+
+                    <a type="button" href="/login" class="mud-button-root mud-button mud-button-filled mud-button-filled-primary mud-button-filled-size-large mud-ripple px-10 py-4 ag-glow rounded-pill" style="font-size: 1.25rem; font-weight: 700;"><span class="mud-button-label"><span class="mud-button-icon-start mud-button-icon-size-large"><svg class="mud-icon-root mud-svg-icon mud-icon-size-large" focusable="false" viewBox="0 0 24 24" aria-hidden="true" role="img"><path d="M0 0h24v24H0z" fill="none"/><path d="M12 14c1.66 0 2.99-1.34 2.99-3L15 5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3zm5.3-3c0 3-2.54 5.1-5.3 5.1S6.7 14 6.7 11H5c0 3.41 2.72 6.23 6 6.72V21h2v-3.28c3.28-.48 6-3.3 6-6.72h-1.7z"/></svg></span>
+                        ابدأ الآن
+                    </span></a></div>
+
+                
+                <div class="mud-grid-item mud-grid-item-xs-12 mud-grid-item-md-6 d-none d-md-flex justify-center"><div class="hero-image-container"><img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Medical AI Dashboard" style="width: 100%; max-width: 550px; border-radius: 36px; box-shadow: 0 30px 60px rgba(126,111,255,0.15);">
+                             
+                        <div class="glass-badge ag-glass"><svg class="mud-icon-root mud-svg-icon mud-success-text mud-icon-size-large pulse-icon" focusable="false" viewBox="0 0 24 24" aria-hidden="true" role="img"><path d="M0 0h24v24H0z" fill="none"/><path d="M20.38 8.57l-1.23 1.85a8 8 0 0 1-.22 7.58H5.07A8 8 0 0 1 15.58 6.85l1.85-1.23A10 10 0 0 0 3.35 19a2 2 0 0 0 1.72 1h13.85a2 2 0 0 0 1.74-1 10 10 0 0 0-.27-10.44zm-9.79 6.84a2 2 0 0 0 2.83 0l5.66-8.49-8.49 5.66a2 2 0 0 0 0 2.83z"/></svg>
+                            <div><h6 class="mud-typography mud-typography-h6 fw-bold" style="margin-bottom: -4px; line-height: 1;">تحليل فوري</h6>
+                                <p class="mud-typography mud-typography-body2 mud-secondary-text" style="font-weight: 500;">نتائج في ثوانٍ</p></div></div></div></div></div></div></div>
+
+    
+    <div class="mud-container mud-container-maxwidth-lg mud-container--gutters mb-16 content-relative" style="margin-top: -3rem;"><div class="mud-grid mud-grid-spacing-xs-6 justify-center"><div class="mud-grid-item mud-grid-item-xs-12 mud-grid-item-sm-6 mud-grid-item-md-4"><div class="feature-card ag-glass ag-hover-lift"><div class="icon-wrapper"><svg class="mud-icon-root mud-svg-icon mud-icon-size-large" focusable="false" viewBox="0 0 24 24" aria-hidden="true" role="img"><path d="M0 0h24v24H0z" fill="none"/><circle cx="9" cy="9" r="4"/><path d="M9 15c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4zm7.76-9.64l-1.68 1.69c.84 1.18.84 2.71 0 3.89l1.68 1.69c2.02-2.02 2.02-5.07 0-7.27zM20.07 2l-1.63 1.63c2.77 3.02 2.77 7.56 0 10.74L20.07 16c3.9-3.89 3.91-9.95 0-14z"/></svg></div>
+                    <h5 class="mud-typography mud-typography-h5 mb-4 fw-bold">تسجيل صوتي سريع</h5>
+                    <p class="mud-typography mud-typography-body1 mud-secondary-text" style="line-height: 1.8;">
+                        ارفع ملف صوتي أو سجل مباشرة من الميكروفون بضغطة زر واحدة بكل سهولة وسرعة.
+                    </p></div></div>
+
+            <div class="mud-grid-item mud-grid-item-xs-12 mud-grid-item-sm-6 mud-grid-item-md-4"><div class="feature-card ag-glass ag-hover-lift"><div class="icon-wrapper" style="background: linear-gradient(135deg, rgba(0,200,83,0.1) 0%, rgba(0,200,83,0.2) 100%); color: var(--mud-palette-success);"><svg class="mud-icon-root mud-svg-icon mud-icon-size-large" focusable="false" viewBox="0 0 24 24" aria-hidden="true" role="img"><g><rect fill="none" height="24" width="24"/></g><g><g><path d="M20,6h-4V4c0-1.1-0.9-2-2-2h-4C8.9,2,8,2.9,8,4v2H4C2.9,6,2,6.9,2,8v12c0,1.1,0.9,2,2,2h16c1.1,0,2-0.9,2-2V8 C22,6.9,21.1,6,20,6z M10,4h4v2h-4V4z M16,15h-3v3h-2v-3H8v-2h3v-3h2v3h3V15z"/></g></g></svg></div>
+                    <h5 class="mud-typography mud-typography-h5 mb-4 fw-bold">تقرير طبي جاهز</h5>
+                    <p class="mud-typography mud-typography-body1 mud-secondary-text" style="line-height: 1.8;">
+                        تنسيق احترافي شامل ومنظم يحتوي على الشكوى، الفحص، التشخيص التفريقي والخطة.
+                    </p></div></div>
+
+            <div class="mud-grid-item mud-grid-item-xs-12 mud-grid-item-sm-6 mud-grid-item-md-4"><div class="feature-card ag-glass ag-hover-lift"><div class="icon-wrapper" style="background: linear-gradient(135deg, rgba(255,145,0,0.1) 0%, rgba(255,145,0,0.2) 100%); color: var(--mud-palette-warning);"><svg class="mud-icon-root mud-svg-icon mud-icon-size-large" focusable="false" viewBox="0 0 24 24" aria-hidden="true" role="img"><path d="M0 0h24v24H0z" fill="none"/><path d="M20.38 8.57l-1.23 1.85a8 8 0 0 1-.22 7.58H5.07A8 8 0 0 1 15.58 6.85l1.85-1.23A10 10 0 0 0 3.35 19a2 2 0 0 0 1.72 1h13.85a2 2 0 0 0 1.74-1 10 10 0 0 0-.27-10.44zm-9.79 6.84a2 2 0 0 0 2.83 0l5.66-8.49-8.49 5.66a2 2 0 0 0 0 2.83z"/></svg></div>
+                    <h5 class="mud-typography mud-typography-h5 mb-4 fw-bold">نتيجة في ثوانٍ</h5>
+                    <p class="mud-typography mud-typography-body1 mud-secondary-text" style="line-height: 1.8;">
+                        لا حاجة للكتابة اليدوية الطويلة والمرهقة بعد الآن، وفر وقتك لرعاية مرضاك.
+                    </p></div></div></div>
+
+        <div class="text-center mt-16 pb-8"><hr class="mud-divider mud-divider-fullwidth mb-8" />
+            <p class="mud-typography mud-typography-body2 mud-secondary-text" style="font-weight: 500;">
+                © 2026 - مساعد نبض | تصميم للأغراض الطبية المساعدة فقط - استشر طبيبك دائمًا
+            </p></div></div></div></div></div></div>
+        <!--Blazor:{"prerenderId":"f511cf61106b4271be5b847d6c341508"}-->
+    <script src="_framework/blazor.web.js"></script>
+    <script src="_content/MudBlazor/MudBlazor.min.f96y5mhlyw.js"></script>
+    <script src="js/speechToText.js?v=5"></script>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin></script>
+    <script src="js/location-picker.js?v=1"></script>
+    <script src="js/medical-requisition-print.js?v=1"></script>
+    <script src="js/barcode-scanner-listener.js?v=1"></script></body></html><!--Blazor-Server-Component-State:CfDJ8LQUMvq/WF5PqSbqkn/8UB7ZgcBpqlI32FdXEgaBJiP1OZeEi+B/Q8jiiHYX1rsZ89+G8x47a4Enikm+yERQytgUSnE2x9jpHag81+F1hR+S0/yIJJVW+DczTvp7EQ+OWNm/5W7AbJxkBaEhIb7agrkr41x+cNAO8or2dBTk2zAd2t5gMzYFVgvW+heP5CVzucbKtNW6lwPSsnnFYmpD2IcQeGcTffZ3O7/JcKrzLgx303BXPjiT53FGJqUWPHigzBGWlUoyfarKhUneOkH+2D4zCKif1dhPOxQIitmkog+/D/r9WqpxD2tt1COAmaFz818lz3SsVSLybg2mz1WCJrF4273EiNdJCFx4QVAAM9WiKN9H7nSilg5zen+ZpxrEl/o1N80rwLhx3ITVqU4MOxku2txIQ4u45DAUAIWlDdMMpsZlFLydthR8kmKPi9mXMTL9pnMt7gy7gW/Wq35CvZxE8pclZliifNg+56rhZoFmZC+x5VagwNc1Ohe9Jvj50PGG1LTMMMUsCfRDZAME1czz4LskDmV098cEJpcdObnf-->

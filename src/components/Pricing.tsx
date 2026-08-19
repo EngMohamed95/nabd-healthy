@@ -1,22 +1,25 @@
+import { useState } from 'react';
 import { motion } from 'motion/react';
-import { Check } from 'lucide-react';
+import { Check, Sparkles, Zap, ArrowRight, ArrowLeft } from 'lucide-react';
 import { useLanguage } from '../lib/LanguageContext';
 
 export default function Pricing() {
   const { t, dir } = useLanguage();
+  const [isYearly, setIsYearly] = useState<boolean>(true);
 
   const plans = [
     {
       name: t.pricing.p1_name,
-      price: t.pricing.p1_price,
-      period: t.pricing.p1_period,
+      price: isYearly ? "$39" : "$49",
+      period: isYearly ? "/mo (billed annually)" : t.pricing.p1_period,
       desc: t.pricing.p1_desc,
-      features: [t.pricing.p1_f1, t.pricing.p1_f2, t.pricing.p1_f3, t.pricing.p1_f4]
+      features: [t.pricing.p1_f1, t.pricing.p1_f2, t.pricing.p1_f3, t.pricing.p1_f4],
+      popular: false
     },
     {
       name: t.pricing.p2_name,
-      price: t.pricing.p2_price,
-      period: t.pricing.p2_period,
+      price: isYearly ? "$99" : "$129",
+      period: isYearly ? "/mo (billed annually)" : t.pricing.p2_period,
       desc: t.pricing.p2_desc,
       features: [t.pricing.p2_f1, t.pricing.p2_f2, t.pricing.p2_f3, t.pricing.p2_f4, t.pricing.p2_f5],
       popular: true
@@ -26,21 +29,52 @@ export default function Pricing() {
       price: t.pricing.p3_price,
       period: t.pricing.p3_period,
       desc: t.pricing.p3_desc,
-      features: [t.pricing.p3_f1, t.pricing.p3_f2, t.pricing.p3_f3, t.pricing.p3_f4, t.pricing.p3_f5]
+      features: [t.pricing.p3_f1, t.pricing.p3_f2, t.pricing.p3_f3, t.pricing.p3_f4, t.pricing.p3_f5],
+      popular: false
     }
   ];
 
   return (
-    <section id="pricing" className="relative w-full py-20 border-t border-blue-100/40 bg-slate-100/20">
-      <div className="absolute top-0 end-1/4 w-[600px] h-[600px] bg-[var(--color-secondary)]/10 rounded-full blur-[120px] pointer-events-none" />
+    <section id="pricing" className="relative w-full py-24 border-t border-indigo-100/40 bg-slate-50/50">
+      <div className="absolute top-0 end-1/4 w-[600px] h-[600px] bg-[#7E6FFF]/10 rounded-full blur-[140px] pointer-events-none" />
       
       <div className="max-w-7xl mx-auto px-6">
-         <div className="text-center mb-20">
-          <h2 className="text-4xl md:text-5xl font-bold heading-display mb-6 text-slate-900">{t.pricing.title}</h2>
-          <p className="text-slate-600 text-xl">{t.pricing.desc}</p>
+        <div className="text-center mb-16">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-indigo-50 border border-indigo-200 text-[#7E6FFF] text-xs font-bold mb-4">
+            <Zap className="w-3.5 h-3.5" />
+            <span>{t.pricing.badge}</span>
+          </div>
+          <h2 className="text-3xl sm:text-5xl font-extrabold heading-display mb-4 text-slate-900 tracking-tight">
+            {t.pricing.title}
+          </h2>
+          <p className="text-slate-600 text-base sm:text-lg max-w-xl mx-auto">
+            {t.pricing.desc}
+          </p>
+
+          {/* Billing Switcher Toggle */}
+          <div className="flex items-center justify-center gap-4 mt-8">
+            <span className={`text-xs font-bold ${!isYearly ? 'text-slate-900' : 'text-slate-500'}`}>
+              {t.pricing.monthly}
+            </span>
+            <button
+              onClick={() => setIsYearly(!isYearly)}
+              className="w-14 h-8 bg-[#7E6FFF] rounded-full p-1 transition-colors relative"
+            >
+              <div className={`w-6 h-6 bg-white rounded-full shadow-md transition-transform duration-300 ${isYearly ? 'translate-x-6 rtl:-translate-x-6' : 'translate-x-0'}`} />
+            </button>
+            <div className="flex items-center gap-1.5">
+              <span className={`text-xs font-bold ${isYearly ? 'text-slate-900' : 'text-slate-500'}`}>
+                {t.pricing.yearly}
+              </span>
+              <span className="px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800 text-[10px] font-bold">
+                SAVE 20%
+              </span>
+            </div>
+          </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
+        {/* Pricing Cards Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-stretch">
           {plans.map((plan, i) => (
             <motion.div
               key={i}
@@ -48,35 +82,54 @@ export default function Pricing() {
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.1 }}
-              className={`rounded-3xl p-8 border ${plan.popular ? 'bg-gradient-to-b from-blue-50/80 to-white/90 border-[var(--color-primary)]/50 scale-105 shadow-[0_8px_32px_rgba(37,99,235,0.08)] relative z-10' : 'glass-card border-blue-100/50'}`}
+              className={`rounded-3xl p-8 border flex flex-col justify-between transition-all ${
+                plan.popular 
+                  ? 'glass-card-active border-[#7E6FFF] scale-105 shadow-2xl relative z-10' 
+                  : 'glass-card border-indigo-100/60 hover:border-indigo-200'
+              }`}
             >
-              {plan.popular && (
-                <div className="absolute -top-4 start-1/2 -translate-x-1/2 rtl:translate-x-1/2 px-4 py-1 rounded-full bg-[var(--color-primary)] text-white text-xs font-bold uppercase tracking-wider">
-                  {t.pricing.mostPopular}
-                </div>
-              )}
-              
-              <div className="mb-8 relative text-start">
-                <h3 className="text-xl font-medium mb-2 text-slate-900">{plan.name}</h3>
-                <p className="text-slate-500 text-sm mb-6">{plan.desc}</p>
-                <div className="flex items-baseline gap-1 text-slate-900" dir="ltr">
-                  <span className="text-5xl font-bold heading-display">{plan.price}</span>
-                  <span className="text-slate-500 font-medium">{plan.period}</span>
-                </div>
-              </div>
-
-              <div className="space-y-4 mb-8 text-start">
-                {plan.features.map((f, j) => (
-                  <div key={j} className="flex items-center gap-3">
-                    <Check className="w-5 h-5 text-[var(--color-primary)] shrink-0" />
-                    <span className="text-sm text-slate-700">{f}</span>
+              <div>
+                {plan.popular && (
+                  <div className="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-[#7E6FFF] text-white text-[11px] font-bold uppercase tracking-wider mb-4 shadow-sm">
+                    <Sparkles className="w-3 h-3" />
+                    <span>{t.pricing.mostPopular}</span>
                   </div>
-                ))}
+                )}
+                
+                <div className="mb-6 text-start">
+                  <h3 className="text-xl font-bold mb-2 text-slate-900">{plan.name}</h3>
+                  <p className="text-slate-500 text-xs mb-6 min-h-[36px]">{plan.desc}</p>
+                  <div className="flex items-baseline gap-1 text-slate-900" dir="ltr">
+                    <span className="text-4xl sm:text-5xl font-extrabold font-mono tracking-tight text-slate-900">
+                      {plan.price}
+                    </span>
+                    <span className="text-slate-500 text-xs font-medium">{plan.period}</span>
+                  </div>
+                </div>
+
+                <div className="space-y-3.5 mb-8 text-start">
+                  {plan.features.map((f, j) => (
+                    <div key={j} className="flex items-start gap-3">
+                      <div className="w-5 h-5 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center shrink-0 mt-0.5">
+                        <Check className="w-3.5 h-3.5" />
+                      </div>
+                      <span className="text-xs text-slate-700 font-medium leading-tight">{f}</span>
+                    </div>
+                  ))}
+                </div>
               </div>
 
-              <button className={`w-full py-4 rounded-xl font-semibold transition-all ${plan.popular ? 'bg-blue-650 text-white hover:bg-blue-700 shadow-md hover:shadow-lg' : 'bg-blue-50 hover:bg-blue-100 text-blue-600'}`}>
-                {t.pricing.getStarted}
-              </button>
+              <a
+                href="#demo"
+                className={`w-full py-3.5 rounded-2xl text-xs font-bold transition-all flex items-center justify-center gap-2 ${
+                  plan.popular 
+                    ? 'bg-[#7E6FFF] hover:bg-[#5A47FF] text-white shadow-lg shadow-indigo-500/25 hover:shadow-indigo-500/40 hover:scale-[1.02]' 
+                    : 'bg-indigo-50 hover:bg-indigo-100 text-[#7E6FFF]'
+                }`}
+              >
+                <span>{t.pricing.getStarted}</span>
+                {dir === 'rtl' ? <ArrowLeft className="w-3.5 h-3.5" /> : <ArrowRight className="w-3.5 h-3.5" />}
+              </a>
             </motion.div>
           ))}
         </div>

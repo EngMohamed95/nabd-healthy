@@ -1,0 +1,454 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=Tajawal:wght@400;500;700;800&display=swap');
+
+html,
+body,
+.mud-typography {
+    font-family: 'Tajawal', 'Outfit', sans-serif !important;
+}
+
+
+.auth-bg {
+    min-height: 100vh;
+    position: relative;
+    overflow: hidden;
+    background: var(--mud-palette-background);
+    transition: all 0.3s ease;
+}
+
+    /* soft background glow using default MudBlazor palette */
+    .auth-bg::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(circle at top left, rgba(255, 255, 255, 0.04), transparent 35%), radial-gradient(circle at bottom right, rgba(255, 255, 255, 0.03), transparent 40%);
+        pointer-events: none;
+        z-index: 0;
+    }
+
+/* floating orbs */
+.auth-orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(90px);
+    opacity: 0.25;
+    animation: float 12s ease-in-out infinite;
+    z-index: 1;
+}
+
+.orb1 {
+    width: 300px;
+    height: 300px;
+    background: var(--mud-palette-primary);
+    top: -80px;
+    left: -80px;
+}
+
+.orb2 {
+    width: 240px;
+    height: 240px;
+    background: var(--mud-palette-secondary);
+    bottom: 40px;
+    right: 80px;
+}
+
+.orb3 {
+    width: 200px;
+    height: 200px;
+    background: var(--mud-palette-info);
+    top: 40%;
+    left: 60%;
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0px);
+    }
+
+    50% {
+        transform: translateY(25px);
+    }
+}
+
+/* container */
+.auth-container {
+    min-height: 100vh;
+    position: relative;
+    z-index: 2;
+}
+
+/* login card */
+.auth-card {
+    width: 100%;
+    max-width: 430px;
+    padding: 32px;
+    border-radius: 24px !important;
+    background: var(--mud-palette-surface) !important;
+    border: 1px solid var(--mud-palette-lines-default);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08), 0 4px 12px rgba(0, 0, 0, 0.04);
+    transition: all 0.3s ease;
+}
+
+/* title */
+.text-gradient {
+    color: var(--mud-palette-text-primary);
+    font-weight: 700;
+}
+
+/* role selector */
+.role-switch {
+    display: flex;
+    gap: 4px;
+    padding: 4px;
+    border-radius: 14px;
+    background: var(--mud-palette-background-gray);
+    border: 1px solid var(--mud-palette-lines-default);
+}
+
+/* role button */
+.role {
+    flex: 1;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 12px;
+    border-radius: 10px;
+    background: transparent;
+    color: var(--mud-palette-text-secondary);
+    font-weight: 500;
+    transition: all 0.25s ease;
+}
+
+    .role:hover {
+        background: rgba(255, 255, 255, 0.03);
+    }
+
+    .role.active {
+        background: var(--mud-palette-primary);
+        color: white;
+        font-weight: 600;
+    }
+
+/* login button */
+.login-btn {
+    border-radius: 14px !important;
+    padding: 12px !important;
+    font-weight: 600 !important;
+    background: var(--mud-palette-primary) !important;
+    color: white !important;
+    transition: all 0.25s ease;
+}
+
+    .login-btn:hover {
+        transform: translateY(-2px);
+    }
+
+/* =========================================
+   Antigravity & Futuristic Utilities
+   ========================================= */
+
+.ag-glass {
+    background: linear-gradient(
+        135deg, 
+        color-mix(in srgb, var(--mud-palette-surface) 80%, transparent) 0%, 
+        color-mix(in srgb, var(--mud-palette-surface) 50%, transparent) 100%
+    ) !important;
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid var(--mud-palette-divider) !important;
+    box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.15);
+}
+
+.ag-hover-lift {
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), 
+                box-shadow 0.4s ease, 
+                border-color 0.4s ease;
+}
+
+.ag-hover-lift:hover {
+    transform: translateY(-6px) scale(1.01);
+    box-shadow: 0 20px 40px -15px color-mix(in srgb, var(--mud-palette-primary) 35%, transparent);
+    border-color: color-mix(in srgb, var(--mud-palette-primary) 50%, transparent) !important;
+}
+
+@keyframes antigravity-float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0px); }
+}
+
+.ag-float {
+    animation: antigravity-float 6s ease-in-out infinite;
+}
+
+.ag-glow {
+    box-shadow: 0 0 15px color-mix(in srgb, var(--mud-palette-primary) 50%, transparent) !important;
+    transition: box-shadow 0.3s ease, transform 0.2s ease;
+}
+.ag-glow:hover {
+    box-shadow: 0 0 25px color-mix(in srgb, var(--mud-palette-primary) 70%, transparent) !important;
+    transform: translateY(-2px);
+}
+
+.ag-text-gradient {
+    background: linear-gradient(45deg, var(--mud-palette-primary), var(--mud-palette-tertiary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* Fix MudBlazor Dialog close button alignment in RTL globally */
+html[dir="rtl"] .mud-dialog-close-button,
+[dir="rtl"] .mud-dialog-close-button,
+.mud-dialog-close-button {
+    right: auto !important;
+    left: 16px !important;
+    position: absolute !important;
+}
+
+html[dir="rtl"] .mud-dialog-title,
+[dir="rtl"] .mud-dialog-title,
+.mud-dialog-title {
+    justify-content: center !important;
+    text-align: center !important;
+    display: flex !important;
+    padding-left: 56px !important;
+    padding-right: 56px !important;
+}
+
+.mud-dialog-title .mud-typography,
+.mud-dialog-title h6,
+.mud-dialog-title span {
+    text-align: center !important;
+    width: 100% !important;
+}
+
+/* Center all MudBlazor input fields, text fields, selects and placeholders globally */
+.mud-input-slot,
+input.mud-input-slot,
+input,
+.mud-input-input,
+.mud-select-input-value,
+.mud-select-input {
+    text-align: center !important;
+}
+
+/* Center all MudBlazor floating labels/placeholders when they are not floated globally */
+.mud-input-label-outlined:not(.mud-input-label-floated) {
+    width: calc(100% - 28px) !important;
+    text-align: center !important;
+    right: 14px !important;
+    left: 14px !important;
+}
+
+.mud-input-label-filled:not(.mud-input-label-floated) {
+    width: calc(100% - 24px) !important;
+    text-align: center !important;
+    right: 12px !important;
+    left: 12px !important;
+}
+
+.mud-input-label-standard:not(.mud-input-label-floated) {
+    width: 100% !important;
+    text-align: center !important;
+    right: 0 !important;
+    left: 0 !important;
+}
+
+/* Force MudBlazor floated labels in RTL to sit in the correct top-right corner notch for all possible floated/active/focused/filled states */
+html[dir="rtl"] .mud-input-label-outlined.mud-input-label-floated,
+[dir="rtl"] .mud-input-label-outlined.mud-input-label-floated,
+html[dir="rtl"] .mud-input-slot:focus ~ .mud-input-label-outlined,
+[dir="rtl"] .mud-input-slot:focus ~ .mud-input-label-outlined,
+html[dir="rtl"] input:focus ~ .mud-input-label-outlined,
+[dir="rtl"] input:focus ~ .mud-input-label-outlined,
+html[dir="rtl"] .mud-input.mud-shrink ~ .mud-input-label-outlined,
+[dir="rtl"] .mud-input.mud-shrink ~ .mud-input-label-outlined,
+html[dir="rtl"] .mud-shrink ~ .mud-input-label-outlined,
+[dir="rtl"] .mud-shrink ~ .mud-input-label-outlined,
+html[dir="rtl"] .mud-input-control.mud-shrink .mud-input-label-outlined,
+[dir="rtl"] .mud-input-control.mud-shrink .mud-input-label-outlined,
+html[dir="rtl"] .mud-input:focus-within ~ .mud-input-label-outlined,
+[dir="rtl"] .mud-input:focus-within ~ .mud-input-label-outlined {
+    left: auto !important;
+    right: 14px !important;
+    width: auto !important;
+    text-align: right !important;
+}
+
+html[dir="rtl"] .mud-input-label-filled.mud-input-label-floated,
+[dir="rtl"] .mud-input-label-filled.mud-input-label-floated,
+html[dir="rtl"] .mud-input-slot:focus ~ .mud-input-label-filled,
+[dir="rtl"] .mud-input-slot:focus ~ .mud-input-label-filled,
+html[dir="rtl"] input:focus ~ .mud-input-label-filled,
+[dir="rtl"] input:focus ~ .mud-input-label-filled,
+html[dir="rtl"] .mud-input.mud-shrink ~ .mud-input-label-filled,
+[dir="rtl"] .mud-input.mud-shrink ~ .mud-input-label-filled,
+html[dir="rtl"] .mud-shrink ~ .mud-input-label-filled,
+[dir="rtl"] .mud-shrink ~ .mud-input-label-filled,
+html[dir="rtl"] .mud-input-control.mud-shrink .mud-input-label-filled,
+[dir="rtl"] .mud-input-control.mud-shrink .mud-input-label-filled,
+html[dir="rtl"] .mud-input:focus-within ~ .mud-input-label-filled,
+[dir="rtl"] .mud-input:focus-within ~ .mud-input-label-filled {
+    left: auto !important;
+    right: 12px !important;
+    width: auto !important;
+    text-align: right !important;
+}
+
+html[dir="rtl"] .mud-input-label-standard.mud-input-label-floated,
+[dir="rtl"] .mud-input-label-standard.mud-input-label-floated,
+html[dir="rtl"] .mud-input-slot:focus ~ .mud-input-label-standard,
+[dir="rtl"] .mud-input-slot:focus ~ .mud-input-label-standard,
+html[dir="rtl"] input:focus ~ .mud-input-label-standard,
+[dir="rtl"] input:focus ~ .mud-input-label-standard,
+html[dir="rtl"] .mud-input.mud-shrink ~ .mud-input-label-standard,
+[dir="rtl"] .mud-input.mud-shrink ~ .mud-input-label-standard,
+html[dir="rtl"] .mud-shrink ~ .mud-input-label-standard,
+[dir="rtl"] .mud-shrink ~ .mud-input-label-standard,
+html[dir="rtl"] .mud-input-control.mud-shrink .mud-input-label-standard,
+[dir="rtl"] .mud-input-control.mud-shrink .mud-input-label-standard,
+html[dir="rtl"] .mud-input:focus-within ~ .mud-input-label-standard,
+[dir="rtl"] .mud-input:focus-within ~ .mud-input-label-standard {
+    left: auto !important;
+    right: 0 !important;
+    width: auto !important;
+    text-align: right !important;
+}
+
+/* Force MudBlazor floated labels in LTR to sit in the correct top-left corner notch for all possible floated/active/focused/filled states */
+.mud-input-label-outlined.mud-input-label-floated,
+.mud-input-slot:focus ~ .mud-input-label-outlined,
+input:focus ~ .mud-input-label-outlined,
+.mud-input.mud-shrink ~ .mud-input-label-outlined,
+.mud-shrink ~ .mud-input-label-outlined,
+.mud-input-control.mud-shrink .mud-input-label-outlined,
+.mud-input:focus-within ~ .mud-input-label-outlined {
+    left: 14px !important;
+    right: auto !important;
+    width: auto !important;
+    text-align: left !important;
+}
+
+.mud-input-label-filled.mud-input-label-floated,
+.mud-input-slot:focus ~ .mud-input-label-filled,
+input:focus ~ .mud-input-label-filled,
+.mud-input.mud-shrink ~ .mud-input-label-filled,
+.mud-shrink ~ .mud-input-label-filled,
+.mud-input-control.mud-shrink .mud-input-label-filled,
+.mud-input:focus-within ~ .mud-input-label-filled {
+    left: 12px !important;
+    right: auto !important;
+    width: auto !important;
+    text-align: left !important;
+}
+
+.mud-input-label-standard.mud-input-label-floated,
+.mud-input-slot:focus ~ .mud-input-label-standard,
+input:focus ~ .mud-input-label-standard,
+.mud-input.mud-shrink ~ .mud-input-label-standard,
+.mud-shrink ~ .mud-input-label-standard,
+.mud-input-control.mud-shrink .mud-input-label-standard,
+.mud-input:focus-within ~ .mud-input-label-standard {
+    left: 0 !important;
+    right: auto !important;
+    width: auto !important;
+    text-align: left !important;
+}
+
+/* Premium Dialog Backdrop Overlay: Dim background and apply blur */
+.mud-overlay.mud-overlay-scrim {
+    background-color: rgba(0, 0, 0, 0.45) !important;
+    backdrop-filter: blur(6px) !important;
+    -webkit-backdrop-filter: blur(6px) !important;
+    transition: backdrop-filter 0.3s ease, background-color 0.3s ease;
+}
+
+/* =========================================
+   Unified Segmented Pill Group Styling
+   ========================================= */
+
+.ag-segmented-group {
+    display: inline-flex;
+    align-items: stretch !important;
+    border-radius: 12px !important;
+    overflow: hidden;
+    border: 1.5px solid var(--mud-palette-divider) !important;
+    background-color: color-mix(in srgb, var(--mud-palette-surface) 95%, var(--mud-palette-background-gray)) !important;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.04);
+    height: 38px;
+    padding: 0 !important;
+    direction: rtl; /* Force RTL direction inside the button group */
+}
+
+/* Individual button inside the segmented group */
+.ag-segmented-btn {
+    border-radius: 0px !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    height: 100% !important;
+    font-size: 11.5px !important;
+    font-weight: 700 !important;
+    color: var(--mud-palette-text-primary) !important;
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    border: none !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+/* Details button padding */
+.ag-segmented-btn.ag-details {
+    color: var(--mud-palette-info) !important;
+}
+
+/* Icon buttons size */
+.ag-segmented-btn.ag-icon {
+    width: 42px !important;
+    padding: 0 !important;
+}
+
+/* Make tooltip wrapper stretch to full height */
+.ag-segmented-group > .mud-tooltip-root {
+    height: 100% !important;
+    display: inline-flex !important;
+    align-items: stretch !important;
+}
+
+/* Separator borders between items */
+.ag-segmented-group > .ag-segmented-btn:not(:first-child) {
+    border-inline-start: 1.5px solid var(--mud-palette-divider) !important;
+}
+
+.ag-segmented-group > *:not(:first-child) .ag-segmented-btn {
+    border-inline-start: 1.5px solid var(--mud-palette-divider) !important;
+}
+
+/* Hover highlights for each button type */
+.ag-segmented-btn.ag-details:hover {
+    background-color: var(--mud-palette-info) !important;
+    color: white !important;
+}
+
+.ag-segmented-btn.ag-pdf {
+    color: var(--mud-palette-error) !important;
+}
+.ag-segmented-btn.ag-pdf:hover {
+    background-color: var(--mud-palette-error) !important;
+    color: white !important;
+}
+
+.ag-segmented-btn.ag-upload {
+    color: var(--mud-palette-secondary) !important;
+}
+.ag-segmented-btn.ag-upload:hover {
+    background-color: var(--mud-palette-secondary) !important;
+    color: white !important;
+}
+
+.ag-segmented-btn.ag-delete {
+    color: var(--mud-palette-error) !important;
+}
+.ag-segmented-btn.ag-delete:hover {
+    background-color: var(--mud-palette-error) !important;
+    color: white !important;
+}

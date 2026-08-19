@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl"><head><meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <base href="/">  
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet">
+    <link href="css/app-v4.css?v=3" rel="stylesheet">
+    <link href="css/waiting-list.css?v=1" rel="stylesheet">
+    <link href="_content/MudBlazor/MudBlazor.min.7c7lhmh1j6.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin>
+    <script type="importmap">{
+  "imports": {
+    "./_content/MudBlazor/MudBlazor.min.js": "./_content/MudBlazor/MudBlazor.min.f96y5mhlyw.js",
+    "./js/audio-recorder.js": "./js/audio-recorder.958j2nu600.js",
+    "./js/audio-waves.js": "./js/audio-waves.t0iv37nytj.js",
+    "./js/barcode-scanner-listener.js": "./js/barcode-scanner-listener.6v9jbkr1ja.js",
+    "./js/file-input-helper.js": "./js/file-input-helper.qmlxya9qzd.js",
+    "./js/location-picker.js": "./js/location-picker.qashsxsboh.js",
+    "./js/medical-requisition-print.js": "./js/medical-requisition-print.az9g158amx.js",
+    "./js/speechToText.js": "./js/speechToText.viqhargzk9.js"
+  },
+  "integrity": {
+    "./_content/MudBlazor/MudBlazor.min.f96y5mhlyw.js": "sha256-zR6goaoMpR/YVMMSTfCmVNo3kuPgOkjF/ovhkUhAkbk=",
+    "./_content/MudBlazor/MudBlazor.min.js": "sha256-zR6goaoMpR/YVMMSTfCmVNo3kuPgOkjF/ovhkUhAkbk=",
+    "./js/audio-recorder.958j2nu600.js": "sha256-/Q2/mmAPYjZivaDz16h8AWBqL4J/wNB23iChNZcpXLk=",
+    "./js/audio-recorder.js": "sha256-/Q2/mmAPYjZivaDz16h8AWBqL4J/wNB23iChNZcpXLk=",
+    "./js/audio-waves.js": "sha256-A0TK7WIxK5Tn/OOtYZIGh2G6vIvtbtVb/fbO8cjh2mk=",
+    "./js/audio-waves.t0iv37nytj.js": "sha256-A0TK7WIxK5Tn/OOtYZIGh2G6vIvtbtVb/fbO8cjh2mk=",
+    "./js/barcode-scanner-listener.6v9jbkr1ja.js": "sha256-TpwjA+WI2pSKMaMpDRA8SQew6xD3JaQm1ZyYR6CBugc=",
+    "./js/barcode-scanner-listener.js": "sha256-TpwjA+WI2pSKMaMpDRA8SQew6xD3JaQm1ZyYR6CBugc=",
+    "./js/file-input-helper.js": "sha256-PjoFZn5v2/6R4ZLx050hoookKoyX/OP8Fh2g5f/5wd4=",
+    "./js/file-input-helper.qmlxya9qzd.js": "sha256-PjoFZn5v2/6R4ZLx050hoookKoyX/OP8Fh2g5f/5wd4=",
+    "./js/location-picker.js": "sha256-gulnKqOX845VlfvwtjBj7fEk7SpdIfrJ+M0bRi/BBEw=",
+    "./js/location-picker.qashsxsboh.js": "sha256-gulnKqOX845VlfvwtjBj7fEk7SpdIfrJ+M0bRi/BBEw=",
+    "./js/medical-requisition-print.az9g158amx.js": "sha256-hmt7kL5OuXRtWhyPLRu8NjB7PseDKw8OvIkSVInWKKI=",
+    "./js/medical-requisition-print.js": "sha256-hmt7kL5OuXRtWhyPLRu8NjB7PseDKw8OvIkSVInWKKI=",
+    "./js/speechToText.js": "sha256-h/bXEjW4O3wmybFdfLuEq1WXvdqSRm4TaM2gD+dHROU=",
+    "./js/speechToText.viqhargzk9.js": "sha256-h/bXEjW4O3wmybFdfLuEq1WXvdqSRm4TaM2gD+dHROU="
+  }
+}</script>
+    <link rel="icon" type="image/ico" href="favicon.ico">
+    <!--Blazor:{"type":"server","prerenderId":"3e876121c7964a26aaeb3b9542ad5628","key":{"locationHash":"77D12F14A8105320B1AAED6AE7E689DA0EC4483270A645E84079EAA0FFDF550D:12","formattedComponentKey":""},"sequence":0,"descriptor":"CfDJ8LQUMvq/WF5PqSbqkn/8UB7le8o1W9f8UfR8ST3PxV3WO7z4LR9haMieqUYaG3QgiXMi5ZXy24sjSUOEP7BPqdg2Q6pWQM5qtJqWnyr68xIhzvG2DeClr4fPAN7/9hsPK3Unz1otTw2\u002BT29aLLpERou9cbfql\u002B2NuRX23XlRDL0VAIIbbV3qqQNXGBlb2ET1e9b31spfRM6hvWPKpWTzReKSRhW6Ynle18YhZwxcSPlyoCskGMszr8IX3bcPWXugNTzM/AHBjsGjZGDhFj3wLG2aX5S\u002BJfkCKr7sZnTf9dPEUNdRJFPUtSUBhzr8a7BOFYKh\u002BkEDlX5Gugk9WaqKKUOLjv0N8/voTEbwXqN26AMThW27psv0EtR\u002BSLaYq13AzlkNFbhnzx4gzH\u002BDzKW6HsMhEuw2vgg5Smc\u002Bu1yOufW9g7jJKG0oIzPR/50wD1Vu69JYCrwPwUzAuVcKywC9t6erKXO0PHNFNFkrIXvMFpvPa4B7iFD0LyQy3jNGMlRgHxedZS0I5WVe3lS3T4NJ64TTq/jksTa6YGKiR9rOSHZTSuTFzNwpV9\u002BLsiVrMuRyBUHytpgBL4\u002BakdeU75ufh6A="}--><title>الصفحة غير موجودة - 404</title><!--Blazor:{"prerenderId":"3e876121c7964a26aaeb3b9542ad5628"}--></head>
+
+<body><!--Blazor:{"type":"server","prerenderId":"ba38df3f78264582ab250591948e4c21","key":{"locationHash":"94F604141C71A40063F828A64A599D89CD504D336DC5A6DD62BAC27596916C08:17","formattedComponentKey":""},"sequence":1,"descriptor":"CfDJ8LQUMvq/WF5PqSbqkn/8UB7lnPTbo6To9o0ArQFB7QIlCqfW3L4cYvd6gxJZl1SY9Dc5mAluDlHw4ZL7y2T4g4Y3jAPql2KO4Qk1oJ7aOxUlUDrhAbltH7bEZ7UavDSfbGqCignZlsAMJBEdddEmdDsVS2c2DEmdCA9bfsUI/UFYjg7G6QED5cfzrq7yU9H4\u002B/Q0sDjDildb1Fb4MCXhEoDQlNcwTyuD5VEhhGZj8OQadY6Eojxt2LC1aOm/76mSdZXm/lDzhe3TjVvev14/Yi2VjLg5dZlGgZzuISJ2V\u002BfCSeqVuwiPlUcEVnCVoTaNdJcIZapBDrRAx9GVeHH5TwO77Dw\u002BgUht9yGGUKguI5Od5t0EUmq89FGjJ5ULqOh80xEPCgHDMtREncn66zQATiN\u002BTFl9rSTxtLggNKWzqEij2JPPr0VvnBhTgHBfvYrM8TXtgXx/tuciAfZ28CtZWWVGvikNiPzoAHDUxzYisKInlr0uMezDoNwGw9Am8XLCyN6M6tnWZoS2g8vszLSUA8s="}--><style>
+::-webkit-scrollbar {width: 8px;height: 8px;z-index: 1;}
+::-webkit-scrollbar-track {background: transparent;}
+::-webkit-scrollbar-thumb {background: #c4c4c4;border-radius: 1px;}
+::-webkit-scrollbar-thumb:hover {background: #a6a6a6;}
+html, body * {scrollbar-color: #c4c4c4 transparent;scrollbar-width: thin;}
+</style>
+<style>
+    .mud-chart-serie:hover {
+        filter: url(#lighten);
+    }
+
+    .mud-chart-serie-hovered 
+    {
+        filter: url(#lighten);
+    }
+</style>
+
+<style class='mud-theme-provider'>
+:root{
+--mud-palette-black: rgba(39,39,47,1);
+--mud-palette-white: rgba(255,255,255,1);
+--mud-palette-primary: rgba(96,165,250,1);
+--mud-palette-primary-rgb: 96,165,250;
+--mud-palette-primary-text: rgba(255,255,255,1);
+--mud-palette-primary-darken: rgb(62,146,249);
+--mud-palette-primary-lighten: rgb(136,188,251);
+--mud-palette-primary-hover: rgba(96,165,250,0.058823529411764705);
+--mud-palette-secondary: rgba(167,139,250,1);
+--mud-palette-secondary-rgb: 167,139,250;
+--mud-palette-secondary-text: rgba(255,255,255,1);
+--mud-palette-secondary-darken: rgb(136,98,248);
+--mud-palette-secondary-lighten: rgb(195,177,252);
+--mud-palette-secondary-hover: rgba(167,139,250,0.058823529411764705);
+--mud-palette-tertiary: rgba(34,211,238,1);
+--mud-palette-tertiary-rgb: 34,211,238;
+--mud-palette-tertiary-text: rgba(255,255,255,1);
+--mud-palette-tertiary-darken: rgb(16,191,218);
+--mud-palette-tertiary-lighten: rgb(65,217,241);
+--mud-palette-tertiary-hover: rgba(34,211,238,0.058823529411764705);
+--mud-palette-info: rgba(59,130,246,1);
+--mud-palette-info-rgb: 59,130,246;
+--mud-palette-info-text: rgba(255,255,255,1);
+--mud-palette-info-darken: rgb(21,107,244);
+--mud-palette-info-lighten: rgb(99,156,248);
+--mud-palette-info-hover: rgba(59,130,246,0.058823529411764705);
+--mud-palette-success: rgba(34,197,94,1);
+--mud-palette-success-rgb: 34,197,94;
+--mud-palette-success-text: rgba(255,255,255,1);
+--mud-palette-success-darken: rgb(28,166,79);
+--mud-palette-success-lighten: rgb(46,220,109);
+--mud-palette-success-hover: rgba(34,197,94,0.058823529411764705);
+--mud-palette-warning: rgba(245,158,11,1);
+--mud-palette-warning-rgb: 245,158,11;
+--mud-palette-warning-text: rgba(255,255,255,1);
+--mud-palette-warning-darken: rgb(206,133,9);
+--mud-palette-warning-lighten: rgb(246,172,44);
+--mud-palette-warning-hover: rgba(245,158,11,0.058823529411764705);
+--mud-palette-error: rgba(239,68,68,1);
+--mud-palette-error-rgb: 239,68,68;
+--mud-palette-error-text: rgba(255,255,255,1);
+--mud-palette-error-darken: rgb(235,30,30);
+--mud-palette-error-lighten: rgb(242,105,105);
+--mud-palette-error-hover: rgba(239,68,68,0.058823529411764705);
+--mud-palette-dark: rgba(39,39,47,1);
+--mud-palette-dark-rgb: 39,39,47;
+--mud-palette-dark-text: rgba(255,255,255,1);
+--mud-palette-dark-darken: rgb(23,23,28);
+--mud-palette-dark-lighten: rgb(56,56,67);
+--mud-palette-dark-hover: rgba(39,39,47,0.058823529411764705);
+--mud-palette-text-primary: rgba(248,250,252,1);
+--mud-palette-text-primary-rgb: 248,250,252;
+--mud-palette-text-secondary: rgba(148,163,184,1);
+--mud-palette-text-secondary-rgb: 148,163,184;
+--mud-palette-text-disabled: rgba(255,255,255,0.2);
+--mud-palette-text-disabled-rgb: 255,255,255;
+--mud-palette-action-default: rgba(148,163,184,1);
+--mud-palette-action-default-hover: rgba(148,163,184,0.058823529411764705);
+--mud-palette-action-disabled: rgba(71,85,105,1);
+--mud-palette-action-disabled-background: rgba(30,41,59,1);
+--mud-palette-surface: rgba(24,24,27,1);
+--mud-palette-surface-rgb: 24,24,27;
+--mud-palette-background: rgba(9,9,11,1);
+--mud-palette-background-gray: rgba(39,39,47,1);
+--mud-palette-drawer-background: rgba(24,24,27,1);
+--mud-palette-drawer-text: rgba(248,250,252,1);
+--mud-palette-drawer-icon: rgba(148,163,184,1);
+--mud-palette-appbar-background: rgba(9,9,11,0.8);
+--mud-palette-appbar-text: rgba(248,250,252,1);
+--mud-palette-lines-default: rgba(255,255,255,0.11764705882352941);
+--mud-palette-lines-inputs: rgba(255,255,255,0.2980392156862745);
+--mud-palette-table-lines: rgba(255,255,255,0.11764705882352941);
+--mud-palette-table-striped: rgba(255,255,255,0.2);
+--mud-palette-table-hover: rgba(0,0,0,0.0392156862745098);
+--mud-palette-divider: rgba(255,255,255,0.0784313725490196);
+--mud-palette-divider-rgb: 255,255,255;
+--mud-palette-divider-light: rgba(255,255,255,0.0392156862745098);
+--mud-palette-skeleton: rgba(255,255,255,0.10980392156862745);
+--mud-palette-gray-default: #9E9E9E;
+--mud-palette-gray-light: #BDBDBD;
+--mud-palette-gray-lighter: #E0E0E0;
+--mud-palette-gray-dark: #757575;
+--mud-palette-gray-darker: #616161;
+--mud-palette-overlay-dark: rgba(33,33,33,0.4980392156862745);
+--mud-palette-overlay-light: rgba(255,255,255,0.4980392156862745);
+--mud-palette-border-opacity: 1;
+--mud-ripple-color: var(--mud-palette-text-primary);
+--mud-ripple-opacity: 0.1;
+--mud-ripple-opacity-secondary: 0.2;
+--mud-elevation-0: none;
+--mud-elevation-1: 0px 2px 1px -1px rgba(0,0,0,0.2),0px 1px 1px 0px rgba(0,0,0,0.14),0px 1px 3px 0px rgba(0,0,0,0.12);
+--mud-elevation-2: 0px 3px 1px -2px rgba(0,0,0,0.2),0px 2px 2px 0px rgba(0,0,0,0.14),0px 1px 5px 0px rgba(0,0,0,0.12);
+--mud-elevation-3: 0px 3px 3px -2px rgba(0,0,0,0.2),0px 3px 4px 0px rgba(0,0,0,0.14),0px 1px 8px 0px rgba(0,0,0,0.12);
+--mud-elevation-4: 0px 2px 4px -1px rgba(0,0,0,0.2),0px 4px 5px 0px rgba(0,0,0,0.14),0px 1px 10px 0px rgba(0,0,0,0.12);
+--mud-elevation-5: 0px 3px 5px -1px rgba(0,0,0,0.2),0px 5px 8px 0px rgba(0,0,0,0.14),0px 1px 14px 0px rgba(0,0,0,0.12);
+--mud-elevation-6: 0px 3px 5px -1px rgba(0,0,0,0.2),0px 6px 10px 0px rgba(0,0,0,0.14),0px 1px 18px 0px rgba(0,0,0,0.12);
+--mud-elevation-7: 0px 4px 5px -2px rgba(0,0,0,0.2),0px 7px 10px 1px rgba(0,0,0,0.14),0px 2px 16px 1px rgba(0,0,0,0.12);
+--mud-elevation-8: 0px 5px 5px -3px rgba(0,0,0,0.2),0px 8px 10px 1px rgba(0,0,0,0.14),0px 3px 14px 2px rgba(0,0,0,0.12);
+--mud-elevation-9: 0px 5px 6px -3px rgba(0,0,0,0.2),0px 9px 12px 1px rgba(0,0,0,0.14),0px 3px 16px 2px rgba(0,0,0,0.12);
+--mud-elevation-10: 0px 6px 6px -3px rgba(0,0,0,0.2),0px 10px 14px 1px rgba(0,0,0,0.14),0px 4px 18px 3px rgba(0,0,0,0.12);
+--mud-elevation-11: 0px 6px 7px -4px rgba(0,0,0,0.2),0px 11px 15px 1px rgba(0,0,0,0.14),0px 4px 20px 3px rgba(0,0,0,0.12);
+--mud-elevation-12: 0px 7px 8px -4px rgba(0,0,0,0.2),0px 12px 17px 2px rgba(0,0,0,0.14),0px 5px 22px 4px rgba(0,0,0,0.12);
+--mud-elevation-13: 0px 7px 8px -4px rgba(0,0,0,0.2),0px 13px 19px 2px rgba(0,0,0,0.14),0px 5px 24px 4px rgba(0,0,0,0.12);
+--mud-elevation-14: 0px 7px 9px -4px rgba(0,0,0,0.2),0px 14px 21px 2px rgba(0,0,0,0.14),0px 5px 26px 4px rgba(0,0,0,0.12);
+--mud-elevation-15: 0px 8px 9px -5px rgba(0,0,0,0.2),0px 15px 22px 2px rgba(0,0,0,0.14),0px 6px 28px 5px rgba(0,0,0,0.12);
+--mud-elevation-16: 0px 8px 10px -5px rgba(0,0,0,0.2),0px 16px 24px 2px rgba(0,0,0,0.14),0px 6px 30px 5px rgba(0,0,0,0.12);
+--mud-elevation-17: 0px 8px 11px -5px rgba(0,0,0,0.2),0px 17px 26px 2px rgba(0,0,0,0.14),0px 6px 32px 5px rgba(0,0,0,0.12);
+--mud-elevation-18: 0px 9px 11px -5px rgba(0,0,0,0.2),0px 18px 28px 2px rgba(0,0,0,0.14),0px 7px 34px 6px rgba(0,0,0,0.12);
+--mud-elevation-19: 0px 9px 12px -6px rgba(0,0,0,0.2),0px 19px 29px 2px rgba(0,0,0,0.14),0px 7px 36px 6px rgba(0,0,0,0.12);
+--mud-elevation-20: 0px 10px 13px -6px rgba(0,0,0,0.2),0px 20px 31px 3px rgba(0,0,0,0.14),0px 8px 38px 7px rgba(0,0,0,0.12);
+--mud-elevation-21: 0px 10px 13px -6px rgba(0,0,0,0.2),0px 21px 33px 3px rgba(0,0,0,0.14),0px 8px 40px 7px rgba(0,0,0,0.12);
+--mud-elevation-22: 0px 10px 14px -6px rgba(0,0,0,0.2),0px 22px 35px 3px rgba(0,0,0,0.14),0px 8px 42px 7px rgba(0,0,0,0.12);
+--mud-elevation-23: 0px 11px 14px -7px rgba(0,0,0,0.2),0px 23px 36px 3px rgba(0,0,0,0.14),0px 9px 44px 8px rgba(0,0,0,0.12);
+--mud-elevation-24: 0px 11px 15px -7px rgba(0,0,0,0.2),0px 24px 38px 3px rgba(0,0,0,0.14),0px 9px 46px 8px rgba(0,0,0,0.12);
+--mud-elevation-25: 0 5px 5px -3px rgba(0,0,0,.06), 0 8px 10px 1px rgba(0,0,0,.042), 0 3px 14px 2px rgba(0,0,0,.036);
+--mud-default-borderradius: 16px;
+--mud-drawer-width-left: 240px;
+--mud-drawer-width-right: 240px;
+--mud-drawer-width-mini-left: 56px;
+--mud-drawer-width-mini-right: 56px;
+--mud-appbar-height: 80px;
+--mud-typography-default-family: Tajawal, Outfit, sans-serif;
+--mud-typography-default-size: .875rem;
+--mud-typography-default-weight: 400;
+--mud-typography-default-lineheight: 1.43;
+--mud-typography-default-letterspacing: .01071em;
+--mud-typography-default-text-transform: none;
+--mud-typography-h1-family: Tajawal, Outfit, sans-serif;
+--mud-typography-h1-size: 6rem;
+--mud-typography-h1-weight: 300;
+--mud-typography-h1-lineheight: 1.167;
+--mud-typography-h1-letterspacing: -.01562em;
+--mud-typography-h1-text-transform: none;
+--mud-typography-h2-family: Tajawal, Outfit, sans-serif;
+--mud-typography-h2-size: 3.75rem;
+--mud-typography-h2-weight: 300;
+--mud-typography-h2-lineheight: 1.2;
+--mud-typography-h2-letterspacing: -.00833em;
+--mud-typography-h2-text-transform: none;
+--mud-typography-h3-family: Tajawal, Outfit, sans-serif;
+--mud-typography-h3-size: 3rem;
+--mud-typography-h3-weight: 400;
+--mud-typography-h3-lineheight: 1.167;
+--mud-typography-h3-letterspacing: 0;
+--mud-typography-h3-text-transform: none;
+--mud-typography-h4-family: Tajawal, Outfit, sans-serif;
+--mud-typography-h4-size: 2.125rem;
+--mud-typography-h4-weight: 400;
+--mud-typography-h4-lineheight: 1.235;
+--mud-typography-h4-letterspacing: .00735em;
+--mud-typography-h4-text-transform: none;
+--mud-typography-h5-family: Tajawal, Outfit, sans-serif;
+--mud-typography-h5-size: 1.5rem;
+--mud-typography-h5-weight: 400;
+--mud-typography-h5-lineheight: 1.334;
+--mud-typography-h5-letterspacing: 0;
+--mud-typography-h5-text-transform: none;
+--mud-typography-h6-family: Tajawal, Outfit, sans-serif;
+--mud-typography-h6-size: 1.25rem;
+--mud-typography-h6-weight: 500;
+--mud-typography-h6-lineheight: 1.6;
+--mud-typography-h6-letterspacing: .0075em;
+--mud-typography-h6-text-transform: none;
+--mud-typography-subtitle1-family: Tajawal, Outfit, sans-serif;
+--mud-typography-subtitle1-size: 1rem;
+--mud-typography-subtitle1-weight: 400;
+--mud-typography-subtitle1-lineheight: 1.75;
+--mud-typography-subtitle1-letterspacing: .00938em;
+--mud-typography-subtitle1-text-transform: none;
+--mud-typography-subtitle2-family: Tajawal, Outfit, sans-serif;
+--mud-typography-subtitle2-size: .875rem;
+--mud-typography-subtitle2-weight: 500;
+--mud-typography-subtitle2-lineheight: 1.57;
+--mud-typography-subtitle2-letterspacing: .00714em;
+--mud-typography-subtitle2-text-transform: none;
+--mud-typography-body1-family: Tajawal, Outfit, sans-serif;
+--mud-typography-body1-size: 1rem;
+--mud-typography-body1-weight: 400;
+--mud-typography-body1-lineheight: 1.5;
+--mud-typography-body1-letterspacing: .00938em;
+--mud-typography-body1-text-transform: none;
+--mud-typography-body2-family: Tajawal, Outfit, sans-serif;
+--mud-typography-body2-size: .875rem;
+--mud-typography-body2-weight: 400;
+--mud-typography-body2-lineheight: 1.43;
+--mud-typography-body2-letterspacing: .01071em;
+--mud-typography-body2-text-transform: none;
+--mud-typography-button-family: Tajawal, Outfit, sans-serif;
+--mud-typography-button-size: .875rem;
+--mud-typography-button-weight: 500;
+--mud-typography-button-lineheight: 1.75;
+--mud-typography-button-letterspacing: .02857em;
+--mud-typography-button-text-transform: uppercase;
+--mud-typography-caption-family: Tajawal, Outfit, sans-serif;
+--mud-typography-caption-size: .75rem;
+--mud-typography-caption-weight: 400;
+--mud-typography-caption-lineheight: 1.66;
+--mud-typography-caption-letterspacing: .03333em;
+--mud-typography-caption-text-transform: none;
+--mud-typography-overline-family: Tajawal, Outfit, sans-serif;
+--mud-typography-overline-size: .75rem;
+--mud-typography-overline-weight: 400;
+--mud-typography-overline-lineheight: 2.66;
+--mud-typography-overline-letterspacing: .08333em;
+--mud-typography-overline-text-transform: none;
+--mud-zindex-drawer: 1100;
+--mud-zindex-appbar: 1300;
+--mud-zindex-dialog: 1400;
+--mud-zindex-popover: 1200;
+--mud-zindex-snackbar: 1500;
+--mud-zindex-tooltip: 1600;
+--mud-native-html-color-scheme: dark;
+}
+</style>
+
+<div class="mud-popover-provider"><div id="popovercontent-4c011fcc-4443-48cc-bddd-8541e71f8cd9" data-ticks="0" data-pc-x="0" data-pc-y="0" class="mud-popover mud-popover-top-right mud-popover-anchor-bottom-right mud-popover-overflow-flip-onopen mud-paper mud-elevation-8" style="transition-duration:251ms;transition-delay:0ms;"></div></div>
+
+<div id="mud-snackbar-container" class="mud-snackbar-location-top-right"></div>
+
+<div dir="rtl" class="mud-layout mud-drawer-open-responsive-md-right mud-drawer-right-clipped-always" style=""><header class="mud-appbar mud-appbar-fixed-top mud-elevation-0 ag-glass"><div role="toolbar" class="mud-toolbar mud-toolbar-gutters mud-toolbar-appbar"><button type="button" class="mud-button-root mud-icon-button mud-inherit-text hover:mud-inherit-hover mud-ripple mud-ripple-icon mud-icon-button-edge-start" __internal_stopPropagation_onclick><span class="mud-icon-button-label"><svg class="mud-icon-root mud-svg-icon mud-icon-size-medium" focusable="false" viewBox="0 0 24 24" aria-hidden="true" role="img"><path d="M0 0h24v24H0z" fill="none"/><path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/></svg></span></button>
+
+        <h5 class="mud-typography mud-typography-h5 ml-3">
+            نبــض ✦
+        </h5>
+
+        <div aria-hidden="true" class="flex-grow-1"></div>
+
+        
+        <div role="group" class="d-flex flex-row align-center gap-1"><div OffsetY="true" class="mud-menu"><div class="mud-menu-activator" tabindex="0" role="button" aria-haspopup="true"><div role="img" class="mud-avatar mud-avatar-medium mud-avatar-filled mud-avatar-filled-primary mud-elevation-25" style=""><p class="mud-typography mud-typography-subtitle2 fw-bold" style="color: white;">??</p></div></div><div id="popover-4c011fcc-4443-48cc-bddd-8541e71f8cd9" class="mud-popover-cascading-value"></div></div></div>
+
+
+        <button type="button" class="mud-button-root mud-icon-button mud-inherit-text hover:mud-inherit-hover mud-ripple mud-ripple-icon" __internal_stopPropagation_onclick><span class="mud-icon-button-label"><svg class="mud-icon-root mud-svg-icon mud-icon-size-medium" focusable="false" viewBox="0 0 24 24" aria-hidden="true" role="img"><g><rect fill="none" height="24" width="24"/><rect fill="none" height="24" width="24"/></g><g><g><path d="M18.06,2.83c-1.15-0.77-2.46-1.32-3.86-1.61C13.58,1.1,13,1.57,13,2.21v0c0,0.46,0.31,0.88,0.76,0.97 c1.17,0.23,2.26,0.7,3.21,1.34c0.39,0.26,0.9,0.19,1.23-0.14l0,0C18.66,3.93,18.59,3.18,18.06,2.83z"/><path d="M11,2.21L11,2.21c0-0.64-0.58-1.11-1.2-0.99c-1.4,0.29-2.71,0.84-3.86,1.61c-0.52,0.35-0.59,1.1-0.15,1.54l0,0 c0.33,0.33,0.84,0.4,1.23,0.14c0.96-0.64,2.04-1.1,3.21-1.34C10.69,3.09,11,2.67,11,2.21z"/><path d="M4.38,5.79L4.38,5.79C3.93,5.34,3.18,5.42,2.84,5.94C2.07,7.09,1.51,8.39,1.23,9.8C1.1,10.42,1.58,11,2.21,11h0 c0.46,0,0.88-0.31,0.97-0.76c0.23-1.17,0.7-2.26,1.34-3.22C4.77,6.64,4.7,6.12,4.38,5.79z"/><path d="M21.79,11L21.79,11c0.63,0,1.11-0.58,0.98-1.2c-0.29-1.4-0.84-2.7-1.61-3.86c-0.35-0.52-1.1-0.6-1.54-0.15l0,0 c-0.33,0.33-0.4,0.84-0.14,1.23c0.64,0.96,1.1,2.05,1.34,3.22C20.91,10.69,21.33,11,21.79,11z"/><path d="M8,12.46l2.44,1.11L11.54,16c0.18,0.39,0.73,0.39,0.91,0l1.11-2.44L16,12.46c0.39-0.18,0.39-0.73,0-0.91l-2.44-1.11 L12.46,8c-0.18-0.39-0.73-0.39-0.91,0l-1.11,2.44L8,11.54C7.61,11.72,7.61,12.28,8,12.46z"/><path d="M12,21c-3.11,0-5.85-1.59-7.46-4H6c0.55,0,1-0.45,1-1v0c0-0.55-0.45-1-1-1H2c-0.55,0-1,0.45-1,1v4c0,0.55,0.45,1,1,1h0 c0.55,0,1-0.45,1-1v-1.7c1.99,2.84,5.27,4.7,9,4.7c4.45,0,8.27-2.64,10-6.43c0.26-0.57-0.08-1.25-0.69-1.39l0,0 c-0.45-0.1-0.93,0.11-1.12,0.54C18.77,18.83,15.64,21,12,21z"/></g></g></svg></span></button>
+
+        <button type="button" class="mud-button-root mud-icon-button mud-inherit-text hover:mud-inherit-hover mud-ripple mud-ripple-icon mud-icon-button-edge-end" __internal_stopPropagation_onclick><span class="mud-icon-button-label"><svg class="mud-icon-root mud-svg-icon mud-icon-size-medium" focusable="false" viewBox="0 0 24 24" aria-hidden="true" role="img"><path d="M0 0h24v24H0z" fill="none"/><path d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"/></svg></span></button></div></header>
+
+    <aside id="nav-drawer" class="mud-drawer mud-drawer-fixed mud-drawer-pos-right mud-drawer--open mud-drawer--initial mud-drawer-md mud-drawer-clipped-always mud-elevation-2 mud-drawer-responsive" style=""><div class="mud-drawer-content"><nav class="mud-navmenu mud-navmenu-default mud-navmenu-margin-none"><div class="mud-nav-item"><a href="/MainPage" rel="" tabindex="0" class="mud-nav-link mud-ripple"><svg class="mud-icon-root mud-icon-default mud-svg-icon mud-icon-size-medium mud-nav-link-icon mud-nav-link-icon-default" focusable="false" viewBox="0 0 24 24" aria-hidden="true" role="img"><path d="M0 0h24v24H0z" fill="none"/><path d="M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8V11h-8v10zm0-18v6h8V3h-8z"/></svg><div class="mud-nav-link-text">
+        الرئيسيه
+    </div></a></div>
+
+
+    
+
+
+    
+
+    
+
+    
+
+
+
+    
+
+
+    <nav class="mud-nav-group" aria-label="&#x627;&#x644;&#x625;&#x639;&#x62F;&#x627;&#x62F;&#x627;&#x62A;"><button tabindex="0" class="mud-nav-link mud-ripple" aria-controls="a22y7ts1q" aria-expanded="false" aria-label="Toggle &#x627;&#x644;&#x625;&#x639;&#x62F;&#x627;&#x62F;&#x627;&#x62A;"><svg class="mud-icon-root mud-icon-default mud-svg-icon mud-icon-size-medium mud-nav-link-icon mud-nav-link-icon-default" focusable="false" viewBox="0 0 24 24" aria-hidden="true" role="img"><g><path d="M0,0h24v24H0V0z" fill="none"/><path d="M19.14,12.94c0.04-0.3,0.06-0.61,0.06-0.94c0-0.32-0.02-0.64-0.07-0.94l2.03-1.58c0.18-0.14,0.23-0.41,0.12-0.61 l-1.92-3.32c-0.12-0.22-0.37-0.29-0.59-0.22l-2.39,0.96c-0.5-0.38-1.03-0.7-1.62-0.94L14.4,2.81c-0.04-0.24-0.24-0.41-0.48-0.41 h-3.84c-0.24,0-0.43,0.17-0.47,0.41L9.25,5.35C8.66,5.59,8.12,5.92,7.63,6.29L5.24,5.33c-0.22-0.08-0.47,0-0.59,0.22L2.74,8.87 C2.62,9.08,2.66,9.34,2.86,9.48l2.03,1.58C4.84,11.36,4.8,11.69,4.8,12s0.02,0.64,0.07,0.94l-2.03,1.58 c-0.18,0.14-0.23,0.41-0.12,0.61l1.92,3.32c0.12,0.22,0.37,0.29,0.59,0.22l2.39-0.96c0.5,0.38,1.03,0.7,1.62,0.94l0.36,2.54 c0.05,0.24,0.24,0.41,0.48,0.41h3.84c0.24,0,0.44-0.17,0.47-0.41l0.36-2.54c0.59-0.24,1.13-0.56,1.62-0.94l2.39,0.96 c0.22,0.08,0.47,0,0.59-0.22l1.92-3.32c0.12-0.22,0.07-0.47-0.12-0.61L19.14,12.94z M12,15.6c-1.98,0-3.6-1.62-3.6-3.6 s1.62-3.6,3.6-3.6s3.6,1.62,3.6,3.6S13.98,15.6,12,15.6z"/></g></svg><div Class="mud-nav-link-text">&#x627;&#x644;&#x625;&#x639;&#x62F;&#x627;&#x62F;&#x627;&#x62A;</div><svg class="mud-icon-root mud-svg-icon mud-icon-size-medium mud-nav-link-expand-icon" focusable="false" viewBox="0 0 24 24" aria-hidden="true" role="img"><path d="M0 0h24v24H0z" fill="none"/><path d="M7 10l5 5 5-5z"/></svg></button>
+    <div aria-hidden="true" class="mud-collapse-container mud-navgroup-collapse" style=""><div class="mud-collapse-wrapper"><div class="mud-collapse-wrapper-inner"><nav id="a22y7ts1q" class="mud-navmenu mud-navmenu-default mud-navmenu-margin-none">
+
+        
+
+        
+
+        
+
+        
+        </nav></div></div></div></nav></nav></div></aside>
+
+
+    <div class="mud-main-content pt-16 pa-4">
+
+<div class="mud-container mud-container-maxwidth-md mud-container--gutters d-flex flex-column align-center justify-center" style="min-height: 80vh;"><div class="mud-paper mud-elevation-0 pa-8 text-center" style="background: transparent;;"><svg class="mud-icon-root mud-svg-icon mud-primary-text mud-icon-size-medium mb-4" style="font-size: 120px;" focusable="false" viewBox="0 0 24 24" aria-hidden="true" role="img"><g><rect fill="none" height="24" width="24"/></g><g><g><path d="M15.5,14h-0.79l-0.28-0.27C15.41,12.59,16,11.11,16,9.5C16,5.91,13.09,3,9.5,3C6.08,3,3.28,5.64,3.03,9h2.02 C5.3,6.75,7.18,5,9.5,5C11.99,5,14,7.01,14,9.5S11.99,14,9.5,14c-0.17,0-0.33-0.03-0.5-0.05v2.02C9.17,15.99,9.33,16,9.5,16 c1.61,0,3.09-0.59,4.23-1.57L14,14.71v0.79l5,4.99L20.49,19L15.5,14z"/><polygon points="6.47,10.82 4,13.29 1.53,10.82 0.82,11.53 3.29,14 0.82,16.47 1.53,17.18 4,14.71 6.47,17.18 7.18,16.47 4.71,14 7.18,11.53"/></g></g></svg>
+        
+        <h1 class="mud-typography mud-typography-h1 mud-primary-text mb-2 font-weight-bold" style="font-size: 6rem; text-shadow: 2px 2px 4px rgba(0,0,0,0.1);">
+            404
+        </h1>
+        
+        <h4 class="mud-typography mud-typography-h4 mb-4 font-weight-medium">
+            عذراً، الصفحة التي تبحث عنها غير موجودة.
+        </h4>
+        
+        <p class="mud-typography mud-typography-body1 text-muted mb-8" style="max-width: 500px; margin: 0 auto;">
+            ربما قمت بكتابة الرابط بشكل خاطئ، أو أن هذه الصفحة لم تعد موجودة أو تم نقلها.
+        </p>
+        
+        <a type="button" href="/" class="mud-button-root mud-button mud-button-filled mud-button-filled-primary mud-button-filled-size-large mud-ripple rounded-pill px-8 py-3"><span class="mud-button-label"><span class="mud-button-icon-start mud-button-icon-size-large"><svg class="mud-icon-root mud-svg-icon mud-icon-size-large" focusable="false" viewBox="0 0 24 24" aria-hidden="true" role="img"><path d="M0 0h24v24H0z" fill="none"/><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg></span>
+            العودة للصفحة الرئيسية
+        </span></a></div></div></div></div>
+
+<div id="blazor-error-ui" data-nosnippet>
+    An unhandled error has occurred.
+    <a href="." class="reload">Reload</a>
+    <span class="dismiss">🗙</span></div>
+        <!--Blazor:{"prerenderId":"ba38df3f78264582ab250591948e4c21"}-->
+    <script src="_framework/blazor.web.js"></script>
+    <script src="_content/MudBlazor/MudBlazor.min.f96y5mhlyw.js"></script>
+    <script src="js/speechToText.js?v=5"></script>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin></script>
+    <script src="js/location-picker.js?v=1"></script>
+    <script src="js/medical-requisition-print.js?v=1"></script>
+    <script src="js/barcode-scanner-listener.js?v=1"></script></body></html><!--Blazor-Server-Component-State:CfDJ8LQUMvq/WF5PqSbqkn/8UB6/gZ4iP370/80DPBx+1XgsEW3SfTqPB8VaeH6/l6gQUQRneIw0p5WoaMMHlUNu6plKxuu6y60nfm8uqOzWj9+9vqg+kTpy5tVEl733JHh+PlvPRtIRg/O3g4FSTfQrFrNnMUXpi7cVbE1jRMKyKWHkX0pNqjq56lH5XODonVUo1EYxYituB8MkTasSO33/bOvwSxYhoFOnD8EWS/7rAlyowrn+fFwf7knmfbcpMlNVNxAvATImg7+LbNnA1hpKtDBXd5WexvFGd6YdkagT33qghDsmA6do+NSVb4MVDtiV1Zpi/27xtQ0368UqJZ65tMVZiH2ukDIAFkip0obUJyiIEc3573BkJDX5m5n4PGmjudfmNcDAayl7pzgdXALO1Rdekv6cwRdl4kZ1mbRRYq78zyNev30Qaekb2EDOS26PfxXBCaGzfuoJeXfDWcm4UHnBGiohnDJMkzM9p0WkBeY0Oy1kqy286frLeOVqqy64/s3O+3EpZso4kOdCLUDh0ov8yXDfsq8Ey0zuxLyAVIku-->

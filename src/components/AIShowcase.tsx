@@ -1,156 +1,335 @@
-import { motion, useScroll, useTransform } from 'motion/react';
-import { useRef, useState, useEffect } from 'react';
-import { Mic, FileText, CheckCircle2 } from 'lucide-react';
+import { useState, useEffect } from 'react';
+import { motion } from 'motion/react';
+import { Mic, FileText, CheckCircle2, Copy, Sparkles, Printer, Activity, Heart, Thermometer, Stethoscope, Play } from 'lucide-react';
 import { useLanguage } from '../lib/LanguageContext';
-import { img1, img2 } from '../images';
+import { generateSoapReport, SoapReport } from '../lib/api';
 
 export default function AIShowcase() {
-  const { t, language } = useLanguage();
-  const containerRef = useRef(null);
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start end", "end start"]
-  });
+  const { t, language, dir } = useLanguage();
+  const [selectedScenario, setSelectedScenario] = useState<number>(0);
+  const [isRecording, setIsRecording] = useState<boolean>(true);
+  const [copied, setCopied] = useState<boolean>(false);
+  const [report, setReport] = useState<SoapReport | null>(null);
+  const [displayedText, setDisplayedText] = useState<string>("");
 
-  const y1 = useTransform(scrollYProgress, [0, 1], [100, -100]);
-  const y2 = useTransform(scrollYProgress, [0, 1], [-100, 100]);
-  const opacity = useTransform(scrollYProgress, [0, 0.3, 0.7, 1], [0, 1, 1, 0]);
+  const scenarios = [
+    {
+      id: 0,
+      label_ar: "ألم بالصدر (باطنة / قلب)",
+      label_en: "Chest Pain (Cardiology)",
+      transcript_ar: "المريض ذكر يبلغ 45 سنة، يشتكي من نوبات ألم ضاغط خلف عظم القص مستمرة منذ 48 ساعة تزداد مع صعود الدرج، مترافقة مع ضيق تنفس خفيف. ينفي وجود تعرق بارد أو ألم في الذراع الأيسر. تاريخه المرضي يشمل ارتفاع ضغط الدم فقط.",
+      transcript_en: "45-year-old male presents with retrosternal pressure chest pain for 48 hours, worse on exertion with mild shortness of breath. No cold diaphoresis or radiating arm pain. History of essential hypertension."
+    },
+    {
+      id: 1,
+      label_ar: "حرارة وسعال (أطفال)",
+      label_en: "Fever & Cough (Pediatrics)",
+      transcript_ar: "طفل يبلغ من العمر 7 سنوات، تعاني الأم من ارتفاع حرارته إلى 38.8 درجة منذ 3 أيام مع سعال جاف مستمر ونقص في الشهية. بالفحص: احتقان بالحلق بدون تضخم باللوزتين، وصدر سليم بدون أزيز.",
+      transcript_en: "7-year-old child presenting with fever up to 38.8°C for 3 days, persistent dry cough, and reduced appetite. Examination shows pharyngeal erythema without tonsillar exudate, lungs clear."
+    },
+    {
+      id: 2,
+      label_ar: "متابعة سكري وضغط (عام)",
+      label_en: "Diabetes & HTN Follow-up",
+      transcript_ar: "مريضة تبلغ 52 سنة تراجع للمتابعة الدورية للسكري النوع الثاني وارتفاع الضغط. السكر التراكمي الأخير 7.4%، تشكو من تنميل خفيف في أصابع القدمين. ضغط الدم 138/86، لا توجد قرح بالقدم.",
+      transcript_en: "52-year-old female for routine Type 2 Diabetes and Hypertension follow-up. Last HbA1c is 7.4%, complains of mild distal numbness in bilateral toes. BP 138/86, feet intact."
+    }
+  ];
 
-  const [isRecording, setIsRecording] = useState(true);
-  const [typedText, setTypedText] = useState("");
-  const fullText = t.aiShowcase.patientText;
-
+  // Load report and simulate live transcription streaming
   useEffect(() => {
-    setTypedText("");
+    let isCancelled = false;
     setIsRecording(true);
-    let i = 0;
-    const interval = setInterval(() => {
-      if (i < fullText.length) {
-        setTypedText(prev => prev + fullText.charAt(i));
-        i++;
-      } else {
-        clearInterval(interval);
-        setTimeout(() => {
-          setIsRecording(false);
-        }, 1000);
+    setDisplayedText("");
+
+    const currentTranscript = language === 'ar' 
+      ? scenarios[selectedScenario].transcript_ar 
+      : scenarios[selectedScenario].transcript_en;
+
+    generateSoapReport(currentTranscript, language).then((res) => {
+      if (!isCancelled) {
+        setReport(res);
       }
-    }, 50);
-    return () => clearInterval(interval);
-  }, [fullText, language]);
+    });
+
+    let index = 0;
+    const typingInterval = setInterval(() => {
+      if (index < currentTranscript.length) {
+        setDisplayedText(currentTranscript.slice(0, index + 1));
+        index++;
+      } else {
+        clearInterval(typingInterval);
+        setIsRecording(false);
+      }
+    }, 25);
+
+    return () => {
+      isCancelled = true;
+      clearInterval(typingInterval);
+    };
+  }, [selectedScenario, language]);
+
+  const handleCopy = () => {
+    if (!report) return;
+    const textToCopy = `
+=== Nabd AI Medical Report ===
+Subjective: ${report.subjective}
+Objective: BP: ${report.objective.bloodPressure}, HR: ${report.objective.heartRate}, O2: ${report.objective.oxygenSaturation}, Temp: ${report.objective.temperature}
+Assessment: ${report.assessment.join(', ')}
+Plan: ${report.plan.join(', ')}
+    `.trim();
+    navigator.clipboard.writeText(textToCopy);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  };
 
   return (
-    <section id="demo" className="relative w-full max-w-7xl mx-auto pt-8 pb-16 px-6 xl:px-0" ref={containerRef}>
-      <motion.div style={{ opacity }} className="text-center mb-12">
-        <h2 className="text-4xl md:text-5xl font-bold heading-display mb-6">{t.aiShowcase.title}</h2>
-        <p className="text-xl text-slate-650 max-w-2xl mx-auto">{t.aiShowcase.desc}</p>
-      </motion.div>
+    <section id="demo" className="relative w-full max-w-7xl mx-auto py-20 px-6 xl:px-0">
+      {/* Background glow */}
+      <div className="absolute top-1/2 start-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[#7E6FFF]/10 rounded-full blur-[140px] pointer-events-none" />
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 relative z-10">
-        {/* Left Side: Recording UI */}
-        <motion.div style={{ y: y1 }} className="glass-card rounded-3xl p-8 border border-blue-100/50 relative overflow-hidden group">
-          <img 
-            src={img1} 
-            alt="AI Acoustic Background" 
-            className="absolute inset-0 w-full h-full object-cover opacity-[0.02] pointer-events-none mix-blend-overlay"
-          />
-          <div className="absolute top-0 inset-x-0 w-full h-1 bg-gradient-to-r from-transparent via-[var(--color-primary)] to-transparent opacity-50" />
-          
-          <div className="flex items-center justify-between mb-8">
-            <div className="flex items-center gap-3">
-              <div className={`w-12 h-12 rounded-full flex items-center justify-center transition-colors shrink-0 ${isRecording ? 'bg-red-500/20 text-red-500 glow-box' : 'bg-green-500/20 text-green-500'}`}>
-                {isRecording ? <Mic className="w-6 h-6 animate-pulse" /> : <CheckCircle2 className="w-6 h-6" />}
+      {/* Section Header */}
+      <div className="text-center mb-12 relative z-10">
+        <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-indigo-50 border border-indigo-200 text-[#7E6FFF] text-xs font-bold mb-4">
+          <Sparkles className="w-3.5 h-3.5" />
+          <span>{t.aiShowcase.badge}</span>
+        </div>
+        <h2 className="text-3xl sm:text-5xl font-extrabold heading-display text-slate-900 mb-4 tracking-tight">
+          {t.aiShowcase.title}
+        </h2>
+        <p className="text-base sm:text-lg text-slate-600 max-w-2xl mx-auto">
+          {t.aiShowcase.desc}
+        </p>
+
+        {/* Interactive Scenario Buttons */}
+        <div className="flex flex-wrap items-center justify-center gap-2.5 mt-8">
+          <span className="text-xs font-bold text-slate-500 hidden sm:inline">
+            {t.aiShowcase.tryScenarios}
+          </span>
+          {scenarios.map((sc) => {
+            const isSelected = selectedScenario === sc.id;
+            const label = language === 'ar' ? sc.label_ar : sc.label_en;
+            return (
+              <button
+                key={sc.id}
+                onClick={() => setSelectedScenario(sc.id)}
+                className={`px-4 py-2 rounded-xl text-xs font-bold transition-all flex items-center gap-2 ${
+                  isSelected
+                    ? 'bg-[#7E6FFF] text-white shadow-md shadow-indigo-500/25 scale-[1.02]'
+                    : 'bg-white text-slate-700 hover:bg-indigo-50/70 border border-slate-200'
+                }`}
+              >
+                <Stethoscope className="w-3.5 h-3.5" />
+                <span>{label}</span>
+              </button>
+            );
+          })}
+        </div>
+      </div>
+
+      {/* Main Interactive Studio Grid */}
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 relative z-10">
+        {/* Left Column: Real-time Audio Stream & Waveform (Col-5) */}
+        <div className="lg:col-span-5 glass-card rounded-3xl p-6 sm:p-8 flex flex-col justify-between border border-indigo-100/70 relative overflow-hidden">
+          <div>
+            {/* Header / Status */}
+            <div className="flex items-center justify-between pb-5 mb-5 border-b border-slate-100">
+              <div className="flex items-center gap-3 text-start">
+                <div className={`w-12 h-12 rounded-2xl flex items-center justify-center transition-all ${
+                  isRecording 
+                    ? 'bg-red-50 text-red-500 ring-4 ring-red-100' 
+                    : 'bg-emerald-50 text-emerald-600'
+                }`}>
+                  {isRecording ? <Mic className="w-6 h-6 animate-pulse" /> : <CheckCircle2 className="w-6 h-6" />}
+                </div>
+                <div>
+                  <h3 className="font-bold text-sm text-slate-900">
+                    {isRecording ? t.aiShowcase.listening : t.aiShowcase.processingComplete}
+                  </h3>
+                  <p className="text-xs text-slate-500">
+                    {isRecording ? t.aiShowcase.status1 : t.aiShowcase.status2}
+                  </p>
+                </div>
               </div>
-              <div>
-                <h3 className="font-medium text-slate-900">{isRecording ? t.aiShowcase.listening : t.aiShowcase.processingComplete}</h3>
-                <p className="text-sm text-slate-500">{isRecording ? t.aiShowcase.status1 : t.aiShowcase.status2}</p>
+
+              <div className="flex items-center gap-1.5 px-3 py-1 bg-red-50 rounded-full border border-red-100 text-red-600 text-xs font-mono font-bold" dir="ltr">
+                <span className="w-2 h-2 rounded-full bg-red-500 animate-ping" />
+                <span>{isRecording ? 'LIVE STREAM' : 'COMPLETED'}</span>
               </div>
             </div>
-            {isRecording && (
-              <div className="px-3 py-1 rounded-full bg-red-500/10 text-red-500 text-xs font-mono font-medium animate-pulse border border-red-500/20 shrink-0" dir="ltr">
-                REC 02:44
+
+            {/* Live Captured Speech Box */}
+            <div className="text-start">
+              <div className="text-xs font-bold text-slate-500 uppercase tracking-wider mb-2 flex items-center justify-between">
+                <span>{t.aiShowcase.liveVoiceNote}</span>
+                <span className="text-[10px] text-[#7E6FFF] font-mono">Neural Model: Nabd-Clinical-v4</span>
               </div>
-            )}
-          </div>
-
-          <div className="min-h-[200px] p-6 bg-slate-50 rounded-2xl border border-blue-100/40 font-mono text-sm leading-relaxed text-slate-800" dir={language === 'ar' ? 'rtl' : 'ltr'}>
-            {typedText}
-            {isRecording && <span className="inline-block w-2 h-4 bg-[var(--color-primary)] mx-1 animate-pulse" />}
-          </div>
-
-          {/* Audio Visualizer */}
-          <div className="mt-8 flex items-end justify-center gap-1 h-16 opacity-70">
-            {Array.from({ length: 48 }).map((_, i) => (
-              <motion.div 
-                key={i}
-                animate={isRecording ? { height: ['10%', '100%', '40%', '80%', '20%'][Math.floor(Math.random() * 5)] } : { height: '5%' }}
-                transition={isRecording ? { duration: 0.2 + Math.random() * 0.3, repeat: Infinity, repeatType: 'reverse' } : { duration: 0.5 }}
-                className="w-1.5 bg-gradient-to-t from-[var(--color-secondary)] to-[var(--color-primary)] rounded-t-full"
-                style={{ height: '5%' }}
-              />
-            ))}
-          </div>
-        </motion.div>
-
-        {/* Right Side: Generated Report */}
-        <motion.div style={{ y: y2 }} className="glass-card rounded-3xl p-8 border border-blue-100/50 flex flex-col justify-between relative overflow-hidden">
-          <img 
-            src={img2} 
-            alt="Medical Report Background" 
-            className="absolute inset-0 w-full h-full object-cover opacity-[0.02] pointer-events-none mix-blend-overlay"
-          />
-          <div className="absolute inset-x-0 bottom-0 top-1/2 bg-gradient-to-t from-blue-50/50 to-transparent pointer-events-none rounded-b-3xl" />
-          
-          <div className="flex items-center gap-3 mb-8">
-            <div className="p-3 bg-blue-100 rounded-xl">
-              <FileText className="w-6 h-6 text-blue-600" />
-            </div>
-            <div>
-              <h3 className="font-medium text-lg text-slate-900">{t.aiShowcase.generatedReport}</h3>
-              <p className="text-sm text-slate-650 bg-blue-50/50 px-2 py-0.5 rounded font-mono mt-1 w-max">{t.aiShowcase.soapFormat}</p>
+              <div className="p-4 bg-slate-50/80 rounded-2xl border border-indigo-100/40 text-xs leading-relaxed text-slate-800 font-sans min-h-[140px] relative">
+                {displayedText}
+                {isRecording && (
+                  <span className="inline-block w-2 h-4 bg-[#7E6FFF] mx-1 animate-pulse align-middle" />
+                )}
+              </div>
             </div>
           </div>
 
-          <div className="space-y-6 relative z-10 flex-1 text-start">
-            <motion.div 
-              initial={{ opacity: 0, x: 20 }}
-              animate={!isRecording ? { opacity: 1, x: 0 } : { opacity: 0.2, x: 0 }}
-              transition={{ delay: 0.2 }}
-              className="space-y-2"
-            >
-              <h4 className="text-xs uppercase tracking-wider text-[var(--color-primary)] font-semibold">{t.aiShowcase.subjective}</h4>
-              <p className="text-sm text-slate-700 p-4 bg-slate-50 rounded-xl border border-blue-100/40">
-                {t.aiShowcase.subText}
-              </p>
-            </motion.div>
-
-            <motion.div 
-              initial={{ opacity: 0, x: 20 }}
-              animate={!isRecording ? { opacity: 1, x: 0 } : { opacity: 0.2, x: 0 }}
-              transition={{ delay: 0.4 }}
-              className="space-y-2"
-            >
-              <h4 className="text-xs uppercase tracking-wider text-[var(--color-primary)] font-semibold">{t.aiShowcase.objective}</h4>
-              <div className="grid grid-cols-2 gap-2 text-sm text-slate-700" dir="ltr">
-                <div className="p-3 bg-slate-50 rounded-lg border border-blue-100/40 text-center">{t.aiShowcase.obj1}</div>
-                <div className="p-3 bg-slate-50 rounded-lg border border-blue-100/40 text-center">{t.aiShowcase.obj2}</div>
-                <div className="p-3 bg-slate-50 rounded-lg border border-blue-100/40 text-center">{t.aiShowcase.obj3}</div>
-                <div className="p-3 bg-slate-50 rounded-lg border border-blue-100/40 text-center">{t.aiShowcase.obj4}</div>
-              </div>
-            </motion.div>
-            
-             <motion.div 
-              initial={{ opacity: 0, x: 20 }}
-              animate={!isRecording ? { opacity: 1, x: 0 } : { opacity: 0.2, x: 0 }}
-              transition={{ delay: 0.6 }}
-              className="space-y-2"
-            >
-              <h4 className="text-xs uppercase tracking-wider text-[var(--color-primary)] font-semibold">{t.aiShowcase.assessmentPlan}</h4>
-              <p className="text-sm text-slate-700 p-4 bg-slate-50 rounded-xl border border-blue-100/40 blur-[1px] hover:blur-none transition-all whitespace-pre-wrap">
-                {t.aiShowcase.plan}
-              </p>
-            </motion.div>
+          {/* Dynamic Audio Visualizer Waves */}
+          <div className="mt-8 pt-5 border-t border-slate-100">
+            <div className="flex items-end justify-center gap-1.5 h-14 px-2">
+              {Array.from({ length: 32 }).map((_, i) => (
+                <motion.div
+                  key={i}
+                  animate={isRecording ? {
+                    height: ['15%', '95%', '35%', '80%', '20%'][i % 5]
+                  } : { height: '10%' }}
+                  transition={isRecording ? {
+                    duration: 0.3 + (i % 4) * 0.1,
+                    repeat: Infinity,
+                    repeatType: 'reverse'
+                  } : { duration: 0.4 }}
+                  className="w-1.5 bg-gradient-to-t from-[#7E6FFF] to-[#60A5FA] rounded-full"
+                  style={{ height: '15%' }}
+                />
+              ))}
+            </div>
+            <div className="flex items-center justify-between text-[11px] text-slate-500 font-mono mt-3">
+              <span>Sampling: 48kHz / 24-bit</span>
+              <span className="text-[#7E6FFF] font-bold">Latency: 140ms</span>
+            </div>
           </div>
-        </motion.div>
+        </div>
+
+        {/* Right Column: Structured AI SOAP Medical Report (Col-7) */}
+        <div className="lg:col-span-7 glass-card rounded-3xl p-6 sm:p-8 border border-indigo-100/70 relative flex flex-col justify-between">
+          <div>
+            {/* Header with Format Badge and Copy Action */}
+            <div className="flex items-center justify-between pb-5 mb-5 border-b border-slate-100">
+              <div className="flex items-center gap-3 text-start">
+                <div className="w-10 h-10 rounded-2xl bg-indigo-50 text-[#7E6FFF] flex items-center justify-center">
+                  <FileText className="w-5 h-5" />
+                </div>
+                <div>
+                  <h3 className="font-bold text-base text-slate-900">{t.aiShowcase.generatedReport}</h3>
+                  <span className="inline-block text-[11px] font-mono font-bold text-[#7E6FFF] bg-indigo-50/70 px-2 py-0.5 rounded mt-0.5">
+                    {t.aiShowcase.soapFormat}
+                  </span>
+                </div>
+              </div>
+
+              <button
+                onClick={handleCopy}
+                className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-slate-100 hover:bg-indigo-50 text-slate-700 hover:text-[#7E6FFF] text-xs font-bold transition-colors border border-slate-200"
+              >
+                {copied ? <CheckCircle2 className="w-4 h-4 text-emerald-500" /> : <Copy className="w-4 h-4" />}
+                <span>{copied ? t.aiShowcase.copied : t.aiShowcase.copyReport}</span>
+              </button>
+            </div>
+
+            {/* Structured SOAP Sections */}
+            <div className="space-y-4 text-start">
+              {/* 1. Subjective */}
+              <div className="p-4 bg-white rounded-2xl border border-slate-200/80 shadow-2xs">
+                <div className="flex items-center justify-between mb-2">
+                  <span className="text-xs font-bold uppercase tracking-wider text-[#7E6FFF] flex items-center gap-1.5">
+                    <Activity className="w-3.5 h-3.5" />
+                    {t.aiShowcase.subjective}
+                  </span>
+                </div>
+                <p className="text-xs text-slate-700 leading-relaxed font-sans">
+                  {report ? report.subjective : "جاري استخراج الشكوى والتاريخ المرضي..."}
+                </p>
+              </div>
+
+              {/* 2. Objective / Vitals */}
+              <div className="p-4 bg-white rounded-2xl border border-slate-200/80 shadow-2xs">
+                <div className="flex items-center justify-between mb-2.5">
+                  <span className="text-xs font-bold uppercase tracking-wider text-emerald-600 flex items-center gap-1.5">
+                    <Heart className="w-3.5 h-3.5" />
+                    {t.aiShowcase.objective}
+                  </span>
+                </div>
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-2" dir="ltr">
+                  <div className="p-2.5 bg-slate-50 rounded-xl border border-slate-200 text-center">
+                    <div className="text-[10px] text-slate-500 font-bold">BP (الضغط)</div>
+                    <div className="text-xs font-bold text-slate-800 font-mono mt-0.5">{report?.objective.bloodPressure || "--/--"}</div>
+                  </div>
+                  <div className="p-2.5 bg-slate-50 rounded-xl border border-slate-200 text-center">
+                    <div className="text-[10px] text-slate-500 font-bold">HR (النبض)</div>
+                    <div className="text-xs font-bold text-slate-800 font-mono mt-0.5">{report?.objective.heartRate || "-- bpm"}</div>
+                  </div>
+                  <div className="p-2.5 bg-slate-50 rounded-xl border border-slate-200 text-center">
+                    <div className="text-[10px] text-slate-500 font-bold">O2 Sat (الأكسجين)</div>
+                    <div className="text-xs font-bold text-slate-800 font-mono mt-0.5">{report?.objective.oxygenSaturation || "--%"}</div>
+                  </div>
+                  <div className="p-2.5 bg-slate-50 rounded-xl border border-slate-200 text-center">
+                    <div className="text-[10px] text-slate-500 font-bold">Temp (الحرارة)</div>
+                    <div className="text-xs font-bold text-slate-800 font-mono mt-0.5">{report?.objective.temperature || "-- °C"}</div>
+                  </div>
+                </div>
+              </div>
+
+              {/* 3. Assessment & AI Suggested Fields (Highlighted with waiting-list.css styles) */}
+              <div className="p-4 ai-suggested-field shadow-2xs">
+                <div className="flex items-center justify-between mb-2">
+                  <span className="text-xs font-bold uppercase tracking-wider text-[#8a2be2] flex items-center gap-1.5">
+                    <Sparkles className="w-3.5 h-3.5" />
+                    {t.aiShowcase.assessment}
+                  </span>
+                  <span className="ai-suggestion-badge">
+                    {t.aiShowcase.aiBadge}
+                  </span>
+                </div>
+                <ul className="text-xs text-slate-800 space-y-1.5">
+                  {report?.assessment.map((ass, i) => (
+                    <li key={i} className="flex items-start gap-2">
+                      <span className="text-[#8a2be2] font-bold">●</span>
+                      <span>{ass}</span>
+                    </li>
+                  ))}
+                </ul>
+
+                {/* ICD-10 Tags */}
+                <div className="mt-3 pt-2.5 border-t border-purple-200/60 flex flex-wrap items-center gap-1.5">
+                  <span className="text-[11px] font-bold text-purple-900">{t.aiShowcase.icd10}</span>
+                  {report?.suggestedICD10.map((icd, idx) => (
+                    <span key={idx} className="px-2 py-0.5 rounded-md bg-white border border-purple-200 text-purple-700 text-[10px] font-mono font-bold">
+                      {icd.code} - {icd.name}
+                    </span>
+                  ))}
+                </div>
+              </div>
+
+              {/* 4. Plan & Orders */}
+              <div className="p-4 bg-white rounded-2xl border border-slate-200/80 shadow-2xs">
+                <div className="text-xs font-bold uppercase tracking-wider text-slate-900 mb-2">
+                  {t.aiShowcase.plan}
+                </div>
+                <ul className="text-xs text-slate-700 space-y-1">
+                  {report?.plan.map((p, i) => (
+                    <li key={i} className="flex items-start gap-2">
+                      <span className="text-[#7E6FFF] font-bold">{i + 1}.</span>
+                      <span>{p}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          {/* Bottom Action: Print Medical Requisition */}
+          <div className="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between">
+            <span className="text-xs text-slate-500 font-medium">
+              جاهز للربط مع الطابعات وأجهزة الاستقبال
+            </span>
+            <a 
+              href="#requisition"
+              className="flex items-center gap-2 px-4 py-2.5 bg-indigo-50 hover:bg-indigo-100 text-[#7E6FFF] rounded-xl text-xs font-bold transition-all border border-indigo-200"
+            >
+              <Printer className="w-4 h-4" />
+              <span>{t.aiShowcase.printRequisitionBtn}</span>
+            </a>
+          </div>
+        </div>
       </div>
     </section>
   );

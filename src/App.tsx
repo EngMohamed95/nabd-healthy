@@ -1,6 +1,5 @@
 /**
- * @license
- * SPDX-License-Identifier: Apache-2.0
+ * Nabd AI Doctor - Modern Web Landing Page
  */
 
 import { useEffect } from 'react';
@@ -8,6 +7,7 @@ import Lenis from 'lenis';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import AIShowcase from './components/AIShowcase';
+import InteractiveRequisitionDemo from './components/InteractiveRequisitionDemo';
 import Features from './components/Features';
 import DashboardPreview from './components/DashboardPreview';
 import WhyChooseUs from './components/WhyChooseUs';
@@ -36,21 +36,28 @@ export default function App() {
   }, []);
 
   return (
-    <div className="relative w-full min-h-screen bg-[var(--color-darker)] text-slate-800 overflow-hidden">
-      <Navbar />
-      <main className="relative z-10 flex flex-col items-center w-full">
-        <Hero />
-        <AIShowcase />
-        <Features />
-        <DashboardPreview />
-        <WhyChooseUs />
-        <ShowcaseGallery />
-        <Testimonials />
-        <Pricing />
-        <CTA />
-      </main>
-      <Footer />
+    <div className="relative w-full min-h-screen text-slate-800 selection:bg-[#7E6FFF] selection:text-white bg-[#f8fafc]">
+      {/* Full-width seamless ambient lighting and dot pattern */}
+      <div className="ambient-bg" />
+      <div className="ambient-grid" />
+
+      {/* Main Content */}
+      <div className="relative z-10 w-full flex flex-col items-center">
+        <Navbar />
+        <main className="relative z-10 flex flex-col items-center w-full">
+          <Hero />
+          <AIShowcase />
+          <InteractiveRequisitionDemo />
+          <Features />
+          <DashboardPreview />
+          <WhyChooseUs />
+          <ShowcaseGallery />
+          <Testimonials />
+          <Pricing />
+          <CTA />
+        </main>
+        <Footer />
+      </div>
     </div>
   );
 }
-
