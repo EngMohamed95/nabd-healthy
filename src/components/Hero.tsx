@@ -239,28 +239,6 @@ export default function Hero() {
               </div>
             </div>
           </div>
-
-          {/* Floating Companion App Card */}
-          <motion.div 
-            initial={{ opacity: 0, x: 40, y: 40 }}
-            animate={{ opacity: 1, x: 0, y: 0 }}
-            transition={{ delay: 0.8, duration: 0.7 }}
-            className="absolute -bottom-8 -end-2 md:-end-6 w-48 sm:w-60 glass rounded-2xl p-2 border border-indigo-100 shadow-2xl z-20 hover:scale-105 transition-transform hidden sm:block"
-            dir="ltr"
-          >
-            <div className="relative aspect-[9/14] rounded-xl overflow-hidden bg-slate-900">
-              <img 
-                src={img7} 
-                alt="Nabd Companion Mobile App" 
-                className="absolute inset-0 w-full h-full object-cover opacity-80"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent" />
-              <div className="absolute bottom-3 inset-x-3 text-start">
-                <div className="text-[9px] text-[#A399FF] font-bold uppercase tracking-wider mb-0.5">Mobile Doctor Companion</div>
-                <div className="text-xs font-bold text-white">Live Patient Vitals & Queue</div>
-              </div>
-            </div>
-          </motion.div>
         </motion.div>
       </div>
     </section>
