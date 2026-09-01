@@ -25,7 +25,7 @@ export default function DashboardPreview() {
           <Activity className="w-3.5 h-3.5" />
           <span>{t.dashboard.badge}</span>
         </div>
-        <h2 className="text-3xl sm:text-5xl font-extrabold heading-display text-slate-900 mb-4 tracking-tight">
+        <h2 className="text-3xl sm:text-5xl font-extrabold heading-display text-slate-900 mb-4 leading-tight tracking-tight">
           {t.dashboard.titleLine1} <br />
           <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#1E285A] via-[#4E60A2] to-[#849CC6]">
             {t.dashboard.titleLine2}
