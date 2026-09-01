@@ -16,7 +16,7 @@ export const translations = {
     },
     hero: {
       badge: "نبض 2.0: مستقبل الطب الذكي متاح الآن",
-      title1: "الذكاء الاصطناعي ومستقبل الطب:",
+      title1: "الذكاء الاصطناعي ومستقبل الطب",
       title2: "منصة نبض لرفع جودة الخدمات الصحية",
       desc: "نحن نقود التحول الرقمي في الرعاية الصحية لتمكين الأطباء وتحسين جودة الخدمات الطبية. من خلال تحويل المحادثات السريرية فورياً إلى سجلات SOAP منظمة وترميز ICD-10 بدقة 99.4%، نقضي على العبء الإداري لنمنحك وقتاً أكبر للتركيز على رعاية مرضاك.",
       startFreeTrial: "ابدأ تجربتك المجانية",
@@ -191,7 +191,7 @@ export const translations = {
     },
     hero: {
       badge: "Nabd 2.0: The Future of Smart Medicine is Live",
-      title1: "AI & The Future of Clinical Care:",
+      title1: "AI & The Future of Clinical Care",
       title2: "Elevating Healthcare Quality with Nabd",
       desc: "Pioneering the clinical AI revolution to empower doctors and enhance healthcare quality. By instantly transforming patient conversations into highly accurate, structured SOAP reports and ICD-10 codes, we eliminate paperwork so you can focus on patient lives.",
       startFreeTrial: "Start Free Trial",

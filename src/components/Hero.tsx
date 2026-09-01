@@ -1,7 +1,6 @@
 import { motion } from 'motion/react';
 import { ArrowLeft, ArrowRight, Play, Sparkles, ShieldCheck, Clock, Zap } from 'lucide-react';
 import { useLanguage } from '../lib/LanguageContext';
-import nabdCoverImg from '../images/nabd_cover.png';
 
 export default function Hero() {
   const { t, dir, language } = useLanguage();
@@ -105,41 +104,6 @@ export default function Hero() {
             <div>
               <div className="text-xl font-bold text-slate-900 heading-display" dir="ltr">{t.hero.stats.patients}</div>
               <div className="text-xs text-slate-500 font-medium">{t.hero.stats.patientsLabel}</div>
-            </div>
-          </div>
-        </motion.div>
-
-        {/* Hero Cover Image Canvas */}
-        <motion.div
-           initial={{ opacity: 0, y: 60 }}
-           animate={{ opacity: 1, y: 0 }}
-           transition={{ duration: 0.9, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
-           className="w-full max-w-5xl mt-14 relative"
-        >
-          {/* Main Workspace Frame */}
-          <div className="relative glass-card w-full rounded-3xl overflow-hidden border border-[#CFD5E4]/80 p-2 sm:p-3 shadow-2xl shadow-[#4E60A2]/10 group">
-            {/* Window titlebar */}
-            <div className="flex items-center justify-between px-4 py-2.5 bg-slate-100/80 border-b border-slate-200/60 rounded-t-2xl mb-2" dir="ltr">
-              <div className="flex items-center gap-2">
-                <span className="w-3 h-3 rounded-full bg-red-400" />
-                <span className="w-3 h-3 rounded-full bg-amber-400" />
-                <span className="w-3 h-3 rounded-full bg-emerald-400" />
-              </div>
-              <div className="flex items-center gap-2 px-3 py-1 bg-white rounded-lg border border-slate-200 text-slate-650 text-xs font-mono">
-                <span className="w-2 h-2 rounded-full bg-[#4E60A2] animate-pulse" />
-                <span>nabd.health/consultation/active</span>
-              </div>
-              <div className="text-[11px] font-bold text-slate-500">Nabd Clinic OS v2.0</div>
-            </div>
-
-            {/* Widescreen Cover Image */}
-            <div className="relative rounded-2xl overflow-hidden border border-[#CFD5E4]/50 shadow-inner">
-              <img 
-                src={nabdCoverImg} 
-                alt="Nabd Clinical AI Workstation Cover" 
-                className="w-full h-auto object-cover group-hover:scale-[1.01] transition-transform duration-700"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-slate-950/20 via-transparent to-transparent pointer-events-none" />
             </div>
           </div>
         </motion.div>

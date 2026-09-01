@@ -8,6 +8,8 @@ on:
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
 
     steps:
       - name: Checkout Code
@@ -24,11 +26,18 @@ jobs:
       - name: Build Project
         run: npm run build
 
-      - name: Deploy to Hostinger via FTP
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+      # Hostinger's shared-hosting FTP firewall blocks connections from
+      # GitHub Actions' runner IP ranges (control-socket timeout), and this
+      # account has no SSH/SFTP access to fall back to. Pushing the built
+      # site to a dedicated branch avoids that network path entirely: this
+      # step only talks to github.com over HTTPS. Hostinger's own "Git"
+      # auto-deploy (hPanel > Websites > Advanced > Git) then pulls from
+      # this branch itself, so Hostinger initiates the connection instead
+      # of GitHub Actions reaching in.
+      - name: Publish build to deploy branch
+        uses: peaceiris/actions-gh-pages@v4
         with:
-          server: ${{ secrets.FTP_SERVER }}
-          username: ${{ secrets.FTP_USERNAME }}
-          password: ${{ secrets.FTP_PASSWORD }}
-          local-dir: ./dist/ # Uploads only the build folder
-          server-dir: ./ # Uploads directly to the root (which is public_html)
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist
+          publish_branch: deploy
+          force_orphan: true
