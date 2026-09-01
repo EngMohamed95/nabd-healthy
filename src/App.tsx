@@ -36,7 +36,7 @@ export default function App() {
   }, []);
 
   return (
-    <div className="relative w-full min-h-screen text-slate-800 selection:bg-[#7E6FFF] selection:text-white bg-[#f8fafc]">
+    <div className="relative w-full min-h-screen text-slate-800 selection:bg-[#4E60A2] selection:text-white bg-[#F3F4F9]">
       {/* Full-width seamless ambient lighting and dot pattern */}
       <div className="ambient-bg" />
       <div className="ambient-grid" />

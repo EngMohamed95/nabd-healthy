@@ -30,7 +30,7 @@ export default function Testimonials() {
     <section id="testimonials" className="relative w-full py-24 overflow-hidden">
       <div className="max-w-7xl mx-auto px-6">
         <div className="text-center mb-16">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-indigo-50 border border-indigo-200 text-[#7E6FFF] text-xs font-bold mb-4">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#E9ECF5] border border-[#D5DAE8] text-[#4E60A2] text-xs font-bold mb-4">
             <Sparkles className="w-3.5 h-3.5" />
             <span>{t.testimonials.badge}</span>
           </div>
@@ -47,7 +47,7 @@ export default function Testimonials() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.12 }}
-              className="glass-card rounded-3xl p-8 flex flex-col justify-between border border-indigo-100/70 relative group"
+              className="glass-card rounded-3xl p-8 flex flex-col justify-between border border-[#CFD5E4]/70 relative group"
             >
               <div>
                 <div className="flex items-center justify-between mb-6">
@@ -56,7 +56,7 @@ export default function Testimonials() {
                       <Star key={j} className="w-4 h-4 fill-amber-400 text-amber-400" />
                     ))}
                   </div>
-                  <Quote className="w-6 h-6 text-indigo-200 group-hover:text-[#7E6FFF] transition-colors" />
+                  <Quote className="w-6 h-6 text-[#849CC6] group-hover:text-[#4E60A2] transition-colors" />
                 </div>
                 <p className="text-sm sm:text-base text-slate-700 leading-relaxed mb-8 text-start font-sans">
                   "{item.quote}"
@@ -64,7 +64,7 @@ export default function Testimonials() {
               </div>
 
               <div className="flex items-center gap-3.5 pt-4 border-t border-slate-100 text-start">
-                <div className="w-11 h-11 rounded-2xl bg-gradient-to-br from-indigo-100 to-sky-100 border border-indigo-200/60 flex items-center justify-center font-bold text-base text-[#7E6FFF]">
+                <div className="w-11 h-11 rounded-2xl bg-gradient-to-br from-[#E9ECF5] to-[#D2D7E6] border border-[#D5DAE8]/60 flex items-center justify-center font-bold text-base text-[#4E60A2]">
                   {item.author.charAt(0)}
                 </div>
                 <div>

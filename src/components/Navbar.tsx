@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { Activity, Globe, Sparkles, Menu, X, LogIn } from 'lucide-react';
+import { Globe, Sparkles, Menu, X, LogIn } from 'lucide-react';
 import { useLanguage } from '../lib/LanguageContext';
+import logoImg from '../images/nabd_logo.png';
 
 export default function Navbar() {
   const { language, setLanguage, t, dir } = useLanguage();
@@ -31,24 +32,20 @@ export default function Navbar() {
       transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
       className={`fixed top-0 inset-x-0 z-50 transition-all duration-300 ${
         scrolled 
-          ? 'bg-white/90 backdrop-blur-xl border-b border-indigo-100/70 shadow-sm py-2.5' 
-          : 'bg-white/60 backdrop-blur-md border-b border-indigo-50/50 py-3.5'
+          ? 'bg-white/90 backdrop-blur-xl border-b border-[#D5DAE8]/70 shadow-sm py-2.5' 
+          : 'bg-white/60 backdrop-blur-md border-b border-[#D5DAE8]/40 py-3.5'
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between gap-4">
         {/* Brand Logo & Name */}
         <a href="#" className="flex items-center gap-2.5 shrink-0 group">
-          <div className="w-9 h-9 rounded-xl bg-gradient-to-tr from-[#7E6FFF] to-[#60A5FA] p-0.5 shadow-md group-hover:scale-105 transition-transform shrink-0">
-            <div className="w-full h-full bg-white rounded-[9px] flex items-center justify-center">
-              <Activity className="w-5 h-5 text-[#7E6FFF] group-hover:animate-pulse" />
-            </div>
-          </div>
+          <img src={logoImg} alt="Nabd Logo" className="w-9 h-9 object-contain rounded-xl shadow-md group-hover:scale-105 transition-transform shrink-0" />
           <div className="flex flex-col text-start">
             <div className="flex items-center gap-1.5 leading-none">
               <span className="text-xl font-extrabold tracking-tight text-slate-900 heading-display">
                 {t.navbar.brand}
               </span>
-              <span className="px-1.5 py-0.5 text-[9px] font-bold rounded bg-indigo-50 text-[#7E6FFF] border border-indigo-100 font-mono">
+              <span className="px-1.5 py-0.5 text-[9px] font-bold rounded bg-[#E6E9F2] text-[#4E60A2] border border-[#D5DAE8] font-mono">
                 v2.0
               </span>
             </div>
@@ -64,7 +61,7 @@ export default function Navbar() {
             <a 
               key={link.href} 
               href={link.href} 
-              className="px-3 py-1.5 text-xs font-bold text-slate-700 hover:text-[#7E6FFF] hover:bg-white rounded-full transition-all duration-150 whitespace-nowrap"
+              className="px-3 py-1.5 text-xs font-bold text-slate-700 hover:text-[#4E60A2] hover:bg-white rounded-full transition-all duration-150 whitespace-nowrap"
             >
               {link.label}
             </a>
@@ -76,10 +73,10 @@ export default function Navbar() {
           {/* Language Switcher Button */}
           <button 
             onClick={() => setLanguage(language === 'en' ? 'ar' : 'en')} 
-            className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-bold text-slate-700 bg-white hover:bg-indigo-50 hover:text-[#7E6FFF] border border-slate-200 rounded-full transition-all shadow-2xs cursor-pointer"
+            className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-bold text-slate-700 bg-white hover:bg-[#E9ECF5] hover:text-[#4E60A2] border border-slate-200 rounded-full transition-all shadow-2xs cursor-pointer"
             title="تبديل اللغة / Switch Language"
           >
-            <Globe className="w-3.5 h-3.5 text-[#7E6FFF]" />
+            <Globe className="w-3.5 h-3.5 text-[#4E60A2]" />
             <span className="font-sans">{language === 'en' ? 'العربية' : 'EN'}</span>
           </button>
 
@@ -88,7 +85,7 @@ export default function Navbar() {
             href="https://aidocotr.runasp.net/login"
             target="_blank"
             rel="noreferrer"
-            className="hidden sm:flex items-center gap-1.5 px-3 py-1.5 text-xs font-bold text-slate-700 hover:text-[#7E6FFF] transition-colors"
+            className="hidden sm:flex items-center gap-1.5 px-3 py-1.5 text-xs font-bold text-slate-700 hover:text-[#4E60A2] transition-colors"
           >
             <LogIn className="w-3.5 h-3.5" />
             <span>{t.navbar.login}</span>
@@ -97,7 +94,7 @@ export default function Navbar() {
           {/* Primary CTA */}
           <a 
             href="#demo"
-            className="hidden sm:flex items-center gap-1.5 px-4 py-2 text-xs font-bold text-white bg-gradient-to-r from-[#7E6FFF] to-[#5A47FF] hover:from-[#6b5bf7] hover:to-[#4e39f5] rounded-full transition-all shadow-md hover:shadow-indigo-500/25 hover:scale-[1.02] active:scale-[0.98] whitespace-nowrap"
+            className="hidden sm:flex items-center gap-1.5 px-4 py-2 text-xs font-bold text-white bg-gradient-to-r from-[#4E60A2] to-[#1E285A] hover:from-[#5E70B2] hover:to-[#283264] rounded-full transition-all shadow-md hover:shadow-[#4E60A2]/25 hover:scale-[1.02] active:scale-[0.98] whitespace-nowrap"
           >
             <Sparkles className="w-3.5 h-3.5" />
             <span>{t.navbar.getStarted}</span>
@@ -121,7 +118,7 @@ export default function Navbar() {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
-            className="lg:hidden bg-white/95 backdrop-blur-xl border-b border-indigo-100 px-6 py-4 overflow-hidden shadow-lg"
+            className="lg:hidden bg-white/95 backdrop-blur-xl border-b border-[#D5DAE8] px-6 py-4 overflow-hidden shadow-lg"
           >
             <div className="flex flex-col gap-2">
               {navLinks.map((link) => (
@@ -129,7 +126,7 @@ export default function Navbar() {
                   key={link.href}
                   href={link.href}
                   onClick={() => setMobileMenuOpen(false)}
-                  className="px-3 py-2 text-xs font-bold text-slate-700 hover:text-[#7E6FFF] hover:bg-indigo-50/60 rounded-xl transition-all text-start"
+                  className="px-3 py-2 text-xs font-bold text-slate-700 hover:text-[#4E60A2] hover:bg-[#E9ECF5]/60 rounded-xl transition-all text-start"
                 >
                   {link.label}
                 </a>
@@ -147,7 +144,7 @@ export default function Navbar() {
                 <a
                   href="#demo"
                   onClick={() => setMobileMenuOpen(false)}
-                  className="flex items-center justify-center gap-2 w-full py-2.5 text-xs font-bold text-white bg-[#7E6FFF] rounded-xl shadow-md"
+                  className="flex items-center justify-center gap-2 w-full py-2.5 text-xs font-bold text-white bg-[#4E60A2] hover:bg-[#1E285A] rounded-xl shadow-md"
                 >
                   <Sparkles className="w-4 h-4" />
                   <span>{t.navbar.getStarted}</span>

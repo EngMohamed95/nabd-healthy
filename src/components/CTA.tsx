@@ -8,15 +8,15 @@ export default function CTA() {
   return (
     <section className="relative w-full py-28 overflow-hidden">
       {/* Soft Background Radiance */}
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-indigo-50/40 to-indigo-100/30 pointer-events-none" />
-      <div className="absolute top-1/2 start-1/2 -translate-x-1/2 rtl:translate-x-1/2 -translate-y-1/2 w-[700px] h-[500px] bg-[#7E6FFF]/10 rounded-full blur-[160px] pointer-events-none" />
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#E9ECF5]/40 to-[#E6E9F2]/30 pointer-events-none" />
+      <div className="absolute top-1/2 start-1/2 -translate-x-1/2 rtl:translate-x-1/2 -translate-y-1/2 w-[700px] h-[500px] bg-[#4E60A2]/10 rounded-full blur-[160px] pointer-events-none" />
 
       <div className="relative z-10 max-w-4xl mx-auto px-6 text-center">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white border border-indigo-200 text-[#7E6FFF] text-xs font-bold mb-6 shadow-xs"
+          className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white border border-[#D5DAE8] text-[#4E60A2] text-xs font-bold mb-6 shadow-xs"
         >
           <Sparkles className="w-4 h-4" />
           <span>{t.cta.badge}</span>
@@ -53,7 +53,7 @@ export default function CTA() {
             href="https://aidocotr.runasp.net/login"
             target="_blank"
             rel="noreferrer"
-            className="w-full sm:w-auto flex items-center justify-center gap-2.5 px-9 py-4 bg-gradient-to-r from-[#7E6FFF] to-[#5A47FF] hover:from-[#6b5bf7] hover:to-[#4e39f5] text-white rounded-2xl text-sm font-bold shadow-xl shadow-indigo-500/30 hover:shadow-indigo-500/45 hover:scale-105 transition-all"
+            className="w-full sm:w-auto flex items-center justify-center gap-2.5 px-9 py-4 bg-gradient-to-r from-[#4E60A2] to-[#1E285A] hover:from-[#5E70B2] hover:to-[#283264] text-white rounded-2xl text-sm font-bold shadow-xl shadow-[#4E60A2]/30 hover:shadow-[#4E60A2]/45 hover:scale-105 transition-all"
           >
             <Sparkles className="w-4 h-4" />
             <span>{t.cta.startFreeTrial}</span>
@@ -63,13 +63,13 @@ export default function CTA() {
             href="#demo"
             className="w-full sm:w-auto flex items-center justify-center gap-2 px-8 py-4 bg-white text-slate-800 rounded-2xl text-sm font-bold border border-slate-200 hover:bg-slate-50 transition-all shadow-xs"
           >
-            <PhoneCall className="w-4 h-4 text-[#7E6FFF]" />
+            <PhoneCall className="w-4 h-4 text-[#4E60A2]" />
             <span>{t.cta.talkToSales}</span>
           </a>
         </motion.div>
 
         {/* Feature Checks Row */}
-        <div className="mt-12 pt-8 border-t border-indigo-100/60 flex flex-wrap items-center justify-center gap-6 text-xs text-slate-600 font-medium">
+        <div className="mt-12 pt-8 border-t border-[#CFD5E4]/60 flex flex-wrap items-center justify-center gap-6 text-xs text-slate-600 font-medium">
           <div className="flex items-center gap-2">
             <CheckCircle2 className="w-4 h-4 text-emerald-500" />
             <span>تجربة مجانية 14 يوماً</span>

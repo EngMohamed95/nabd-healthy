@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'motion/react';
-import { Mic, FileText, CheckCircle2, Copy, Sparkles, Printer, Activity, Heart, Thermometer, Stethoscope, Play } from 'lucide-react';
+import { Mic, FileText, CheckCircle2, Copy, Sparkles, Printer, Activity, Heart, Stethoscope } from 'lucide-react';
 import { useLanguage } from '../lib/LanguageContext';
 import { generateSoapReport, SoapReport } from '../lib/api';
 
@@ -86,11 +86,11 @@ Plan: ${report.plan.join(', ')}
   return (
     <section id="demo" className="relative w-full max-w-7xl mx-auto py-20 px-6 xl:px-0">
       {/* Background glow */}
-      <div className="absolute top-1/2 start-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[#7E6FFF]/10 rounded-full blur-[140px] pointer-events-none" />
+      <div className="absolute top-1/2 start-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[#4E60A2]/10 rounded-full blur-[140px] pointer-events-none" />
 
       {/* Section Header */}
       <div className="text-center mb-12 relative z-10">
-        <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-indigo-50 border border-indigo-200 text-[#7E6FFF] text-xs font-bold mb-4">
+        <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#E9ECF5] border border-[#D5DAE8] text-[#4E60A2] text-xs font-bold mb-4">
           <Sparkles className="w-3.5 h-3.5" />
           <span>{t.aiShowcase.badge}</span>
         </div>
@@ -115,8 +115,8 @@ Plan: ${report.plan.join(', ')}
                 onClick={() => setSelectedScenario(sc.id)}
                 className={`px-4 py-2 rounded-xl text-xs font-bold transition-all flex items-center gap-2 ${
                   isSelected
-                    ? 'bg-[#7E6FFF] text-white shadow-md shadow-indigo-500/25 scale-[1.02]'
-                    : 'bg-white text-slate-700 hover:bg-indigo-50/70 border border-slate-200'
+                    ? 'bg-[#4E60A2] text-white shadow-md shadow-[#4E60A2]/25 scale-[1.02]'
+                    : 'bg-white text-slate-700 hover:bg-[#E9ECF5]/70 border border-slate-200'
                 }`}
               >
                 <Stethoscope className="w-3.5 h-3.5" />
@@ -130,7 +130,7 @@ Plan: ${report.plan.join(', ')}
       {/* Main Interactive Studio Grid */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 relative z-10">
         {/* Left Column: Real-time Audio Stream & Waveform (Col-5) */}
-        <div className="lg:col-span-5 glass-card rounded-3xl p-6 sm:p-8 flex flex-col justify-between border border-indigo-100/70 relative overflow-hidden">
+        <div className="lg:col-span-5 glass-card rounded-3xl p-6 sm:p-8 flex flex-col justify-between border border-[#CFD5E4]/70 relative overflow-hidden">
           <div>
             {/* Header / Status */}
             <div className="flex items-center justify-between pb-5 mb-5 border-b border-slate-100">
@@ -162,12 +162,12 @@ Plan: ${report.plan.join(', ')}
             <div className="text-start">
               <div className="text-xs font-bold text-slate-500 uppercase tracking-wider mb-2 flex items-center justify-between">
                 <span>{t.aiShowcase.liveVoiceNote}</span>
-                <span className="text-[10px] text-[#7E6FFF] font-mono">Neural Model: Nabd-Clinical-v4</span>
+                <span className="text-[10px] text-[#4E60A2] font-mono">Neural Model: Nabd-Clinical-v4</span>
               </div>
-              <div className="p-4 bg-slate-50/80 rounded-2xl border border-indigo-100/40 text-xs leading-relaxed text-slate-800 font-sans min-h-[140px] relative">
+              <div className="p-4 bg-slate-50/80 rounded-2xl border border-[#D5DAE8]/40 text-xs leading-relaxed text-slate-800 font-sans min-h-[140px] relative">
                 {displayedText}
                 {isRecording && (
-                  <span className="inline-block w-2 h-4 bg-[#7E6FFF] mx-1 animate-pulse align-middle" />
+                  <span className="inline-block w-2 h-4 bg-[#4E60A2] mx-1 animate-pulse align-middle" />
                 )}
               </div>
             </div>
@@ -187,30 +187,30 @@ Plan: ${report.plan.join(', ')}
                     repeat: Infinity,
                     repeatType: 'reverse'
                   } : { duration: 0.4 }}
-                  className="w-1.5 bg-gradient-to-t from-[#7E6FFF] to-[#60A5FA] rounded-full"
+                  className="w-1.5 bg-gradient-to-t from-[#1E285A] via-[#4E60A2] to-[#849CC6] rounded-full"
                   style={{ height: '15%' }}
                 />
               ))}
             </div>
             <div className="flex items-center justify-between text-[11px] text-slate-500 font-mono mt-3">
               <span>Sampling: 48kHz / 24-bit</span>
-              <span className="text-[#7E6FFF] font-bold">Latency: 140ms</span>
+              <span className="text-[#4E60A2] font-bold">Latency: 140ms</span>
             </div>
           </div>
         </div>
 
         {/* Right Column: Structured AI SOAP Medical Report (Col-7) */}
-        <div className="lg:col-span-7 glass-card rounded-3xl p-6 sm:p-8 border border-indigo-100/70 relative flex flex-col justify-between">
+        <div className="lg:col-span-7 glass-card rounded-3xl p-6 sm:p-8 border border-[#CFD5E4]/70 relative flex flex-col justify-between">
           <div>
             {/* Header with Format Badge and Copy Action */}
             <div className="flex items-center justify-between pb-5 mb-5 border-b border-slate-100">
               <div className="flex items-center gap-3 text-start">
-                <div className="w-10 h-10 rounded-2xl bg-indigo-50 text-[#7E6FFF] flex items-center justify-center">
+                <div className="w-10 h-10 rounded-2xl bg-[#E9ECF5] text-[#4E60A2] flex items-center justify-center">
                   <FileText className="w-5 h-5" />
                 </div>
                 <div>
                   <h3 className="font-bold text-base text-slate-900">{t.aiShowcase.generatedReport}</h3>
-                  <span className="inline-block text-[11px] font-mono font-bold text-[#7E6FFF] bg-indigo-50/70 px-2 py-0.5 rounded mt-0.5">
+                  <span className="inline-block text-[11px] font-mono font-bold text-[#4E60A2] bg-[#E9ECF5]/70 px-2 py-0.5 rounded mt-0.5">
                     {t.aiShowcase.soapFormat}
                   </span>
                 </div>
@@ -218,7 +218,7 @@ Plan: ${report.plan.join(', ')}
 
               <button
                 onClick={handleCopy}
-                className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-slate-100 hover:bg-indigo-50 text-slate-700 hover:text-[#7E6FFF] text-xs font-bold transition-colors border border-slate-200"
+                className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-slate-100 hover:bg-[#E9ECF5] text-slate-700 hover:text-[#4E60A2] text-xs font-bold transition-colors border border-slate-200"
               >
                 {copied ? <CheckCircle2 className="w-4 h-4 text-emerald-500" /> : <Copy className="w-4 h-4" />}
                 <span>{copied ? t.aiShowcase.copied : t.aiShowcase.copyReport}</span>
@@ -230,7 +230,7 @@ Plan: ${report.plan.join(', ')}
               {/* 1. Subjective */}
               <div className="p-4 bg-white rounded-2xl border border-slate-200/80 shadow-2xs">
                 <div className="flex items-center justify-between mb-2">
-                  <span className="text-xs font-bold uppercase tracking-wider text-[#7E6FFF] flex items-center gap-1.5">
+                  <span className="text-xs font-bold uppercase tracking-wider text-[#4E60A2] flex items-center gap-1.5">
                     <Activity className="w-3.5 h-3.5" />
                     {t.aiShowcase.subjective}
                   </span>
@@ -268,10 +268,10 @@ Plan: ${report.plan.join(', ')}
                 </div>
               </div>
 
-              {/* 3. Assessment & AI Suggested Fields (Highlighted with waiting-list.css styles) */}
+              {/* 3. Assessment & AI Suggested Fields */}
               <div className="p-4 ai-suggested-field shadow-2xs">
                 <div className="flex items-center justify-between mb-2">
-                  <span className="text-xs font-bold uppercase tracking-wider text-[#8a2be2] flex items-center gap-1.5">
+                  <span className="text-xs font-bold uppercase tracking-wider text-[#849CC6] flex items-center gap-1.5">
                     <Sparkles className="w-3.5 h-3.5" />
                     {t.aiShowcase.assessment}
                   </span>
@@ -282,17 +282,17 @@ Plan: ${report.plan.join(', ')}
                 <ul className="text-xs text-slate-800 space-y-1.5">
                   {report?.assessment.map((ass, i) => (
                     <li key={i} className="flex items-start gap-2">
-                      <span className="text-[#8a2be2] font-bold">●</span>
+                      <span className="text-[#849CC6] font-bold">●</span>
                       <span>{ass}</span>
                     </li>
                   ))}
                 </ul>
 
                 {/* ICD-10 Tags */}
-                <div className="mt-3 pt-2.5 border-t border-purple-200/60 flex flex-wrap items-center gap-1.5">
-                  <span className="text-[11px] font-bold text-purple-900">{t.aiShowcase.icd10}</span>
+                <div className="mt-3 pt-2.5 border-t border-[#D5DAE8]/60 flex flex-wrap items-center gap-1.5">
+                  <span className="text-[11px] font-bold text-[#1E285A]">{t.aiShowcase.icd10}</span>
                   {report?.suggestedICD10.map((icd, idx) => (
-                    <span key={idx} className="px-2 py-0.5 rounded-md bg-white border border-purple-200 text-purple-700 text-[10px] font-mono font-bold">
+                    <span key={idx} className="px-2 py-0.5 rounded-md bg-white border border-[#D5DAE8] text-[#4E60A2] text-[10px] font-mono font-bold">
                       {icd.code} - {icd.name}
                     </span>
                   ))}
@@ -307,7 +307,7 @@ Plan: ${report.plan.join(', ')}
                 <ul className="text-xs text-slate-700 space-y-1">
                   {report?.plan.map((p, i) => (
                     <li key={i} className="flex items-start gap-2">
-                      <span className="text-[#7E6FFF] font-bold">{i + 1}.</span>
+                      <span className="text-[#4E60A2] font-bold">{i + 1}.</span>
                       <span>{p}</span>
                     </li>
                   ))}
@@ -323,7 +323,7 @@ Plan: ${report.plan.join(', ')}
             </span>
             <a 
               href="#requisition"
-              className="flex items-center gap-2 px-4 py-2.5 bg-indigo-50 hover:bg-indigo-100 text-[#7E6FFF] rounded-xl text-xs font-bold transition-all border border-indigo-200"
+              className="flex items-center gap-2 px-4 py-2.5 bg-[#E9ECF5] hover:bg-[#D5DAE8] text-[#4E60A2] rounded-xl text-xs font-bold transition-all border border-[#D5DAE8]"
             >
               <Printer className="w-4 h-4" />
               <span>{t.aiShowcase.printRequisitionBtn}</span>

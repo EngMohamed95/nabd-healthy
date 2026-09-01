@@ -35,12 +35,12 @@ export default function Pricing() {
   ];
 
   return (
-    <section id="pricing" className="relative w-full py-24 border-t border-indigo-100/40 bg-slate-50/50">
-      <div className="absolute top-0 end-1/4 w-[600px] h-[600px] bg-[#7E6FFF]/10 rounded-full blur-[140px] pointer-events-none" />
+    <section id="pricing" className="relative w-full py-24 border-t border-[#CFD5E4]/40 bg-slate-50/50">
+      <div className="absolute top-0 end-1/4 w-[600px] h-[600px] bg-[#4E60A2]/10 rounded-full blur-[140px] pointer-events-none" />
       
       <div className="max-w-7xl mx-auto px-6">
         <div className="text-center mb-16">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-indigo-50 border border-indigo-200 text-[#7E6FFF] text-xs font-bold mb-4">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#E9ECF5] border border-[#D5DAE8] text-[#4E60A2] text-xs font-bold mb-4">
             <Zap className="w-3.5 h-3.5" />
             <span>{t.pricing.badge}</span>
           </div>
@@ -58,7 +58,7 @@ export default function Pricing() {
             </span>
             <button
               onClick={() => setIsYearly(!isYearly)}
-              className="w-14 h-8 bg-[#7E6FFF] rounded-full p-1 transition-colors relative"
+              className="w-14 h-8 bg-[#4E60A2] rounded-full p-1 transition-colors relative"
             >
               <div className={`w-6 h-6 bg-white rounded-full shadow-md transition-transform duration-300 ${isYearly ? 'translate-x-6 rtl:-translate-x-6' : 'translate-x-0'}`} />
             </button>
@@ -84,13 +84,13 @@ export default function Pricing() {
               transition={{ delay: i * 0.1 }}
               className={`rounded-3xl p-8 border flex flex-col justify-between transition-all ${
                 plan.popular 
-                  ? 'glass-card-active border-[#7E6FFF] scale-105 shadow-2xl relative z-10' 
-                  : 'glass-card border-indigo-100/60 hover:border-indigo-200'
+                  ? 'glass-card-active border-[#4E60A2] scale-105 shadow-2xl relative z-10' 
+                  : 'glass-card border-[#CFD5E4]/60 hover:border-[#CFD5E4]'
               }`}
             >
               <div>
                 {plan.popular && (
-                  <div className="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-[#7E6FFF] text-white text-[11px] font-bold uppercase tracking-wider mb-4 shadow-sm">
+                  <div className="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-[#4E60A2] text-white text-[11px] font-bold uppercase tracking-wider mb-4 shadow-sm">
                     <Sparkles className="w-3 h-3" />
                     <span>{t.pricing.mostPopular}</span>
                   </div>
@@ -123,8 +123,8 @@ export default function Pricing() {
                 href="#demo"
                 className={`w-full py-3.5 rounded-2xl text-xs font-bold transition-all flex items-center justify-center gap-2 ${
                   plan.popular 
-                    ? 'bg-[#7E6FFF] hover:bg-[#5A47FF] text-white shadow-lg shadow-indigo-500/25 hover:shadow-indigo-500/40 hover:scale-[1.02]' 
-                    : 'bg-indigo-50 hover:bg-indigo-100 text-[#7E6FFF]'
+                    ? 'bg-[#4E60A2] hover:bg-[#1E285A] text-white shadow-lg shadow-[#4E60A2]/25 hover:shadow-[#4E60A2]/40 hover:scale-[1.02]' 
+                    : 'bg-[#E9ECF5] hover:bg-[#D2D7E6] text-[#4E60A2]'
                 }`}
               >
                 <span>{t.pricing.getStarted}</span>

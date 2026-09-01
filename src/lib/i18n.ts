@@ -15,14 +15,14 @@ export const translations = {
       getStarted: "ابدأ الآن مجاناً"
     },
     hero: {
-      badge: "نظام نبض 2.0 المعتمد متاح الآن",
-      title1: "حوّل المحادثات الصوتية إلى",
-      title2: "تقارير طبية منظمة في ثوانٍ",
-      desc: "نظام إدارة العيادات والمساعد السريري بالذكاء الاصطناعي الأكثر تطوراً. وفّر ساعات التوثيق الورقي، ركّز على رعاية مرضاك، ودع الذكاء الاصطناعي يصيغ تقرير الـ SOAP، ويقترح الأكواد والفحوصات بدقة تفوق 99%.",
+      badge: "نبض 2.0: مستقبل الطب الذكي متاح الآن",
+      title1: "الذكاء الاصطناعي ومستقبل الطب:",
+      title2: "منصة نبض لرفع جودة الخدمات الصحية",
+      desc: "نحن نقود التحول الرقمي في الرعاية الصحية لتمكين الأطباء وتحسين جودة الخدمات الطبية. من خلال تحويل المحادثات السريرية فورياً إلى سجلات SOAP منظمة وترميز ICD-10 بدقة 99.4%، نقضي على العبء الإداري لنمنحك وقتاً أكبر للتركيز على رعاية مرضاك.",
       startFreeTrial: "ابدأ تجربتك المجانية",
       bookDemo: "شاهد العرض التفاعلي",
-      listenFast: "استخراج فوري في ثوانٍ",
-      noTyping: "وداعاً للكتابة اليدوية المرهقة",
+      listenFast: "استخراج فوري بالذكاء الاصطناعي",
+      noTyping: "تقنيات طبية تخدم صحة الإنسان",
       stats: {
         accuracy: "99.4%",
         accuracyLabel: "دقة فهم المصطلحات الطبية",
@@ -190,14 +190,14 @@ export const translations = {
       getStarted: "Get Started Free"
     },
     hero: {
-      badge: "Nabd 2.0 Enterprise Release is Live",
-      title1: "Transform Patient Conversations Into",
-      title2: "Structured Medical SOAP Notes in Seconds",
-      desc: "The next-generation clinical OS & AI medical assistant. Eliminate after-hours documentation, focus on patient care, and let Nabd transcribe, generate SOAP notes, and suggest ICD-10 codes with 99.4% accuracy.",
+      badge: "Nabd 2.0: The Future of Smart Medicine is Live",
+      title1: "AI & The Future of Clinical Care:",
+      title2: "Elevating Healthcare Quality with Nabd",
+      desc: "Pioneering the clinical AI revolution to empower doctors and enhance healthcare quality. By instantly transforming patient conversations into highly accurate, structured SOAP reports and ICD-10 codes, we eliminate paperwork so you can focus on patient lives.",
       startFreeTrial: "Start Free Trial",
       bookDemo: "Try Interactive Demo",
-      listenFast: "Instant Extraction",
-      noTyping: "No Manual Typing Required",
+      listenFast: "Instant AI Extraction",
+      noTyping: "Clinical AI Built for Human Health",
       stats: {
         accuracy: "99.4%",
         accuracyLabel: "Medical Terminology Accuracy",

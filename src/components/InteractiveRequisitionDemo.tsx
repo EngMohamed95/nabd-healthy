@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { motion } from 'motion/react';
-import { Printer, QrCode, Barcode, CheckCircle2, FileCheck, Stethoscope, Sparkles, Building2, UserCheck, ShieldAlert } from 'lucide-react';
+import { Printer, QrCode, Barcode, FileCheck, Building2, ShieldAlert } from 'lucide-react';
 import { useLanguage } from '../lib/LanguageContext';
 import { createMockRequisition, RequisitionOrder } from '../lib/api';
 
@@ -23,7 +23,7 @@ export default function InteractiveRequisitionDemo() {
             @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap');
             * { box-sizing: border-box; font-family: 'Cairo', sans-serif; }
             body { padding: 30px; background: #fff; color: #1e293b; }
-            .header { display: flex; justify-content: space-between; border-bottom: 2px solid #7E6FFF; padding-bottom: 15px; margin-bottom: 20px; }
+            .header { display: flex; justify-content: space-between; border-bottom: 2px solid #4E60A2; padding-bottom: 15px; margin-bottom: 20px; }
             .badge { background: #fee2e2; color: #991b1b; padding: 4px 10px; border-radius: 6px; font-weight: bold; font-size: 12px; }
             .table { width: 100%; border-collapse: collapse; margin-top: 15px; }
             .table th, .table td { border: 1px solid #e2e8f0; padding: 10px; text-align: start; }
@@ -35,7 +35,7 @@ export default function InteractiveRequisitionDemo() {
         <body>
           <div class="header">
             <div>
-              <h2 style="margin:0; color:#7E6FFF;">مساعد نبض | عيادات نبض التخصصية</h2>
+              <h2 style="margin:0; color:#4E60A2;">مساعد نبض | عيادات نبض التخصصية</h2>
               <p style="margin:4px 0 0 0; font-size:13px; color:#64748b;">Nabd Smart Health Medical Requisition Form</p>
             </div>
             <div style="text-align:end;">
@@ -91,7 +91,7 @@ export default function InteractiveRequisitionDemo() {
             </div>
             <div style="text-align:center; border: 1px dashed #cbd5e1; padding: 10px 25px; border-radius: 8px;">
               <div style="font-size:12px; color:#64748b;">ختم واعتماد الطبيب</div>
-              <div style="font-weight:bold; color:#7E6FFF; margin-top:4px;">د. طارق الجابري</div>
+              <div style="font-weight:bold; color:#4E60A2; margin-top:4px;">د. طارق الجابري</div>
             </div>
           </div>
 
@@ -109,7 +109,7 @@ export default function InteractiveRequisitionDemo() {
   return (
     <section id="requisition" className="relative w-full max-w-7xl mx-auto py-20 px-6 xl:px-0">
       <div className="text-center mb-12">
-        <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-indigo-50 border border-indigo-200 text-[#7E6FFF] text-xs font-bold mb-4">
+        <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#E9ECF5] border border-[#D5DAE8] text-[#4E60A2] text-xs font-bold mb-4">
           <Barcode className="w-3.5 h-3.5" />
           <span>{t.requisitionDemo.badge}</span>
         </div>
@@ -122,11 +122,11 @@ export default function InteractiveRequisitionDemo() {
       </div>
 
       {/* Printable Sheet Preview Box */}
-      <div className="max-w-4xl mx-auto glass-card rounded-3xl p-6 sm:p-10 border border-indigo-100 shadow-2xl relative">
+      <div className="max-w-4xl mx-auto glass-card rounded-3xl p-6 sm:p-10 border border-[#CFD5E4] shadow-2xl relative">
         {/* Floating Print Action Header */}
         <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pb-6 mb-6 border-b border-slate-200">
           <div className="flex items-center gap-3 text-start">
-            <div className="w-11 h-11 rounded-2xl bg-indigo-50 text-[#7E6FFF] flex items-center justify-center">
+            <div className="w-11 h-11 rounded-2xl bg-[#E9ECF5] text-[#4E60A2] flex items-center justify-center">
               <FileCheck className="w-6 h-6" />
             </div>
             <div>
@@ -137,7 +137,7 @@ export default function InteractiveRequisitionDemo() {
 
           <button
             onClick={handlePrint}
-            className="flex items-center gap-2 px-6 py-3 bg-[#7E6FFF] hover:bg-[#5A47FF] text-white rounded-xl text-xs font-bold transition-all shadow-md hover:shadow-indigo-500/25 hover:scale-105 active:scale-95"
+            className="flex items-center gap-2 px-6 py-3 bg-[#4E60A2] hover:bg-[#1E285A] text-white rounded-xl text-xs font-bold transition-all shadow-md hover:shadow-[#4E60A2]/25 hover:scale-105 active:scale-95"
           >
             <Printer className="w-4 h-4" />
             <span>{t.requisitionDemo.printBtn}</span>
@@ -147,9 +147,9 @@ export default function InteractiveRequisitionDemo() {
         {/* The Formal Document Preview Paper */}
         <div className="bg-white rounded-2xl p-6 sm:p-8 border border-slate-200 shadow-xs text-start font-sans">
           {/* Top Medical Header */}
-          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pb-4 mb-5 border-b-2 border-[#7E6FFF]">
+          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pb-4 mb-5 border-b-2 border-[#4E60A2]">
             <div>
-              <div className="flex items-center gap-2 text-lg font-bold text-[#7E6FFF]">
+              <div className="flex items-center gap-2 text-lg font-bold text-[#4E60A2]">
                 <Building2 className="w-5 h-5" />
                 <span>عيادات نبض التخصصية - المركز الطبي المركزي</span>
               </div>
@@ -188,14 +188,14 @@ export default function InteractiveRequisitionDemo() {
             </div>
             <div className="col-span-2 sm:col-span-4 pt-2 border-t border-slate-200/60">
               <span className="text-slate-500 block">التشخيص السريري المقترح (Clinical Diagnosis):</span>
-              <span className="font-bold text-[#7E6FFF]">{requisition.clinicalDiagnosis}</span>
+              <span className="font-bold text-[#4E60A2]">{requisition.clinicalDiagnosis}</span>
             </div>
           </div>
 
           {/* Lab Tests List */}
           <div className="mb-6">
             <div className="text-xs font-bold text-slate-900 mb-2.5 flex items-center gap-2">
-              <span className="w-2 h-2 rounded-full bg-[#7E6FFF]" />
+              <span className="w-2 h-2 rounded-full bg-[#4E60A2]" />
               <span>فحوصات المعمل المطلوبة (Laboratory Tests):</span>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
@@ -234,9 +234,9 @@ export default function InteractiveRequisitionDemo() {
               <ShieldAlert className="w-4 h-4 text-emerald-600" />
               <span>{t.requisitionDemo.barcodeNotice}</span>
             </div>
-            <div className="px-4 py-2 border-2 border-dashed border-indigo-200 rounded-xl text-center bg-indigo-50/30">
+            <div className="px-4 py-2 border-2 border-dashed border-[#D5DAE8] rounded-xl text-center bg-[#E9ECF5]/30">
               <div className="text-[10px] text-slate-400">{t.requisitionDemo.officialStamp}</div>
-              <div className="font-bold text-[#7E6FFF]">{requisition.doctorName}</div>
+              <div className="font-bold text-[#4E60A2]">{requisition.doctorName}</div>
             </div>
           </div>
         </div>
