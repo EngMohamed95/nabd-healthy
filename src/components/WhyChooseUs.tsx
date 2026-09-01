@@ -15,7 +15,7 @@ export default function WhyChooseUs() {
 
   return (
     <section className="relative w-full py-24 border-t border-[#CFD5E4]/40 bg-slate-50/40 overflow-hidden">
-      <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
         {/* Left Side: Copy and Metrics */}
         <div className="text-start">
           <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#E9ECF5] border border-[#D5DAE8] text-[#4E60A2] text-xs font-bold mb-4">

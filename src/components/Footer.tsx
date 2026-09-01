@@ -7,7 +7,7 @@ export default function Footer() {
 
   return (
     <footer className="w-full py-14 border-t border-[#CFD5E4]/60 mt-20 relative z-10 bg-white/90 backdrop-blur-xl text-start">
-      <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-12 gap-10">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-12 gap-10">
         {/* Brand Col */}
         <div className="md:col-span-5">
           <div className="flex items-center gap-3 mb-4">
@@ -75,7 +75,7 @@ export default function Footer() {
         </div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-6 mt-12 pt-8 border-t border-slate-100 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-12 pt-8 border-t border-slate-100 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
         <div>{t.footer.copyright}</div>
         <div className="flex items-center gap-1 text-[11px] text-slate-400">
           <span>Built with</span>

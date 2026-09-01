@@ -11,7 +11,7 @@ export default function CTA() {
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#E9ECF5]/40 to-[#E6E9F2]/30 pointer-events-none" />
       <div className="absolute top-1/2 start-1/2 -translate-x-1/2 rtl:translate-x-1/2 -translate-y-1/2 w-[700px] h-[500px] bg-[#4E60A2]/10 rounded-full blur-[160px] pointer-events-none" />
 
-      <div className="relative z-10 max-w-4xl mx-auto px-6 text-center">
+      <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}

@@ -35,10 +35,10 @@ export default function Pricing() {
   ];
 
   return (
-    <section id="pricing" className="relative w-full py-24 border-t border-[#CFD5E4]/40 bg-slate-50/50">
+    <section id="pricing" className="relative w-full py-24 border-t border-[#CFD5E4]/40 bg-slate-50/50 overflow-x-hidden">
       <div className="absolute top-0 end-1/4 w-[600px] h-[600px] bg-[#4E60A2]/10 rounded-full blur-[140px] pointer-events-none" />
       
-      <div className="max-w-7xl mx-auto px-6">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#E9ECF5] border border-[#D5DAE8] text-[#4E60A2] text-xs font-bold mb-4">
             <Zap className="w-3.5 h-3.5" />

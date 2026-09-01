@@ -7,7 +7,7 @@ export default function Hero() {
   const { t, dir, language } = useLanguage();
   
   return (
-    <section className="relative w-full max-w-7xl mx-auto pt-32 pb-16 px-4 sm:px-6 lg:px-8 flex flex-col justify-center items-center">
+    <section className="relative w-full max-w-7xl mx-auto pt-32 pb-16 px-4 sm:px-6 lg:px-8 flex flex-col justify-center items-center overflow-x-hidden">
       {/* Soft Center Radial Glow */}
       <div className="absolute top-1/4 start-1/2 -translate-x-1/2 rtl:translate-x-1/2 w-[700px] h-[500px] bg-[#4E60A2]/10 rounded-full blur-[140px] pointer-events-none" />
 

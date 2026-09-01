@@ -58,7 +58,7 @@ export default function Features() {
   ];
 
   return (
-    <section id="features" className="relative w-full max-w-7xl mx-auto py-24 px-6 xl:px-0">
+    <section id="features" className="relative w-full max-w-7xl mx-auto py-24 px-4 sm:px-6 lg:px-8 overflow-x-hidden">
       {/* Background radial glow */}
       <div className="absolute top-1/3 end-0 w-[500px] h-[500px] bg-[#849CC6]/10 rounded-full blur-[140px] pointer-events-none" />
 

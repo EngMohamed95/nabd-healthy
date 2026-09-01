@@ -84,9 +84,9 @@ Plan: ${report.plan.join(', ')}
   };
 
   return (
-    <section id="demo" className="relative w-full max-w-7xl mx-auto py-20 px-6 xl:px-0">
+    <section id="demo" className="relative w-full max-w-7xl mx-auto py-20 px-4 sm:px-6 lg:px-8 overflow-x-hidden">
       {/* Background glow */}
-      <div className="absolute top-1/2 start-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[#4E60A2]/10 rounded-full blur-[140px] pointer-events-none" />
+      <div className="absolute top-1/2 start-1/2 -translate-x-1/2 rtl:translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[#4E60A2]/10 rounded-full blur-[140px] pointer-events-none" />
 
       {/* Section Header */}
       <div className="text-center mb-12 relative z-10">

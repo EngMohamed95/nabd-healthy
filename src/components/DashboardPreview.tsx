@@ -19,7 +19,7 @@ export default function DashboardPreview() {
   }, []);
 
   return (
-    <section className="relative w-full max-w-7xl mx-auto py-20 px-6 xl:px-0">
+    <section className="relative w-full max-w-7xl mx-auto py-20 px-4 sm:px-6 lg:px-8">
       <div className="text-center mb-12">
         <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#E9ECF5] border border-[#D5DAE8] text-[#4E60A2] text-xs font-bold mb-4">
           <Activity className="w-3.5 h-3.5" />

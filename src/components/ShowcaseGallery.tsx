@@ -349,11 +349,11 @@ export default function ShowcaseGallery() {
   });
 
   return (
-    <section id="gallery" className="relative w-full py-24 border-t border-indigo-100/40 bg-[#f8fafc]">
+    <section id="gallery" className="relative w-full py-24 border-t border-indigo-100/40 bg-[#f8fafc] overflow-x-hidden">
       {/* Background radial glow */}
-      <div className="absolute top-1/3 start-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-[#3B51A3]/5 rounded-full blur-[140px] pointer-events-none" />
+      <div className="absolute top-1/3 start-1/2 -translate-x-1/2 rtl:translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-[#3B51A3]/5 rounded-full blur-[140px] pointer-events-none" />
 
-      <div className="max-w-7xl mx-auto px-6">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="text-center mb-16 relative z-10">
           <span className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-indigo-50 border border-indigo-200 text-[#3B51A3] text-xs font-bold mb-4">
