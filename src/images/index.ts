@@ -9,6 +9,12 @@ import img8 from './WhatsApp Image 2026-05-16 at 11.31.59 AM (2).jpeg';
 import img9 from './WhatsApp Image 2026-05-16 at 11.31.59 AM (3).jpeg';
 import img10 from './WhatsApp Image 2026-05-16 at 11.31.59 AM (4).jpeg';
 import img11 from './WhatsApp Image 2026-05-16 at 11.31.59 AM.jpeg';
+import nabdCover from './nabd_cover.png';
+import liveDashboard from './live_dashboard.png';
+import liveDiagnostics from './live_diagnostics.png';
+import liveEmr from './live_emr.png';
+import liveAssistant from './live_assistant.png';
+import livePayments from './live_payments.png';
 
 export {
   img1,
@@ -21,5 +27,11 @@ export {
   img8,
   img9,
   img10,
-  img11
+  img11,
+  nabdCover,
+  liveDashboard,
+  liveDiagnostics,
+  liveEmr,
+  liveAssistant,
+  livePayments
 };

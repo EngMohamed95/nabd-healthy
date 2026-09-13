@@ -1,47 +1,57 @@
 import { motion } from 'motion/react';
-import { ArrowLeft, ArrowRight, Play, Sparkles, ShieldCheck, Clock, Zap } from 'lucide-react';
+import { ArrowLeft, ArrowRight, Play, Sparkles, ShieldCheck, Clock, Zap, ExternalLink } from 'lucide-react';
 import { useLanguage } from '../lib/LanguageContext';
+import { nabdCover } from '../images';
 
 export default function Hero() {
   const { t, dir, language } = useLanguage();
   
   return (
-    <section className="relative w-full max-w-7xl mx-auto pt-32 pb-16 px-4 sm:px-6 lg:px-8 flex flex-col justify-center items-center overflow-x-hidden">
-      {/* Soft Center Radial Glow */}
-      <div className="absolute top-1/4 start-1/2 -translate-x-1/2 rtl:translate-x-1/2 w-[700px] h-[500px] bg-[#4E60A2]/10 rounded-full blur-[140px] pointer-events-none" />
+    <section className="relative w-full flex flex-col justify-center items-center overflow-x-hidden">
+      {/* Cover Background Image, 10px margin on top and sides */}
+      <div className="absolute top-[10px] inset-x-[10px] bottom-[10px] rounded-[24px] overflow-hidden z-0">
+        <div
+          role="img"
+          aria-label="غلاف منصة نبض الرسمية"
+          className="absolute inset-0 bg-cover bg-center bg-fixed"
+          style={{ backgroundImage: `url(${nabdCover})` }}
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#0B1030]/85 via-[#141838]/65 to-[#0B1030]/90" />
+        <div className="absolute top-0 start-1/2 -translate-x-1/2 rtl:translate-x-1/2 w-[700px] h-[500px] bg-[#4E60A2]/20 rounded-full blur-[140px] pointer-events-none" />
+      </div>
 
-      <div className="relative z-10 w-full flex flex-col items-center text-center">
+      <div className="relative z-10 w-full max-w-7xl mx-auto pt-40 pb-16 px-4 sm:px-6 lg:px-8 flex flex-col items-center text-center">
         {/* Top Live Badge */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease: "easeOut" }}
-          className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/80 border border-[#D5DAE8]/70 shadow-xs mb-8 backdrop-blur-md"
+          className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 border border-white/20 shadow-xs mb-8 backdrop-blur-md"
         >
-          <span className="w-2.5 h-2.5 rounded-full bg-[#4E60A2] animate-pulse" />
-          <span className="text-xs font-bold text-slate-800 tracking-wide">{t.hero.badge}</span>
-          <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-[#4E60A2]/10 text-[#4E60A2]">NEW</span>
+          <span className="w-2.5 h-2.5 rounded-full bg-[#849CC6] animate-pulse" />
+          <span className="text-xs font-bold text-white tracking-wide">{t.hero.badge}</span>
+          <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-white/15 text-white">NEW</span>
         </motion.div>
 
         {/* Main Hero Headings */}
-        <motion.h1 
+        <motion.h1
           initial={{ opacity: 0, y: 25 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.1, ease: "easeOut" }}
-          className="text-4xl sm:text-6xl lg:text-7xl font-extrabold heading-display max-w-5xl leading-[1.15] text-slate-900 tracking-tight"
+          className="text-4xl sm:text-6xl lg:text-7xl font-extrabold heading-display max-w-5xl leading-[1.35] text-white tracking-tight"
         >
           {t.hero.title1} <br className="hidden sm:block" />
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#1E285A] via-[#4E60A2] to-[#849CC6]">
+          <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#849CC6] via-[#C7D3ED] to-white">
             {t.hero.title2}
           </span>
         </motion.h1>
 
         {/* Subtitle */}
-        <motion.p 
+        <motion.p
           initial={{ opacity: 0, y: 25 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.2, ease: "easeOut" }}
-          className="max-w-3xl mt-6 text-base sm:text-xl text-slate-650 leading-relaxed font-normal"
+          className="max-w-3xl mt-6 text-base sm:text-xl text-slate-200 leading-relaxed font-normal"
         >
           {t.hero.desc}
         </motion.p>
@@ -70,12 +80,36 @@ export default function Hero() {
           </a>
         </motion.div>
 
+        {/* Four Pillars Row with direct links */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, delay: 0.35 }}
+          className="flex flex-wrap items-center justify-center gap-3 mt-10 w-full max-w-4xl"
+        >
+          {[
+            { label: t.hero.pillars.p1, href: "#safety", icon: ShieldCheck, color: "text-[#4E60A2]" },
+            { label: t.hero.pillars.p2, href: "#efficiency", icon: Clock, color: "text-emerald-600" },
+            { label: t.hero.pillars.p3, href: "#features", icon: Zap, color: "text-indigo-600" },
+            { label: t.hero.pillars.p4, href: "#about", icon: Sparkles, color: "text-rose-500" },
+          ].map((pillar, i) => (
+            <a
+              key={i}
+              href={pillar.href}
+              className="inline-flex items-center gap-2 px-4 py-2.5 rounded-full bg-white/90 hover:bg-white border border-[#D5DAE8] hover:border-[#4E60A2]/50 text-xs sm:text-sm font-bold text-slate-900 shadow-xs hover:shadow-md hover:-translate-y-0.5 transition-all backdrop-blur-md group"
+            >
+              <pillar.icon className={`w-4 h-4 ${pillar.color} group-hover:scale-110 transition-transform`} />
+              <span>{pillar.label}</span>
+            </a>
+          ))}
+        </motion.div>
+
         {/* Live Metrics Row */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.4 }}
-          className="grid grid-cols-2 md:grid-cols-3 gap-4 mt-12 w-full max-w-3xl"
+          className="grid grid-cols-2 md:grid-cols-3 gap-4 mt-8 w-full max-w-3xl"
         >
           <div className="glass p-4 rounded-2xl border border-[#CFD5E4]/60 flex items-center gap-3 text-start">
             <div className="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center shrink-0">

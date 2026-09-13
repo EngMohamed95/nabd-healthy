@@ -75,7 +75,12 @@ export default function Footer() {
         </div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-12 pt-8 border-t border-slate-100 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-12 pt-6 border-t border-slate-100 text-[11px] text-slate-400 leading-relaxed flex items-start gap-2">
+        <ShieldCheck className="w-3.5 h-3.5 shrink-0 mt-0.5" />
+        <span>{t.footer.disclaimer}</span>
+      </div>
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-4 pt-4 border-t border-slate-100 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
         <div>{t.footer.copyright}</div>
         <div className="flex items-center gap-1 text-[11px] text-slate-400">
           <span>Built with</span>

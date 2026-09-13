@@ -1,58 +1,58 @@
 import { motion } from 'motion/react';
-import { Mic, FileText, Users, FolderHeart, Printer, BarChart3, Sparkles, ArrowRight, ArrowLeft } from 'lucide-react';
+import { Stethoscope, Brain, Bot, FlaskConical, FileText, Users, Sparkles, ArrowRight, ArrowLeft } from 'lucide-react';
 import { useLanguage } from '../lib/LanguageContext';
 import { img1, img2, img3, img6, img7, img11 } from '../images';
 
 export default function Features() {
   const { t, language, dir } = useLanguage();
-  
+
   const featureList = [
     {
-      icon: Mic,
+      icon: Stethoscope,
       title: t.features.f1_title,
       desc: t.features.f1_desc,
       image: img1,
-      tag: "Speech-to-Text AI",
+      tag: "Smart Consultation",
+      colSpan: "md:col-span-8"
+    },
+    {
+      icon: Brain,
+      title: t.features.f2_title,
+      desc: t.features.f2_desc,
+      image: img2,
+      tag: "Diagnosis Support",
+      colSpan: "md:col-span-4"
+    },
+    {
+      icon: Bot,
+      title: t.features.f3_title,
+      desc: t.features.f3_desc,
+      image: img7,
+      tag: "Nabd AI Assistant",
+      colSpan: "md:col-span-4"
+    },
+    {
+      icon: FlaskConical,
+      title: t.features.f4_title,
+      desc: t.features.f4_desc,
+      image: img6,
+      tag: "Labs & Radiology",
       colSpan: "md:col-span-8"
     },
     {
       icon: FileText,
-      title: t.features.f2_title,
-      desc: t.features.f2_desc,
-      image: img2,
-      tag: "SOAP & ICD-10",
-      colSpan: "md:col-span-4"
-    },
-    {
-      icon: Users,
-      title: t.features.f3_title,
-      desc: t.features.f3_desc,
-      image: img7,
-      tag: "Waiting List & Triage",
-      colSpan: "md:col-span-4"
-    },
-    {
-      icon: FolderHeart,
-      title: t.features.f4_title,
-      desc: t.features.f4_desc,
-      image: img6,
-      tag: "Unified EMR",
-      colSpan: "md:col-span-8"
-    },
-    {
-      icon: Printer,
       title: t.features.f5_title,
       desc: t.features.f5_desc,
       image: img11,
-      tag: "Requisition & Barcode",
+      tag: "Reports & Services",
       colSpan: "md:col-span-6"
     },
     {
-      icon: BarChart3,
+      icon: Users,
       title: t.features.f6_title,
       desc: t.features.f6_desc,
       image: img3,
-      tag: "Clinic Insights",
+      tag: "Patients & Assistants",
       colSpan: "md:col-span-6"
     }
   ];

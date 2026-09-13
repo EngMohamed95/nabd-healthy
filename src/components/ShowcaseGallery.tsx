@@ -7,8 +7,8 @@ import {
   Bot, RefreshCw, ZoomIn, ZoomOut, CheckCircle2, AlertTriangle, 
   X, Laptop, HelpCircle, ArrowLeft, ArrowRight, MessageSquare
 } from 'lucide-react';
-import { 
-  img1, img2, img3, img4, img5, img6, img7, img8, img11 
+import {
+  liveDashboard, liveDiagnostics, liveEmr, liveAssistant, livePayments
 } from '../images';
 
 // Interface for Hotspots
@@ -73,7 +73,7 @@ export default function ShowcaseGallery() {
       title_en: "Executive Dashboard",
       desc_ar: "مراقبة مؤشرات الأداء الحيوية، أعداد الكشوفات اليومية، ونشاط الأطباء والعيادات في شاشة تفاعلية واحدة.",
       desc_en: "Monitor key clinical performance indicators, daily consultation volume, and clinic operations in one screen.",
-      img: img3,
+      img: liveDashboard,
       hotspots: [
         {
           x: 10, y: 15,
@@ -105,7 +105,7 @@ export default function ShowcaseGallery() {
       title_en: "Diagnostics & Lab Portal",
       desc_ar: "إدارة ورفع وفحص نتائج تحاليل وأشعة المرضى، مع تحليلها الفوري بالذكاء الاصطناعي وإدراجها في ملف المريض.",
       desc_en: "Manage, upload, and process patient lab and scan reports with instant AI-powered translation and mapping.",
-      img: img6,
+      img: liveDiagnostics,
       hotspots: [
         {
           x: 82, y: 69,
@@ -137,7 +137,7 @@ export default function ShowcaseGallery() {
       title_en: "Electronic Medical Records",
       desc_ar: "ملف طبي إلكتروني موحد يضم العلامات الحيوية، التاريخ المرضي، الحساسية، والوصفات الطبية السابقة.",
       desc_en: "A unified digital patient file displaying lifelong medical histories, allergy alerts, and past encounters.",
-      img: img5,
+      img: liveEmr,
       hotspots: [
         {
           x: 18, y: 25,
@@ -162,7 +162,7 @@ export default function ShowcaseGallery() {
       title_en: "Clinical AI Assistant",
       desc_ar: "مساعد طبي ذكي يجيب على الاستفسارات المعقدة، ويقترح الجرعات الدوائية وأكواد الترميز الطبي ICD-10.",
       desc_en: "Clinical reasoning assistant responding to complex medical queries, verifying drug doses, and looking up ICD-10 codes.",
-      img: img11,
+      img: liveAssistant,
       hotspots: [
         {
           x: 65, y: 42,
@@ -187,7 +187,7 @@ export default function ShowcaseGallery() {
       title_en: "Payments & Moyasar Portal",
       desc_ar: "تكامل سلس مع بوابة مدفوعات Moyasar لتحصيل رسوم الكشوفات وإصدار الفواتير والدعم لمدى وApple Pay.",
       desc_en: "Seamless integration with Moyasar gateway for clinic subscription, e-invoicing, and local Mada payments.",
-      img: img8,
+      img: livePayments,
       hotspots: [
         {
           x: 22, y: 30,

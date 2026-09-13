@@ -18,10 +18,12 @@ export default function Navbar() {
   }, []);
 
   const navLinks = [
-    { href: "#features", label: language === 'ar' ? "المميزات" : "Features" },
-    { href: "#demo", label: language === 'ar' ? "المختبر الذكي" : "AI Lab" },
-    { href: "#requisition", label: language === 'ar' ? "الفحوصات" : "Requisitions" },
-    { href: "#gallery", label: language === 'ar' ? "المعرض" : "Gallery" },
+    { href: "#about", label: language === 'ar' ? "نبذة عن نبض" : "About" },
+    { href: "#features", label: language === 'ar' ? "ماذا تقدم نبض؟" : "Features" },
+    { href: "#safety", label: language === 'ar' ? "دقة المعلومات" : "Safety" },
+    { href: "#efficiency", label: language === 'ar' ? "توفير الوقت" : "Efficiency" },
+    { href: "#kpi", label: language === 'ar' ? "المؤشرات" : "KPIs" },
+    { href: "#ecosystem", label: language === 'ar' ? "المنظومة" : "Ecosystem" },
     { href: "#pricing", label: language === 'ar' ? "الأسعار" : "Pricing" },
   ];
 
@@ -31,9 +33,9 @@ export default function Navbar() {
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
       className={`fixed top-0 inset-x-0 z-50 transition-all duration-300 ${
-        scrolled 
-          ? 'bg-white/90 backdrop-blur-xl border-b border-[#D5DAE8]/70 shadow-sm py-2.5' 
-          : 'bg-white/60 backdrop-blur-md border-b border-[#D5DAE8]/40 py-3.5'
+        scrolled
+          ? 'bg-white/90 backdrop-blur-xl border-b border-[#D5DAE8]/70 shadow-sm py-2.5'
+          : 'bg-transparent border-b border-white/0 py-5'
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between gap-4">
@@ -42,26 +44,26 @@ export default function Navbar() {
           <img src={logoImg} alt="Nabd Logo" className="w-9 h-9 object-contain rounded-xl shadow-md group-hover:scale-105 transition-transform shrink-0" />
           <div className="flex flex-col text-start">
             <div className="flex items-center gap-1.5 leading-none">
-              <span className="text-xl font-extrabold tracking-tight text-slate-900 heading-display">
+              <span className={`text-xl font-extrabold tracking-tight heading-display transition-colors ${scrolled ? 'text-slate-900' : 'text-white'}`}>
                 {t.navbar.brand}
               </span>
-              <span className="px-1.5 py-0.5 text-[9px] font-bold rounded bg-[#E6E9F2] text-[#4E60A2] border border-[#D5DAE8] font-mono">
+              <span className={`px-1.5 py-0.5 text-[9px] font-bold rounded border font-mono transition-colors ${scrolled ? 'bg-[#E6E9F2] text-[#4E60A2] border-[#D5DAE8]' : 'bg-white/10 text-white border-white/20'}`}>
                 v2.0
               </span>
             </div>
-            <span className="text-[10px] text-slate-500 font-medium hidden sm:block mt-0.5">
+            <span className={`text-[10px] font-medium hidden sm:block mt-0.5 transition-colors ${scrolled ? 'text-slate-500' : 'text-slate-300'}`}>
               {t.navbar.subtitle}
             </span>
           </div>
         </a>
-        
+
         {/* Navigation Links Pill */}
-        <div className="hidden lg:flex items-center gap-1 p-1 bg-slate-100/80 border border-slate-200/70 rounded-full px-3 backdrop-blur-md">
+        <div className={`hidden lg:flex items-center gap-1 p-1 rounded-full px-3 backdrop-blur-md border transition-colors ${scrolled ? 'bg-slate-100/80 border-slate-200/70' : 'bg-white/10 border-white/20'}`}>
           {navLinks.map((link) => (
-            <a 
-              key={link.href} 
-              href={link.href} 
-              className="px-3 py-1.5 text-xs font-bold text-slate-700 hover:text-[#4E60A2] hover:bg-white rounded-full transition-all duration-150 whitespace-nowrap"
+            <a
+              key={link.href}
+              href={link.href}
+              className={`px-3 py-1.5 text-xs font-bold rounded-full transition-all duration-150 whitespace-nowrap ${scrolled ? 'text-slate-700 hover:text-[#4E60A2] hover:bg-white' : 'text-white/90 hover:text-white hover:bg-white/10'}`}
             >
               {link.label}
             </a>
@@ -71,28 +73,28 @@ export default function Navbar() {
         {/* Action Controls */}
         <div className="flex items-center gap-2 sm:gap-3 shrink-0">
           {/* Language Switcher Button */}
-          <button 
-            onClick={() => setLanguage(language === 'en' ? 'ar' : 'en')} 
-            className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-bold text-slate-700 bg-white hover:bg-[#E9ECF5] hover:text-[#4E60A2] border border-slate-200 rounded-full transition-all shadow-2xs cursor-pointer"
+          <button
+            onClick={() => setLanguage(language === 'en' ? 'ar' : 'en')}
+            className={`flex items-center gap-1.5 px-3 py-1.5 text-xs font-bold border rounded-full transition-all shadow-2xs cursor-pointer ${scrolled ? 'text-slate-700 bg-white hover:bg-[#E9ECF5] hover:text-[#4E60A2] border-slate-200' : 'text-white bg-white/10 hover:bg-white/20 border-white/20'}`}
             title="تبديل اللغة / Switch Language"
           >
-            <Globe className="w-3.5 h-3.5 text-[#4E60A2]" />
+            <Globe className={`w-3.5 h-3.5 ${scrolled ? 'text-[#4E60A2]' : 'text-white'}`} />
             <span className="font-sans">{language === 'en' ? 'العربية' : 'EN'}</span>
           </button>
 
           {/* Login Link */}
-          <a 
+          <a
             href="https://aidocotr.runasp.net/login"
             target="_blank"
             rel="noreferrer"
-            className="hidden sm:flex items-center gap-1.5 px-3 py-1.5 text-xs font-bold text-slate-700 hover:text-[#4E60A2] transition-colors"
+            className={`hidden sm:flex items-center gap-1.5 px-3 py-1.5 text-xs font-bold transition-colors ${scrolled ? 'text-slate-700 hover:text-[#4E60A2]' : 'text-white/90 hover:text-white'}`}
           >
             <LogIn className="w-3.5 h-3.5" />
             <span>{t.navbar.login}</span>
           </a>
 
           {/* Primary CTA */}
-          <a 
+          <a
             href="#demo"
             className="hidden sm:flex items-center gap-1.5 px-4 py-2 text-xs font-bold text-white bg-gradient-to-r from-[#4E60A2] to-[#1E285A] hover:from-[#5E70B2] hover:to-[#283264] rounded-full transition-all shadow-md hover:shadow-[#4E60A2]/25 hover:scale-[1.02] active:scale-[0.98] whitespace-nowrap"
           >
@@ -101,9 +103,9 @@ export default function Navbar() {
           </a>
 
           {/* Mobile Menu Button */}
-          <button 
+          <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="lg:hidden p-2 rounded-xl text-slate-700 hover:bg-slate-100 transition-colors"
+            className={`lg:hidden p-2 rounded-xl transition-colors ${scrolled ? 'text-slate-700 hover:bg-slate-100' : 'text-white hover:bg-white/10'}`}
             aria-label="Toggle menu"
           >
             {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}

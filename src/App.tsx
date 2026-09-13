@@ -1,19 +1,25 @@
 /**
  * Nabd AI Doctor - Modern Web Landing Page
+ * Official Platform Overview Implementation
  */
 
 import { useEffect } from 'react';
 import Lenis from 'lenis';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
+import AboutSection from './components/AboutSection';
+import Features from './components/Features';
 import AIShowcase from './components/AIShowcase';
 import InteractiveRequisitionDemo from './components/InteractiveRequisitionDemo';
-import Features from './components/Features';
+import AccuracySafetySection from './components/AccuracySafetySection';
+import WorkflowEfficiencySection from './components/WorkflowEfficiencySection';
+import KPIAnalyticsSection from './components/KPIAnalyticsSection';
 import DashboardPreview from './components/DashboardPreview';
-import WhyChooseUs from './components/WhyChooseUs';
+import EcosystemSection from './components/EcosystemSection';
 import ShowcaseGallery from './components/ShowcaseGallery';
 import Testimonials from './components/Testimonials';
 import Pricing from './components/Pricing';
+import VisionSection from './components/VisionSection';
 import CTA from './components/CTA';
 import Footer from './components/Footer';
 
@@ -57,19 +63,53 @@ export default function App() {
       <div className="ambient-bg" />
       <div className="ambient-grid" />
 
-      {/* Main Content */}
+      {/* Main Content Container */}
       <div className="relative z-10 w-full flex flex-col items-center">
         <Navbar />
         <main className="relative z-10 flex flex-col items-center w-full">
+          {/* 1. Hero: نبض - منصة الطبيب الذكية + الركائز الـ 4 */}
           <Hero />
-          <AIShowcase />
-          <InteractiveRequisitionDemo />
+
+          {/* 2. نبذة عن منصة نبض: المعرفة والتحليل والإدارة وميثاق التمكين */}
+          <AboutSection />
+
+          {/* 3. ماذا تقدم نبض؟: الركائز الـ 6 الأساسية */}
           <Features />
+
+          {/* 4. المختبر السريري التفاعلي: الكشف الطبي الذكي وتوليد الـ SOAP */}
+          <AIShowcase />
+
+          {/* 5. الفحوصات الذكية: توليد وطباعة طلبات التحاليل والأشعة بالباركود */}
+          <InteractiveRequisitionDemo />
+
+          {/* 6. دقة أكبر ومعلومات أكثر تنظيمًا: رادار الأمان السريري ومنع السهو والأخطاء */}
+          <AccuracySafetySection />
+
+          {/* 7. وقت أقل للإجراءات... تركيز أكبر على المريض: المهام الـ 6 وتوفير 4 ساعات */}
+          <WorkflowEfficiencySection />
+
+          {/* 8. التقارير والمؤشرات المهمة: لوحة المؤشرات الـ 7 المعتمدة بالوثيقة */}
+          <KPIAnalyticsSection />
+
+          {/* 9. واجهة الطبيب التفاعلية: مركز التحكم السريري */}
           <DashboardPreview />
-          <WhyChooseUs />
+
+          {/* 10. منظومة نبض: المنظومات الـ 5 المترابطة بهندسة متصلة */}
+          <EcosystemSection />
+
+          {/* 11. معرض الشاشات الحقيقية */}
           <ShowcaseGallery />
+
+          {/* 12. آراء الأطباء والمراكز */}
           <Testimonials />
+
+          {/* 13. باقات الأسعار */}
           <Pricing />
+
+          {/* 14. منصة عالمية برؤية مستقبلية & رؤيتنا وميثاق المسؤولية الطبية */}
+          <VisionSection />
+
+          {/* 15. الدعوة للعمل: ابدأ تجربتك المجانية */}
           <CTA />
         </main>
         <Footer />
