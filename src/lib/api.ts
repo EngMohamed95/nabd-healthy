@@ -50,7 +50,68 @@ export interface RequisitionOrder {
   urgency: 'routine' | 'urgent' | 'stat';
 }
 
+export type SubscriptionCountryCode = 'SA' | 'EG' | 'GLOBAL';
+
+export interface SubscriptionPrice {
+  Id: number;
+  SubscriptionPlanId: number;
+  CountryCode: SubscriptionCountryCode;
+  Currency: 'SAR' | 'EGP' | 'USD' | string;
+  Amount: number;
+  IsActive: boolean;
+}
+
+export interface SubscriptionPlan {
+  Id: number;
+  NameAr: string;
+  NameEn: string;
+  Code: string;
+  DurationInDays: number;
+  BillingPeriodName: string;
+  BaseMaxExaminations: number;
+  BaseMaxNabdaMessages: number;
+  BaseMaxClinics: number;
+  BaseMaxAssistants: number;
+  FeaturesJson: string | null;
+  IsActive: boolean;
+  IsDefaultTrial: boolean;
+  DisplayOrder: number;
+  Prices: SubscriptionPrice[];
+}
+
+interface SubscriptionPlansResponse {
+  Success: boolean;
+  Message: string;
+  Data: SubscriptionPlan[] | null;
+  Errors: unknown;
+  StatusCode: number;
+}
+
 const API_BASE_URL = import.meta.env.VITE_API_URL || 'https://aidocotr.runasp.net/api';
+
+/** Fetches the current plans and localized prices directly from the subscriptions API. */
+export async function getSubscriptionPlans(
+  countryCode: SubscriptionCountryCode,
+  signal?: AbortSignal,
+): Promise<SubscriptionPlan[]> {
+  const response = await fetch(
+    `${API_BASE_URL}/Subscriptions/plans?countryCode=${encodeURIComponent(countryCode)}`,
+    { signal, headers: { Accept: 'application/json' } },
+  );
+
+  if (!response.ok) {
+    throw new Error(`Subscription plans request failed (${response.status})`);
+  }
+
+  const result = (await response.json()) as SubscriptionPlansResponse;
+  if (!result.Success || !Array.isArray(result.Data)) {
+    throw new Error(result.Message || 'Invalid subscription plans response');
+  }
+
+  return result.Data
+    .filter((plan) => plan.IsActive && !plan.IsDefaultTrial)
+    .sort((a, b) => a.DisplayOrder - b.DisplayOrder);
+}
 
 /**
  * Service to generate AI SOAP Medical Report from speech text

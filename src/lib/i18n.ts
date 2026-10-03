@@ -18,7 +18,11 @@ export const translations = {
       badge: "نبض: منصة طبية عالمية متكاملة مدعومة بالذكاء الاصطناعي",
       title1: "ذكاء يخدم الطبيب",
       title2: "ورعاية أفضل للمريض",
-      desc: "منصة نبض الطبية العالمية المتكاملة صُممت لمساعدة الأطباء وتسهيل عملهم ورفع كفاءة الممارسة الطبية، من خلال أدوات ذكية تجمع المعرفة والتحليل والإدارة في منصة واحدة، وتمنح الطبيب وقتاً أكبر للتركيز على مريضه.",
+      typingPhrases: [
+        "دقة أكبر للمعلومات …",
+        "وقت أقل للإجراءات …"
+      ],
+      desc: "صُممت منصة نبض الطبية ، لتكون أحدى المنصات العالمية الرائدة بإستخدام تقنيات الذكاء الاصطناعي (AI ) ، وذلك لخدمة الأطباء وتسهيل عملهم ورفع كفاءة الممارسة الطبية ، من خلال أدوات ذكية تجمع بين المعرفة والتحليل والإدارة في منصة واحدة .",
       startFreeTrial: "ابدأ تجربتك المجانية",
       bookDemo: "شاهد العرض التفاعلي",
       listenFast: "استخراج فوري بالذكاء الاصطناعي",
@@ -37,6 +41,17 @@ export const translations = {
         patients: "+250,000",
         patientsLabel: "تقرير طبي تم إنشاؤه"
       }
+    },
+    video: {
+      badge: "شاهد نبض في العمل",
+      title: "جولة سريعة داخل منصة نبض",
+      desc: "فيديو تعريفي مختصر يوضح كيف تساعد نبض الطبيب على توفير الوقت ورفع دقة القرار السريري، من أول لحظة تسجيل دخول وحتى اعتماد التقرير الطبي.",
+      points: [
+        "تحويل المحادثة السريرية إلى سجل SOAP منظم فورياً",
+        "واجهة عربية بسيطة مصممة لسرعة الاستخدام اليومي",
+        "تكامل مباشر مع الملفات الطبية والتحاليل والأشعة"
+      ],
+      cta: "ابدأ تجربتك المجانية"
     },
     about: {
       badge: "نبذة عن منصة نبض",
@@ -130,7 +145,7 @@ export const translations = {
     },
     workflowEfficiency: {
       badge: "وقت أقل للإجراءات",
-      title: "وقت أقل للإجراءات... تركيز أكبر على المريض",
+      title: "جودة أعلى... وقت أقل... دقة أكبر... خدمة أفضل...",
       desc: "تعمل نبض على اختصار العديد من المهام اليومية التي تستغرق وقت الطبيب، بهدف تقليل الوقت المستغرق في الأعمال الإدارية والمتكررة، وإتاحة وقت أكبر للطبيب للاستماع إلى المريض وفهم حالته والتركيز على جودة الرعاية.",
       statHours: "4 ساعات",
       statHoursLabel: "توفير يومي لكل طبيب في الأعمال الإدارية",
@@ -150,7 +165,7 @@ export const translations = {
     },
     kpiAnalytics: {
       badge: "التقارير والمؤشرات المهمة",
-      title: "تحويل البيانات اليومية إلى مؤشرات واضحة",
+      title: "تحويل البيانات إلى مؤشرات واضحة",
       desc: "توفر نبض لوحة معلومات وتقارير تساعد الطبيب على متابعة نشاطه وممارسته الطبية، وتحويل البيانات اليومية إلى مؤشرات واضحة تساعد على فهم الأداء وتحسين الكفاءة التشغيلية.",
       periodToday: "اليوم",
       periodWeek: "هذا الأسبوع",
@@ -201,7 +216,7 @@ export const translations = {
       e5_desc: "لتحويل البيانات إلى مؤشرات تساعد على متابعة النشاط وتحسين الكفاءة."
     },
     vision: {
-      badge: "رؤيتنا ومنصة عالمية",
+      badge: "رؤيتنا",
       title: "منصة عالمية برؤية مستقبلية",
       desc: "أن تصبح نبض منصة عالمية رائدة في تمكين الأطباء بالذكاء الاصطناعي، والمساهمة في تطوير الممارسة الطبية ورفع كفاءتها وجودتها، بما يخدم الطبيب والمريض ويرتقي بتجربة الرعاية الصحية.",
       sub: "صُممت نبض برؤية عالمية لتكون قابلة لخدمة الأطباء في مختلف الدول والتخصصات، مع إمكانية دعم لغات متعددة وتكييف الخدمات وفق المتطلبات والأنظمة الطبية والتنظيمية لكل سوق.",
@@ -296,6 +311,10 @@ export const translations = {
       badge: "Nabd: A Complete Global AI-Powered Medical Platform",
       title1: "Intelligence That Serves the Doctor",
       title2: "For Better Patient Care",
+      typingPhrases: [
+        "Greater Data Accuracy …",
+        "Less Time on Procedures …"
+      ],
       desc: "Nabd is a complete global medical platform built to help doctors, simplify their work, and raise the efficiency of medical practice, through smart tools that bring knowledge, analysis, and management together in one platform, giving doctors more time to focus on their patients.",
       startFreeTrial: "Start Free Trial",
       bookDemo: "Try Interactive Demo",
@@ -315,6 +334,17 @@ export const translations = {
         patients: "+250,000",
         patientsLabel: "Clinical Reports Generated"
       }
+    },
+    video: {
+      badge: "See Nabd in Action",
+      title: "A Quick Tour Inside the Nabd Platform",
+      desc: "A short walkthrough video showing how Nabd helps doctors save time and make more accurate clinical decisions, from login to approving the final medical report.",
+      points: [
+        "Turns the clinical conversation into a structured SOAP note instantly",
+        "A simple interface built for fast daily use",
+        "Direct integration with patient files, labs, and scans"
+      ],
+      cta: "Start Your Free Trial"
     },
     about: {
       badge: "About Nabd Platform",

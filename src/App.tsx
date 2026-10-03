@@ -7,21 +7,18 @@ import { useEffect } from 'react';
 import Lenis from 'lenis';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
+import VideoSection from './components/VideoSection';
 import AboutSection from './components/AboutSection';
 import Features from './components/Features';
-import AIShowcase from './components/AIShowcase';
-import InteractiveRequisitionDemo from './components/InteractiveRequisitionDemo';
-import AccuracySafetySection from './components/AccuracySafetySection';
 import WorkflowEfficiencySection from './components/WorkflowEfficiencySection';
 import KPIAnalyticsSection from './components/KPIAnalyticsSection';
-import DashboardPreview from './components/DashboardPreview';
 import EcosystemSection from './components/EcosystemSection';
 import ShowcaseGallery from './components/ShowcaseGallery';
-import Testimonials from './components/Testimonials';
 import Pricing from './components/Pricing';
 import VisionSection from './components/VisionSection';
 import CTA from './components/CTA';
 import Footer from './components/Footer';
+import { SHOW_PRICING } from './lib/featureFlags';
 
 export default function App() {
   useEffect(() => {
@@ -43,7 +40,12 @@ export default function App() {
       const anchor = (e.target as HTMLElement).closest('a[href^="#"]') as HTMLAnchorElement | null;
       if (!anchor) return;
       const hash = anchor.getAttribute('href');
-      if (!hash || hash === '#') return;
+      if (!hash) return;
+      if (hash === '#') {
+        e.preventDefault();
+        lenis.scrollTo(0, { offset: 0 });
+        return;
+      }
       const el = document.querySelector(hash);
       if (!el) return;
       e.preventDefault();
@@ -70,20 +72,14 @@ export default function App() {
           {/* 1. Hero: نبض - منصة الطبيب الذكية + الركائز الـ 4 */}
           <Hero />
 
-          {/* 2. نبذة عن منصة نبض: المعرفة والتحليل والإدارة وميثاق التمكين */}
-          <AboutSection />
+          {/* 1.5. فيديو تعريفي: جولة سريعة داخل منصة نبض */}
+          <VideoSection />
 
-          {/* 3. ماذا تقدم نبض؟: الركائز الـ 6 الأساسية */}
+          {/* 2. ماذا تقدم نبض؟: الركائز الـ 6 الأساسية */}
           <Features />
 
-          {/* 4. المختبر السريري التفاعلي: الكشف الطبي الذكي وتوليد الـ SOAP */}
-          <AIShowcase />
-
-          {/* 5. الفحوصات الذكية: توليد وطباعة طلبات التحاليل والأشعة بالباركود */}
-          <InteractiveRequisitionDemo />
-
-          {/* 6. دقة أكبر ومعلومات أكثر تنظيمًا: رادار الأمان السريري ومنع السهو والأخطاء */}
-          <AccuracySafetySection />
+          {/* 3. نبذة عن منصة نبض: المعرفة والتحليل والإدارة */}
+          <AboutSection />
 
           {/* 7. وقت أقل للإجراءات... تركيز أكبر على المريض: المهام الـ 6 وتوفير 4 ساعات */}
           <WorkflowEfficiencySection />
@@ -91,20 +87,14 @@ export default function App() {
           {/* 8. التقارير والمؤشرات المهمة: لوحة المؤشرات الـ 7 المعتمدة بالوثيقة */}
           <KPIAnalyticsSection />
 
-          {/* 9. واجهة الطبيب التفاعلية: مركز التحكم السريري */}
-          <DashboardPreview />
-
-          {/* 10. منظومة نبض: المنظومات الـ 5 المترابطة بهندسة متصلة */}
+          {/* 9. منظومة نبض: المنظومات الـ 5 المترابطة بهندسة متصلة */}
           <EcosystemSection />
 
           {/* 11. معرض الشاشات الحقيقية */}
           <ShowcaseGallery />
 
-          {/* 12. آراء الأطباء والمراكز */}
-          <Testimonials />
-
           {/* 13. باقات الأسعار */}
-          <Pricing />
+          {SHOW_PRICING && <Pricing />}
 
           {/* 14. منصة عالمية برؤية مستقبلية & رؤيتنا وميثاق المسؤولية الطبية */}
           <VisionSection />

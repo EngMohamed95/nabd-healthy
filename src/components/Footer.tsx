@@ -1,4 +1,5 @@
 import { useLanguage } from '../lib/LanguageContext';
+import { SHOW_PRICING } from '../lib/featureFlags';
 import { ShieldCheck, Heart, Sparkles, ExternalLink } from 'lucide-react';
 import logoImg from '../images/nabd_logo.png';
 
@@ -43,7 +44,7 @@ export default function Footer() {
             <li><a href="#features" className="hover:text-[#4E60A2] transition-colors">{t.footer.features}</a></li>
             <li><a href="#demo" className="hover:text-[#4E60A2] transition-colors">{t.footer.liveDemo}</a></li>
             <li><a href="#requisition" className="hover:text-[#4E60A2] transition-colors">{t.navbar.requisition}</a></li>
-            <li><a href="#pricing" className="hover:text-[#4E60A2] transition-colors">{t.footer.pricing}</a></li>
+            {SHOW_PRICING && <li><a href="#pricing" className="hover:text-[#4E60A2] transition-colors">{t.footer.pricing}</a></li>}
           </ul>
         </div>
 

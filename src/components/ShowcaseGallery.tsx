@@ -3,12 +3,14 @@ import { motion, AnimatePresence } from 'motion/react';
 import { useLanguage } from '../lib/LanguageContext';
 import { 
   Activity, Users, FileText, Sparkles, CreditCard, 
-  Search, Filter, Calendar, UploadCloud, Play, Send, 
+  Search, Filter, Calendar, UploadCloud, Play, Pause, Send,
   Bot, RefreshCw, ZoomIn, ZoomOut, CheckCircle2, AlertTriangle, 
-  X, Laptop, HelpCircle, ArrowLeft, ArrowRight, MessageSquare
+  X, Laptop, Smartphone, Home, Bell, Mic, UserRound, HelpCircle, ArrowLeft, ArrowRight, MessageSquare
 } from 'lucide-react';
 import {
-  liveDashboard, liveDiagnostics, liveEmr, liveAssistant, livePayments
+  appMainPage, appExaminationResults, appPatients, appNabdAssistant, appMedicalExaminations,
+  appWaitingList, appSuggestions, appSupport, appSubscription, appClinics, appAssistants,
+  appDeletedPatients, appCancelledExaminations, appMedicines, appLabs, appScans
 } from '../images';
 
 // Interface for Hotspots
@@ -33,12 +35,16 @@ interface GalleryModule {
   hotspots: Hotspot[];
 }
 
+const AUTO_TOUR_TABS = ['diagnostics', 'assistant'] as const;
+
 export default function ShowcaseGallery() {
   const { language } = useLanguage();
   const [activeTab, setActiveTab] = useState<string>('diagnostics');
   const [viewMode, setViewMode] = useState<'screenshot' | 'simulator'>('simulator');
   const [activeHotspot, setActiveHotspot] = useState<number | null>(null);
   const [lightboxImg, setLightboxImg] = useState<string | null>(null);
+  const [isAutoTour, setIsAutoTour] = useState(true);
+  const [mobileScreen, setMobileScreen] = useState<'home' | 'patient' | 'assistant'>('home');
 
   // Diagnostics Live Simulator States
   const [diagSearch, setDiagSearch] = useState<string>('');
@@ -73,7 +79,7 @@ export default function ShowcaseGallery() {
       title_en: "Executive Dashboard",
       desc_ar: "مراقبة مؤشرات الأداء الحيوية، أعداد الكشوفات اليومية، ونشاط الأطباء والعيادات في شاشة تفاعلية واحدة.",
       desc_en: "Monitor key clinical performance indicators, daily consultation volume, and clinic operations in one screen.",
-      img: liveDashboard,
+      img: appMainPage,
       hotspots: [
         {
           x: 10, y: 15,
@@ -105,7 +111,7 @@ export default function ShowcaseGallery() {
       title_en: "Diagnostics & Lab Portal",
       desc_ar: "إدارة ورفع وفحص نتائج تحاليل وأشعة المرضى، مع تحليلها الفوري بالذكاء الاصطناعي وإدراجها في ملف المريض.",
       desc_en: "Manage, upload, and process patient lab and scan reports with instant AI-powered translation and mapping.",
-      img: liveDiagnostics,
+      img: appExaminationResults,
       hotspots: [
         {
           x: 82, y: 69,
@@ -137,7 +143,7 @@ export default function ShowcaseGallery() {
       title_en: "Electronic Medical Records",
       desc_ar: "ملف طبي إلكتروني موحد يضم العلامات الحيوية، التاريخ المرضي، الحساسية، والوصفات الطبية السابقة.",
       desc_en: "A unified digital patient file displaying lifelong medical histories, allergy alerts, and past encounters.",
-      img: liveEmr,
+      img: appPatients,
       hotspots: [
         {
           x: 18, y: 25,
@@ -162,7 +168,7 @@ export default function ShowcaseGallery() {
       title_en: "Clinical AI Assistant",
       desc_ar: "مساعد طبي ذكي يجيب على الاستفسارات المعقدة، ويقترح الجرعات الدوائية وأكواد الترميز الطبي ICD-10.",
       desc_en: "Clinical reasoning assistant responding to complex medical queries, verifying drug doses, and looking up ICD-10 codes.",
-      img: liveAssistant,
+      img: appNabdAssistant,
       hotspots: [
         {
           x: 65, y: 42,
@@ -181,33 +187,124 @@ export default function ShowcaseGallery() {
       ]
     },
     {
-      id: 'payments',
-      icon: CreditCard,
-      title_ar: "بوابة المدفوعات والاشتراكات",
-      title_en: "Payments & Moyasar Portal",
-      desc_ar: "تكامل سلس مع بوابة مدفوعات Moyasar لتحصيل رسوم الكشوفات وإصدار الفواتير والدعم لمدى وApple Pay.",
-      desc_en: "Seamless integration with Moyasar gateway for clinic subscription, e-invoicing, and local Mada payments.",
-      img: livePayments,
+      id: 'examinations',
+      icon: FileText,
+      title_ar: "سجل الفحوصات الطبية",
+      title_en: "Medical Examinations",
+      desc_ar: "عرض وإدارة الفحوصات الطبية وسجل الزيارات مجمعة حسب ملف كل مريض.",
+      desc_en: "View and manage medical examinations and visits grouped by patient record.",
+      img: appMedicalExaminations,
       hotspots: [
         {
           x: 22, y: 30,
-          title_ar: "سجل الفواتير والإيصالات",
-          title_en: "Invoices & Receipts Ledger",
-          desc_ar: "متابعة الفواتير الصادرة للمرضى وحالة دفعها مع إمكانية تصديرها محاسبيًا وطباعتها.",
-          desc_en: "Ledger tracking patient invoices, payments status, with options to export and print receipts."
+          title_ar: "سجل الفحوصات",
+          title_en: "Examination History",
+          desc_ar: "متابعة الفحوصات السابقة وحالتها والوصول السريع إلى تفاصيل كل كشف.",
+          desc_en: "Track previous examinations and quickly open each visit's details."
         },
         {
           x: 78, y: 55,
-          title_ar: "نافذة السداد الفوري",
-          title_en: "Moyasar Direct Checkout",
-          desc_ar: "خيارات دفع مرنة للمرضى تشمل مدى، فيزا، وآبل باي مباشرة من شاشة الاستقبال.",
-          desc_en: "Flexible point-of-sale options supporting local Mada cards, Visa, and Apple Pay."
+          title_ar: "البحث والتصفية",
+          title_en: "Search & Filters",
+          desc_ar: "البحث عن الفحوصات وتصفيتها حسب العيادة والتاريخ والحالة.",
+          desc_en: "Search and filter examinations by clinic, date, and status."
         }
       ]
+    },
+    {
+      id: 'waiting', icon: Calendar,
+      title_ar: 'قائمة الانتظار', title_en: 'Waiting List',
+      desc_ar: 'إدارة المرضى المنتظرين وبدء كشف جديد مباشرة.',
+      desc_en: 'Manage waiting patients and start a new examination.',
+      img: appWaitingList, hotspots: []
+    },
+    {
+      id: 'clinics', icon: Activity,
+      title_ar: 'إدارة العيادات', title_en: 'Clinic Management',
+      desc_ar: 'إدارة العيادات والفروع وبيانات كل عيادة.',
+      desc_en: 'Manage clinics, branches, and clinic information.',
+      img: appClinics, hotspots: []
+    },
+    {
+      id: 'assistants', icon: Users,
+      title_ar: 'مساعدو العيادة', title_en: 'Clinic Assistants',
+      desc_ar: 'إدارة حسابات المساعدين وصلاحيات العمل.',
+      desc_en: 'Manage assistant accounts and access roles.',
+      img: appAssistants, hotspots: []
+    },
+    {
+      id: 'deleted-patients', icon: Users,
+      title_ar: 'الملفات المحذوفة', title_en: 'Deleted Patients',
+      desc_ar: 'مراجعة ملفات المرضى المحذوفة وإدارتها.',
+      desc_en: 'Review and manage deleted patient records.',
+      img: appDeletedPatients, hotspots: []
+    },
+    {
+      id: 'cancelled-examinations', icon: FileText,
+      title_ar: 'الكشوفات الملغاة', title_en: 'Cancelled Examinations',
+      desc_ar: 'عرض الكشوفات التي تم إلغاؤها ومراجعة تفاصيلها.',
+      desc_en: 'View cancelled examinations and their details.',
+      img: appCancelledExaminations, hotspots: []
+    },
+    {
+      id: 'medicines', icon: CreditCard,
+      title_ar: 'الأدوية المستخدمة', title_en: 'Used Medicines',
+      desc_ar: 'إدارة قائمة الأدوية المستخدمة داخل الوصفات الطبية.',
+      desc_en: 'Manage medicines used in medical prescriptions.',
+      img: appMedicines, hotspots: []
+    },
+    {
+      id: 'labs', icon: FileText,
+      title_ar: 'التحاليل المستخدمة', title_en: 'Used Lab Tests',
+      desc_ar: 'تنظيم التحاليل الطبية المستخدمة والمتاحة للطبيب.',
+      desc_en: 'Organize the lab tests available to the doctor.',
+      img: appLabs, hotspots: []
+    },
+    {
+      id: 'scans', icon: Search,
+      title_ar: 'الأشعة المستخدمة', title_en: 'Used Scans',
+      desc_ar: 'تنظيم أنواع الأشعة والفحوصات التصويرية المستخدمة.',
+      desc_en: 'Organize radiology and imaging examination types.',
+      img: appScans, hotspots: []
+    },
+    {
+      id: 'suggestions', icon: MessageSquare,
+      title_ar: 'المقترحات والأفكار', title_en: 'Ideas & Suggestions',
+      desc_ar: 'إرسال ومتابعة المقترحات والأفكار لتطوير المنصة.',
+      desc_en: 'Submit and track ideas for improving the platform.',
+      img: appSuggestions, hotspots: []
+    },
+    {
+      id: 'support', icon: HelpCircle,
+      title_ar: 'الدعم والمساعدة', title_en: 'Support & Help',
+      desc_ar: 'إنشاء ومتابعة تذاكر الدعم الفني.',
+      desc_en: 'Create and follow up technical support tickets.',
+      img: appSupport, hotspots: []
+    },
+    {
+      id: 'subscription', icon: CreditCard,
+      title_ar: 'الاشتراك والاستخدام', title_en: 'Subscription & Usage',
+      desc_ar: 'متابعة الباقة الحالية وحدود الاستخدام والفواتير.',
+      desc_en: 'Track the current plan, usage limits, and invoices.',
+      img: appSubscription, hotspots: []
     }
   ];
 
   const currentModule = modules.find(m => m.id === activeTab) || modules[0];
+
+  useEffect(() => {
+    if (!isAutoTour || viewMode !== 'simulator') return;
+
+    const interval = window.setInterval(() => {
+      setActiveTab((current) => {
+        const currentIndex = AUTO_TOUR_TABS.indexOf(current as typeof AUTO_TOUR_TABS[number]);
+        return AUTO_TOUR_TABS[(currentIndex + 1 + AUTO_TOUR_TABS.length) % AUTO_TOUR_TABS.length];
+      });
+      setActiveHotspot(null);
+    }, 7000);
+
+    return () => window.clearInterval(interval);
+  }, [isAutoTour, viewMode]);
 
   // Simulated upload progress logic
   useEffect(() => {
@@ -365,8 +462,8 @@ export default function ShowcaseGallery() {
           </h2>
           <p className="text-lg text-slate-600 max-w-2xl mx-auto">
             {language === 'ar' 
-              ? 'تصفح شاشات البرنامج الحقيقية وتعرف على كل تفاصيل عيادتك الذكية عبر المحاكي التفاعلي أو من لقطات الشاشة الحية.' 
-              : 'Browse actual software interfaces and explore your smart clinic features through live emulators or screenshots.'}
+              ? 'اكتشف شاشات نظام الويب وجرّب تطبيق نبض للموبايل من خلال واجهات تفاعلية حقيقية.'
+              : 'Explore Nabd web screens and try the mobile app through interactive interfaces.'}
           </p>
         </div>
 
@@ -385,7 +482,7 @@ export default function ShowcaseGallery() {
               </div>
 
               {/* Sidebar Tabs */}
-              <div className="space-y-1.5 flex flex-row lg:flex-col overflow-x-auto lg:overflow-x-visible pb-2 lg:pb-0 scrollbar-none gap-2 lg:gap-0">
+              <div className="space-y-1.5 flex flex-row lg:flex-col overflow-x-auto lg:overflow-x-hidden lg:overflow-y-auto lg:max-h-[430px] pb-2 lg:pb-2 gap-2 lg:gap-0 lg:pe-1 lg:[scrollbar-width:thin] lg:[scrollbar-color:#a5b4fc_transparent] lg:[&::-webkit-scrollbar]:w-1.5 lg:[&::-webkit-scrollbar-thumb]:rounded-full lg:[&::-webkit-scrollbar-thumb]:bg-indigo-200">
                 {modules.map((mod) => {
                   const Icon = mod.icon;
                   const isActive = activeTab === mod.id;
@@ -394,6 +491,7 @@ export default function ShowcaseGallery() {
                     <button
                       key={mod.id}
                       onClick={() => {
+                        setIsAutoTour(false);
                         setActiveTab(mod.id);
                         setActiveHotspot(null);
                       }}
@@ -415,24 +513,30 @@ export default function ShowcaseGallery() {
             <div className="mt-6 pt-4 border-t border-slate-200 hidden lg:block">
               <div className="bg-slate-200/80 p-1 rounded-xl flex items-center justify-between gap-1">
                 <button
-                  onClick={() => setViewMode('simulator')}
+                  onClick={() => {
+                    setIsAutoTour(false);
+                    setViewMode('simulator');
+                  }}
                   className={`flex-1 text-center py-2 rounded-lg text-[11px] font-bold transition-all cursor-pointer ${
                     viewMode === 'simulator' 
                       ? 'bg-white text-slate-900 shadow-xs' 
                       : 'text-slate-600 hover:text-slate-800'
                   }`}
                 >
-                  {language === 'ar' ? 'محاكي تفاعلي' : 'Live Emulator'}
+                  {language === 'ar' ? 'شاشات الويب' : 'Web Screens'}
                 </button>
                 <button
-                  onClick={() => setViewMode('screenshot')}
+                  onClick={() => {
+                    setIsAutoTour(false);
+                    setViewMode('screenshot');
+                  }}
                   className={`flex-1 text-center py-2 rounded-lg text-[11px] font-bold transition-all cursor-pointer ${
                     viewMode === 'screenshot' 
                       ? 'bg-white text-slate-900 shadow-xs' 
                       : 'text-slate-600 hover:text-slate-800'
                   }`}
                 >
-                  {language === 'ar' ? 'صورة الشاشة' : 'Real Screen'}
+                  {language === 'ar' ? 'تطبيق الموبايل' : 'Mobile App'}
                 </button>
               </div>
             </div>
@@ -451,95 +555,175 @@ export default function ShowcaseGallery() {
 
               {/* Mockup Address Bar */}
               <div className="w-96 max-w-full bg-slate-100 rounded-lg py-1 px-3 text-[10px] text-slate-500 text-center font-mono border border-slate-200 hidden sm:block">
-                https://app.nabd.com/clinic/{currentModule.id}
+                {viewMode === 'simulator' ? `https://app.nabd.com/clinic/${currentModule.id}` : 'NABD MOBILE APP'}
               </div>
+
+              <button
+                onClick={() => {
+                  setViewMode('simulator');
+                  setIsAutoTour((active) => !active);
+                }}
+                className={`flex items-center gap-2 rounded-full border px-3 py-1.5 text-[10px] font-bold transition-all ${
+                  isAutoTour && viewMode === 'simulator'
+                    ? 'border-emerald-200 bg-emerald-50 text-emerald-700 shadow-[0_0_18px_rgba(16,185,129,0.18)]'
+                    : 'border-indigo-200 bg-indigo-50 text-[#3B51A3]'
+                }`}
+              >
+                {isAutoTour && viewMode === 'simulator' ? <Pause className="h-3.5 w-3.5" /> : <Play className="h-3.5 w-3.5 fill-current" />}
+                <span>{language === 'ar' ? (isAutoTour ? 'إيقاف الجولة' : 'تشغيل الجولة') : (isAutoTour ? 'Pause tour' : 'Play tour')}</span>
+                {isAutoTour && <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-emerald-500" />}
+              </button>
 
               {/* Mobile Toggle Switches */}
               <div className="flex items-center gap-2 lg:hidden">
                 <button
-                  onClick={() => setViewMode(viewMode === 'simulator' ? 'screenshot' : 'simulator')}
+                  onClick={() => {
+                    setIsAutoTour(false);
+                    setViewMode(viewMode === 'simulator' ? 'screenshot' : 'simulator');
+                  }}
                   className="px-3 py-1 bg-indigo-50 border border-indigo-200 text-[#3B51A3] rounded-lg text-[10px] font-bold"
                 >
                   {viewMode === 'simulator' 
-                    ? (language === 'ar' ? 'عرض لقطة الشاشة' : 'Show Screenshot') 
-                    : (language === 'ar' ? 'عرض المحاكي الحي' : 'Show Live Emulator')}
+                    ? (language === 'ar' ? 'تطبيق الموبايل' : 'Mobile App')
+                    : (language === 'ar' ? 'شاشات الويب' : 'Web Screens')}
                 </button>
               </div>
             </div>
 
+            {isAutoTour && viewMode === 'simulator' && (
+              <div className="h-1 w-full overflow-hidden bg-indigo-100">
+                <motion.div
+                  key={activeTab}
+                  initial={{ width: '0%' }}
+                  animate={{ width: '100%' }}
+                  transition={{ duration: 7, ease: 'linear' }}
+                  className="h-full bg-gradient-to-r from-[#3B51A3] via-violet-500 to-cyan-400"
+                />
+              </div>
+            )}
+
             {/* Mockup Content Body Canvas */}
-            <div className="flex-1 p-4 sm:p-6 overflow-y-auto min-h-[450px] relative flex flex-col">
+            <div
+              className="flex-1 p-4 sm:p-6 overflow-y-auto min-h-[450px] relative flex flex-col"
+              onPointerDown={() => setIsAutoTour(false)}
+            >
+              {isAutoTour && viewMode === 'simulator' && (
+                <motion.div
+                  aria-hidden="true"
+                  initial={{ top: '4%', opacity: 0 }}
+                  animate={{ top: ['4%', '92%'], opacity: [0, 0.65, 0] }}
+                  transition={{ duration: 3.4, repeat: Infinity, ease: 'linear' }}
+                  className="pointer-events-none absolute inset-x-4 z-30 h-px bg-gradient-to-r from-transparent via-cyan-400 to-transparent shadow-[0_0_16px_rgba(34,211,238,0.9)] sm:inset-x-6"
+                />
+              )}
               
               <AnimatePresence mode="wait">
                 <motion.div
                   key={activeTab + viewMode}
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -10 }}
+                  initial={{ opacity: 0, x: 24, scale: 0.985 }}
+                  animate={{ opacity: 1, x: 0, scale: 1 }}
+                  exit={{ opacity: 0, x: -24, scale: 0.985 }}
+                  transition={{ duration: 0.42, ease: [0.16, 1, 0.3, 1] }}
                   className="w-full flex-1 flex flex-col"
                 >
-                  {/* VIEW MODE: REAL SCREENSHOT WITH HOTSPOTS */}
+                  {/* VIEW MODE: INTERACTIVE MOBILE APP */}
                   {viewMode === 'screenshot' && (
-                    <div className="relative rounded-2xl overflow-hidden border border-slate-300 shadow-lg bg-slate-900 group/screen max-w-4xl mx-auto flex-1 flex items-center justify-center">
-                      <img 
-                        src={currentModule.img} 
-                        alt={currentModule.title_ar} 
-                        className="w-full h-auto object-contain cursor-zoom-in"
-                        onClick={() => setLightboxImg(currentModule.img)}
-                      />
-                      
-                      {/* Zoom Indicator overlay on screen */}
-                      <div className="absolute top-4 right-4 bg-black/60 backdrop-blur-md text-white p-2 rounded-lg text-xs flex items-center gap-1.5 opacity-0 group-hover/screen:opacity-100 transition-opacity">
-                        <ZoomIn className="w-3.5 h-3.5" />
-                        <span>{language === 'ar' ? 'انقر لتكبير الصورة' : 'Click to enlarge'}</span>
+                    <div className="flex flex-1 flex-col items-center justify-center gap-5 rounded-2xl bg-[radial-gradient(circle_at_50%_30%,rgba(99,102,241,0.16),transparent_62%)] py-4 sm:flex-row sm:gap-10">
+                      <div className="relative w-[280px] overflow-hidden rounded-[2.7rem] border-[7px] border-[#151a32] bg-[#f5f7fc] shadow-[0_28px_70px_-25px_rgba(30,40,90,0.65)]" dir={language === 'ar' ? 'rtl' : 'ltr'}>
+                        <div className="absolute left-1/2 top-2 z-30 h-5 w-24 -translate-x-1/2 rounded-full bg-[#151a32]" />
+                        <div className="flex items-center justify-between bg-[#1E285A] px-5 pb-3 pt-8 text-[9px] font-bold text-white">
+                          <span>9:41</span>
+                          <span className="flex items-center gap-1"><span>5G</span><span className="h-2 w-3 rounded-sm border border-white/70" /></span>
+                        </div>
+
+                        <div className="flex items-center justify-between bg-gradient-to-br from-[#1E285A] to-[#4E60A2] px-4 pb-5 text-white">
+                          <div>
+                            <span className="block text-[9px] text-white/65">{language === 'ar' ? 'مرحبًا دكتور' : 'Welcome doctor'}</span>
+                            <strong className="text-sm">{language === 'ar' ? 'أحمد محمد' : 'Ahmed Mohamed'}</strong>
+                          </div>
+                          <div className="flex items-center gap-2">
+                            <button className="relative flex h-8 w-8 items-center justify-center rounded-xl bg-white/10"><Bell className="h-3.5 w-3.5" /><span className="absolute end-1 top-1 h-1.5 w-1.5 rounded-full bg-rose-400" /></button>
+                            <div className="flex h-8 w-8 items-center justify-center rounded-xl bg-white text-[#3B51A3]"><UserRound className="h-4 w-4" /></div>
+                          </div>
+                        </div>
+
+                        <div className="relative min-h-[410px] px-3 pb-20 pt-4">
+                          <AnimatePresence mode="wait">
+                            {mobileScreen === 'home' && (
+                              <motion.div key="mobile-home" initial={{ opacity: 0, x: 22 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -22 }} className="space-y-3">
+                                <div className="grid grid-cols-2 gap-2">
+                                  <motion.div whileTap={{ scale: 0.97 }} className="rounded-2xl bg-white p-3 shadow-sm ring-1 ring-slate-100">
+                                    <Activity className="mb-2 h-4 w-4 text-emerald-500" />
+                                    <strong className="block text-xl text-slate-900">12</strong>
+                                    <span className="text-[9px] text-slate-500">{language === 'ar' ? 'كشوفات اليوم' : 'Today visits'}</span>
+                                  </motion.div>
+                                  <motion.div whileTap={{ scale: 0.97 }} className="rounded-2xl bg-white p-3 shadow-sm ring-1 ring-slate-100">
+                                    <FileText className="mb-2 h-4 w-4 text-indigo-500" />
+                                    <strong className="block text-xl text-slate-900">8</strong>
+                                    <span className="text-[9px] text-slate-500">{language === 'ar' ? 'تقارير مكتملة' : 'Reports ready'}</span>
+                                  </motion.div>
+                                </div>
+                                <div className="rounded-2xl bg-gradient-to-br from-[#3B51A3] to-[#6f81c5] p-4 text-white shadow-lg">
+                                  <div className="mb-3 flex items-center justify-between"><span className="text-[10px] font-bold">{language === 'ar' ? 'الموعد التالي' : 'Next appointment'}</span><Calendar className="h-4 w-4" /></div>
+                                  <strong className="block text-sm">{language === 'ar' ? 'سارة محمد' : 'Sara Mohamed'}</strong>
+                                  <span className="text-[9px] text-white/70">10:30 AM · {language === 'ar' ? 'متابعة دورية' : 'Follow-up'}</span>
+                                </div>
+                                <div className="rounded-2xl bg-white p-3 shadow-sm ring-1 ring-slate-100">
+                                  <span className="mb-3 block text-[10px] font-bold text-slate-800">{language === 'ar' ? 'إجراءات سريعة' : 'Quick actions'}</span>
+                                  <div className="grid grid-cols-3 gap-2 text-center text-[8px] font-bold text-slate-600">
+                                    <button className="rounded-xl bg-indigo-50 p-2"><Users className="mx-auto mb-1 h-4 w-4 text-indigo-500" />{language === 'ar' ? 'مريض' : 'Patient'}</button>
+                                    <button className="rounded-xl bg-emerald-50 p-2"><Calendar className="mx-auto mb-1 h-4 w-4 text-emerald-500" />{language === 'ar' ? 'موعد' : 'Visit'}</button>
+                                    <button onClick={() => setMobileScreen('assistant')} className="rounded-xl bg-violet-50 p-2"><Bot className="mx-auto mb-1 h-4 w-4 text-violet-500" />{language === 'ar' ? 'المساعد' : 'AI'}</button>
+                                  </div>
+                                </div>
+                              </motion.div>
+                            )}
+
+                            {mobileScreen === 'patient' && (
+                              <motion.div key="mobile-patient" initial={{ opacity: 0, x: 22 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -22 }} className="space-y-3">
+                                <div className="flex items-center gap-3 rounded-2xl bg-white p-3 shadow-sm ring-1 ring-slate-100">
+                                  <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-indigo-100 text-[#3B51A3]"><UserRound className="h-5 w-5" /></div>
+                                  <div><strong className="block text-sm text-slate-900">{language === 'ar' ? 'سارة محمد' : 'Sara Mohamed'}</strong><span className="text-[9px] text-slate-500">32 {language === 'ar' ? 'سنة · متابعة دورية' : 'years · Follow-up'}</span></div>
+                                </div>
+                                <div className="grid grid-cols-3 gap-2">
+                                  {[['120/80', language === 'ar' ? 'الضغط' : 'BP'], ['78', language === 'ar' ? 'النبض' : 'Pulse'], ['98%', language === 'ar' ? 'الأكسجين' : 'O₂']].map(([value, label]) => <div key={label} className="rounded-xl bg-white p-2 text-center shadow-sm"><strong className="block text-xs text-slate-900">{value}</strong><span className="text-[8px] text-slate-500">{label}</span></div>)}
+                                </div>
+                                <div className="rounded-2xl bg-white p-3 shadow-sm ring-1 ring-slate-100">
+                                  <span className="mb-2 block text-[10px] font-bold text-slate-800">{language === 'ar' ? 'ملخص آخر زيارة' : 'Last visit summary'}</span>
+                                  <p className="text-[9px] leading-5 text-slate-500">{language === 'ar' ? 'الحالة مستقرة مع تحسن ملحوظ. الاستمرار على الخطة الحالية وإعادة الفحص بعد أسبوعين.' : 'Stable condition with visible improvement. Continue the current plan and review in two weeks.'}</p>
+                                </div>
+                                <button onClick={() => setMobileScreen('assistant')} className="flex w-full items-center justify-center gap-2 rounded-2xl bg-[#3B51A3] py-3 text-[10px] font-bold text-white"><Sparkles className="h-3.5 w-3.5" />{language === 'ar' ? 'تحليل الحالة مع نبض' : 'Analyze with Nabd'}</button>
+                              </motion.div>
+                            )}
+
+                            {mobileScreen === 'assistant' && (
+                              <motion.div key="mobile-assistant" initial={{ opacity: 0, x: 22 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -22 }} className="flex min-h-[365px] flex-col">
+                                <div className="mb-4 flex items-center gap-2"><div className="flex h-9 w-9 items-center justify-center rounded-2xl bg-violet-100 text-violet-600"><Bot className="h-5 w-5" /></div><div><strong className="block text-xs text-slate-900">{language === 'ar' ? 'مساعد نبض' : 'Nabd Assistant'}</strong><span className="flex items-center gap-1 text-[8px] text-emerald-600"><span className="h-1.5 w-1.5 animate-pulse rounded-full bg-emerald-500" />{language === 'ar' ? 'متصل الآن' : 'Online'}</span></div></div>
+                                <div className="space-y-2">
+                                  <div className="max-w-[85%] rounded-2xl rounded-ss-sm bg-white p-3 text-[9px] leading-5 text-slate-600 shadow-sm">{language === 'ar' ? 'مرحبًا دكتور، يمكنني تلخيص الزيارة أو تحليل نتائج الفحوصات.' : 'Hello doctor, I can summarize the visit or analyze test results.'}</div>
+                                  <div className="ms-auto max-w-[80%] rounded-2xl rounded-se-sm bg-[#3B51A3] p-3 text-[9px] leading-5 text-white">{language === 'ar' ? 'لخّص حالة سارة محمد' : 'Summarize Sara Mohamed’s case'}</div>
+                                  <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.5 }} className="max-w-[88%] rounded-2xl rounded-ss-sm bg-white p-3 text-[9px] leading-5 text-slate-600 shadow-sm">{language === 'ar' ? 'الحالة مستقرة، المؤشرات الحيوية طبيعية، ويوصى بالمتابعة بعد أسبوعين.' : 'The patient is stable, vital signs are normal, and follow-up is recommended in two weeks.'}</motion.div>
+                                </div>
+                                <div className="mt-auto flex items-center gap-2 rounded-2xl bg-white p-2 shadow-sm ring-1 ring-slate-100"><Mic className="h-4 w-4 text-[#3B51A3]" /><span className="flex-1 text-[8px] text-slate-400">{language === 'ar' ? 'اكتب أو تحدث مع نبض...' : 'Type or speak to Nabd...'}</span><button className="flex h-7 w-7 items-center justify-center rounded-xl bg-[#3B51A3] text-white"><Send className="h-3 w-3" /></button></div>
+                              </motion.div>
+                            )}
+                          </AnimatePresence>
+
+                          <div className="absolute inset-x-3 bottom-3 grid grid-cols-3 rounded-2xl bg-white p-1.5 shadow-[0_8px_28px_rgba(30,40,90,0.14)] ring-1 ring-slate-100">
+                            {[
+                              { id: 'home' as const, icon: Home, label: language === 'ar' ? 'الرئيسية' : 'Home' },
+                              { id: 'patient' as const, icon: Users, label: language === 'ar' ? 'المرضى' : 'Patients' },
+                              { id: 'assistant' as const, icon: MessageSquare, label: language === 'ar' ? 'المساعد' : 'Assistant' },
+                            ].map((item) => <button key={item.id} onClick={() => setMobileScreen(item.id)} className={`flex flex-col items-center gap-1 rounded-xl py-2 text-[8px] font-bold transition-all ${mobileScreen === item.id ? 'bg-indigo-50 text-[#3B51A3]' : 'text-slate-400'}`}><item.icon className="h-4 w-4" />{item.label}</button>)}
+                          </div>
+                        </div>
                       </div>
 
-                      {/* Hotspots overlays */}
-                      {currentModule.hotspots.map((hs, index) => {
-                        const isHotspotActive = activeHotspot === index;
-                        return (
-                          <div
-                            key={index}
-                            className="absolute z-20"
-                            style={{ left: `${hs.x}%`, top: `${hs.y}%` }}
-                          >
-                            {/* Pulsing Dot */}
-                            <button
-                              onClick={(e) => {
-                                e.stopPropagation();
-                                setActiveHotspot(isHotspotActive ? null : index);
-                              }}
-                              className={`w-6 h-6 rounded-full flex items-center justify-center transition-all cursor-pointer ${
-                                isHotspotActive 
-                                  ? 'bg-red-500 ring-4 ring-red-200 scale-110' 
-                                  : 'bg-[#3B51A3] ring-4 ring-indigo-200 animate-pulse'
-                              }`}
-                            >
-                              <span className="text-white text-[10px] font-bold">{index + 1}</span>
-                            </button>
-
-                            {/* Floating Tooltip Card */}
-                            {isHotspotActive && (
-                              <div 
-                                className="absolute bottom-8 left-1/2 -translate-x-1/2 w-64 bg-white border border-slate-200/80 rounded-xl p-4 shadow-xl z-30 text-start"
-                                onClick={(e) => e.stopPropagation()}
-                              >
-                                <div className="flex items-center justify-between pb-1.5 mb-1.5 border-b border-slate-100">
-                                  <span className="font-bold text-xs text-[#3B51A3]">
-                                    {language === 'ar' ? hs.title_ar : hs.title_en}
-                                  </span>
-                                  <button onClick={() => setActiveHotspot(null)} className="cursor-pointer">
-                                    <X className="w-3 h-3 text-slate-400 hover:text-slate-600" />
-                                  </button>
-                                </div>
-                                <p className="text-[11px] text-slate-600 leading-relaxed font-sans">
-                                  {language === 'ar' ? hs.desc_ar : hs.desc_en}
-                                </p>
-                              </div>
-                            )}
-                          </div>
-                        );
-                      })}
+                      <div className="max-w-xs text-center sm:text-start">
+                        <div className="mb-3 inline-flex items-center gap-2 rounded-full bg-indigo-50 px-3 py-1.5 text-[10px] font-bold text-[#3B51A3]"><Smartphone className="h-3.5 w-3.5" />{language === 'ar' ? 'تطبيق نبض للطبيب' : 'Nabd Doctor App'}</div>
+                        <h3 className="mb-2 text-xl font-extrabold text-slate-900">{language === 'ar' ? 'عيادتك معك في كل مكان' : 'Your clinic, everywhere'}</h3>
+                        <p className="text-xs leading-6 text-slate-500">{language === 'ar' ? 'تنقّل بين التابات داخل الهاتف لتجربة لوحة الطبيب، ملفات المرضى، ومساعد نبض الذكي.' : 'Use the phone tabs to explore the doctor dashboard, patient files, and Nabd AI assistant.'}</p>
+                      </div>
                     </div>
                   )}
 
@@ -805,24 +989,41 @@ export default function ShowcaseGallery() {
                       )}
 
                       {/* SIMULATORS FALLBACK: EMBEDDED PREVIEWS */}
-                      {['dashboard', 'emr', 'payments'].includes(activeTab) && (
-                        <div className="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm text-center flex-1 flex flex-col justify-center items-center font-sans">
-                          <Laptop className="w-12 h-12 text-slate-300 mb-3" />
-                          <h3 className="font-bold text-sm text-slate-800 mb-1">
-                            {language === 'ar' 
-                              ? `محاكاة شاشة ${currentModule.title_ar} التفاعلية` 
-                              : `${currentModule.title_en} Interactive Simulator`}
-                          </h3>
-                          <p className="text-xs text-slate-500 max-w-sm mb-4 leading-relaxed">
-                            {language === 'ar'
-                              ? `لقد تم تصميم محاكي حي تفاعلي لصفحة التحاليل ومساعد نبض خصيصًا. لتصفح هذه شاشة بدقة، يرجى التبديل لنمط "صورة الشاشة" لمشاهدتها بكامل تفاصيلها الحقيقية.`
-                              : `A custom live emulator is configured for Labs and AI Assistant. To view this screen in full high-fidelity, please select the "Real Screen" mode.`}
-                          </p>
+                      {!['diagnostics', 'assistant'].includes(activeTab) && (
+                        <div className="relative flex flex-1 flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm font-sans">
+                          <div className="flex items-center justify-between border-b border-slate-100 px-4 py-3">
+                            <div className="flex items-center gap-2 text-start">
+                              <div className="flex h-8 w-8 items-center justify-center rounded-xl bg-indigo-50 text-[#3B51A3]">
+                                <Laptop className="h-4 w-4" />
+                              </div>
+                              <div>
+                                <h3 className="text-xs font-extrabold text-slate-800">
+                                  {language === 'ar' ? currentModule.title_ar : currentModule.title_en}
+                                </h3>
+                                <span className="text-[9px] text-emerald-600">
+                                  {language === 'ar' ? 'شاشة ويب مباشرة' : 'Live web screen'}
+                                </span>
+                              </div>
+                            </div>
+                            <button
+                              onClick={() => setLightboxImg(currentModule.img)}
+                              className="flex items-center gap-1.5 rounded-lg border border-slate-200 px-2.5 py-1.5 text-[9px] font-bold text-slate-600 transition-colors hover:bg-slate-50"
+                            >
+                              <ZoomIn className="h-3.5 w-3.5" />
+                              {language === 'ar' ? 'تكبير' : 'Enlarge'}
+                            </button>
+                          </div>
                           <button
-                            onClick={() => setViewMode('screenshot')}
-                            className="px-4 py-2 bg-[#3B51A3] hover:bg-[#2A3B78] text-white rounded-xl text-xs font-bold transition-all cursor-pointer"
+                            onClick={() => setLightboxImg(currentModule.img)}
+                            className="group relative flex min-h-[390px] flex-1 items-center justify-center overflow-hidden bg-slate-100 p-2 cursor-zoom-in"
+                            aria-label={language === 'ar' ? 'تكبير شاشة الويب' : 'Enlarge web screen'}
                           >
-                            {language === 'ar' ? 'عرض لقطة الشاشة الحقيقية' : 'View Real Screenshot'}
+                            <img
+                              src={currentModule.img}
+                              alt={language === 'ar' ? currentModule.title_ar : currentModule.title_en}
+                              className="h-full max-h-[520px] w-full object-contain transition-transform duration-700 group-hover:scale-[1.015]"
+                            />
+                            <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#1E285A]/10 via-transparent to-transparent" />
                           </button>
                         </div>
                       )}
@@ -837,23 +1038,31 @@ export default function ShowcaseGallery() {
             <div className="bg-white border-t border-slate-200/80 px-6 py-4 flex flex-col sm:flex-row sm:items-center justify-between gap-4 shrink-0 text-start font-sans">
               <div>
                 <h4 className="font-extrabold text-sm text-slate-900 mb-1">
-                  {language === 'ar' ? currentModule.title_ar : currentModule.title_en}
+                  {viewMode === 'screenshot'
+                    ? (language === 'ar' ? 'تطبيق نبض للموبايل' : 'Nabd Mobile App')
+                    : (language === 'ar' ? currentModule.title_ar : currentModule.title_en)}
                 </h4>
                 <p className="text-xs text-slate-500">
-                  {language === 'ar' ? currentModule.desc_ar : currentModule.desc_en}
+                  {viewMode === 'screenshot'
+                    ? (language === 'ar'
+                      ? 'واجهة موبايل تفاعلية لإدارة العيادة ومتابعة المرضى واستخدام مساعد نبض الذكي.'
+                      : 'An interactive mobile experience for clinic management, patient follow-up, and Nabd AI.')
+                    : (language === 'ar' ? currentModule.desc_ar : currentModule.desc_en)}
                 </p>
               </div>
 
               {/* Action buttons */}
-              <div className="flex items-center gap-2 shrink-0">
-                <button
-                  onClick={() => setLightboxImg(currentModule.img)}
-                  className="px-3.5 py-1.5 border border-slate-200 rounded-xl bg-slate-55 hover:bg-slate-100 text-slate-700 hover:text-slate-900 text-xs font-bold flex items-center gap-1.5 transition-all cursor-pointer"
-                >
-                  <ZoomIn className="w-3.5 h-3.5" />
-                  <span>{language === 'ar' ? 'تكبير كامل' : 'Enlarge'}</span>
-                </button>
-              </div>
+              {viewMode === 'simulator' && (
+                <div className="flex items-center gap-2 shrink-0">
+                  <button
+                    onClick={() => setLightboxImg(currentModule.img)}
+                    className="px-3.5 py-1.5 border border-slate-200 rounded-xl bg-slate-55 hover:bg-slate-100 text-slate-700 hover:text-slate-900 text-xs font-bold flex items-center gap-1.5 transition-all cursor-pointer"
+                  >
+                    <ZoomIn className="w-3.5 h-3.5" />
+                    <span>{language === 'ar' ? 'تكبير كامل' : 'Enlarge'}</span>
+                  </button>
+                </div>
+              )}
             </div>
           </div>
         </div>

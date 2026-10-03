@@ -1,5 +1,5 @@
 import { motion } from 'motion/react';
-import { Clock3, FileText, Search, Pill, FileCheck2, FlaskConical, FolderGit2, Sparkles, Check, ArrowRight, ArrowLeft } from 'lucide-react';
+import { Clock3, FileText, Search, Pill, FileCheck2, FlaskConical, FolderGit2, Check } from 'lucide-react';
 import { useLanguage } from '../lib/LanguageContext';
 
 export default function WorkflowEfficiencySection() {
@@ -195,21 +195,6 @@ export default function WorkflowEfficiencySection() {
         </div>
       </div>
 
-      {/* Goal Callout Box from Document */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        className="glass-card rounded-3xl border border-[#D5DAE8] p-6 sm:p-8 bg-gradient-to-r from-white via-[#F8F9FD] to-white text-center shadow-md max-w-4xl mx-auto"
-      >
-        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#1E285A] text-white text-[11px] font-bold font-mono mb-3">
-          <Sparkles className="w-3 h-3 text-amber-300" />
-          <span>{t.workflowEfficiency.goalBadge}</span>
-        </div>
-        <p className="text-sm sm:text-base text-slate-800 font-semibold leading-relaxed max-w-2xl mx-auto">
-          "{t.workflowEfficiency.goalText}"
-        </p>
-      </motion.div>
     </section>
   );
 }

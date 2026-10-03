@@ -1,5 +1,5 @@
 import { motion } from 'motion/react';
-import { Globe2, ShieldAlert, Sparkles, HeartPulse, Languages, Scale, Stethoscope, Lock } from 'lucide-react';
+import { Globe2, ShieldAlert, Languages, Scale, Stethoscope, Lock } from 'lucide-react';
 import { useLanguage } from '../lib/LanguageContext';
 
 export default function VisionSection() {
@@ -44,9 +44,9 @@ export default function VisionSection() {
           initial={{ opacity: 0, y: 15 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 border border-white/15 text-[#849CC6] text-xs font-bold mb-6 backdrop-blur-md"
+          className="inline-flex items-center gap-2.5 px-5 py-2 rounded-full bg-white/10 border border-white/15 text-[#849CC6] text-sm sm:text-base font-extrabold mb-6 backdrop-blur-md"
         >
-          <Globe2 className="w-3.5 h-3.5 text-[#849CC6]" />
+          <Globe2 className="w-4 h-4 sm:w-5 sm:h-5 text-[#849CC6]" />
           <span>{t.vision.badge}</span>
         </motion.div>
 
@@ -70,7 +70,7 @@ export default function VisionSection() {
           className="p-6 sm:p-8 rounded-3xl bg-white/5 border border-white/10 backdrop-blur-md max-w-4xl mx-auto mb-10 text-start shadow-xl"
         >
           <span className="text-[11px] font-bold font-mono text-[#849CC6] uppercase tracking-wider block mb-2">
-            {dir === 'rtl' ? "بيان الرؤية المعتمد" : "OFFICIAL VISION STATEMENT"}
+            {dir === 'rtl' ? "هدف الرؤية" : "VISION GOAL"}
           </span>
           <p className="text-base sm:text-xl text-white font-medium leading-relaxed">
             "{t.vision.desc}"
@@ -113,24 +113,6 @@ export default function VisionSection() {
             </motion.div>
           ))}
         </div>
-
-        {/* Final Slogan Banner */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.96 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.35 }}
-          className="p-6 rounded-3xl bg-gradient-to-r from-[#1E285A]/80 via-[#4E60A2]/60 to-[#1E285A]/80 border border-[#4E60A2]/50 shadow-2xl max-w-3xl mx-auto mb-8"
-        >
-          <div className="flex items-center justify-center gap-2 text-amber-300 mb-2">
-            <Sparkles className="w-4 h-4" />
-            <span className="text-xs font-bold font-mono tracking-wider uppercase">NABD PLATFORM</span>
-            <Sparkles className="w-4 h-4" />
-          </div>
-          <h3 className="text-xl sm:text-3xl font-extrabold text-white heading-display">
-            {t.vision.slogan}
-          </h3>
-        </motion.div>
 
         {/* Medical Ethics & Disclaimer Banner */}
         <motion.div

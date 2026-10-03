@@ -6,7 +6,7 @@ export default function CTA() {
   const { t, dir } = useLanguage();
 
   return (
-    <section className="relative w-full py-28 overflow-hidden">
+    <section id="cta" className="relative w-full py-28 overflow-hidden">
       {/* Soft Background Radiance */}
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#E9ECF5]/40 to-[#E6E9F2]/30 pointer-events-none" />
       <div className="absolute top-1/2 start-1/2 -translate-x-1/2 rtl:translate-x-1/2 -translate-y-1/2 w-[700px] h-[500px] bg-[#4E60A2]/10 rounded-full blur-[160px] pointer-events-none" />

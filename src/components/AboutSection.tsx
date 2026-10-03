@@ -1,5 +1,5 @@
 import { motion } from 'motion/react';
-import { Sparkles, BrainCircuit, Zap, HeartPulse, ShieldCheck, ArrowUpRight } from 'lucide-react';
+import { Sparkles, BrainCircuit, Zap, HeartPulse, ArrowUpRight } from 'lucide-react';
 import { useLanguage } from '../lib/LanguageContext';
 
 export default function AboutSection() {
@@ -62,42 +62,15 @@ export default function AboutSection() {
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="lg:col-span-7 glass-card rounded-3xl border border-[#CFD5E4]/80 p-8 sm:p-10 flex flex-col justify-between relative overflow-hidden shadow-lg shadow-[#4E60A2]/5"
+          className="lg:col-span-7 glass-card rounded-3xl border border-[#CFD5E4]/80 p-8 sm:p-12 flex flex-col justify-center relative overflow-hidden shadow-lg shadow-[#4E60A2]/5 min-h-[280px]"
         >
           {/* Subtle watermarked pulse waveform */}
           <div className="absolute -top-12 end-0 w-64 h-64 bg-[#4E60A2]/5 rounded-full blur-3xl pointer-events-none" />
 
-          <div className="relative z-10 space-y-6 text-start">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-lg bg-[#4E60A2]/10 text-[#4E60A2] text-xs font-bold font-mono">
-              <span>NABD HEALTHCARE OS</span>
-              <span>•</span>
-              <span>GLOBAL HEALTHCARE AI</span>
-            </div>
-
-            <p className="text-base sm:text-lg text-slate-800 leading-relaxed font-medium">
-              {t.about.p1}
-            </p>
-
-            <p className="text-sm sm:text-base text-slate-600 leading-relaxed">
+          <div className="relative z-10 text-start">
+            <p className="text-base sm:text-xl lg:text-2xl text-slate-800 leading-relaxed font-medium">
               {t.about.p2}
             </p>
-          </div>
-
-          {/* Golden Medical Covenant Card */}
-          <div className="relative z-10 mt-8 pt-6 border-t border-[#D5DAE8]/70">
-            <div className="flex items-start sm:items-center gap-3.5 p-4 rounded-2xl bg-gradient-to-r from-[#1E285A]/5 via-[#4E60A2]/10 to-transparent border border-[#4E60A2]/20">
-              <div className="w-10 h-10 rounded-xl bg-[#1E285A] text-white flex items-center justify-center shrink-0 shadow-sm">
-                <ShieldCheck className="w-5 h-5 text-emerald-400" />
-              </div>
-              <div className="text-start">
-                <span className="text-[11px] font-bold text-[#4E60A2] uppercase tracking-wider block">
-                  ميثاق التمكين الطبي
-                </span>
-                <p className="text-xs sm:text-sm font-bold text-slate-900 mt-0.5 leading-snug">
-                  "{t.about.disclaimer}"
-                </p>
-              </div>
-            </div>
           </div>
         </motion.div>
 
