@@ -38,6 +38,13 @@ interface GalleryModule {
 
 const AUTO_TOUR_TABS = ['diagnostics', 'assistant'] as const;
 
+const MODULE_BY_MOBILE_SCREEN = { home: 'dashboard', patient: 'emr', assistant: 'assistant' } as const;
+const MOBILE_SCREEN_BY_MODULE: Record<string, keyof typeof MODULE_BY_MOBILE_SCREEN> = {
+  dashboard: 'home',
+  emr: 'patient',
+  assistant: 'assistant',
+};
+
 export default function ShowcaseGallery() {
   const { language } = useLanguage();
   const [activeTab, setActiveTab] = useState<string>('diagnostics');
@@ -45,7 +52,6 @@ export default function ShowcaseGallery() {
   const [activeHotspot, setActiveHotspot] = useState<number | null>(null);
   const [lightboxImg, setLightboxImg] = useState<string | null>(null);
   const [isAutoTour, setIsAutoTour] = useState(true);
-  const [mobileScreen, setMobileScreen] = useState<'home' | 'patient' | 'assistant'>('home');
 
   // Diagnostics Live Simulator States
   const [diagSearch, setDiagSearch] = useState<string>('');
@@ -293,6 +299,14 @@ export default function ShowcaseGallery() {
 
   const currentModule = modules.find(m => m.id === activeTab) || modules[0];
 
+  // The phone mockup follows the selected sidebar module: three modules have a
+  // dedicated phone screen, every other module gets a generic module screen.
+  const mobileScreen = MOBILE_SCREEN_BY_MODULE[activeTab] ?? 'module';
+  const openMobileScreen = (screen: keyof typeof MODULE_BY_MOBILE_SCREEN) => {
+    setIsAutoTour(false);
+    setActiveTab(MODULE_BY_MOBILE_SCREEN[screen]);
+  };
+
   useEffect(() => {
     if (!isAutoTour || viewMode !== 'simulator') return;
 
@@ -453,7 +467,7 @@ export default function ShowcaseGallery() {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
-        <div className="text-center mb-16 relative z-10">
+        <div className="text-center mb-10 relative z-10">
           <span className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-indigo-50 border border-indigo-200 text-[#3B51A3] text-xs font-bold mb-4">
             <Laptop className="w-3.5 h-3.5" />
             <span>{language === 'ar' ? 'عرض النظام التفاعلي' : 'Interactive System Tour'}</span>
@@ -466,6 +480,41 @@ export default function ShowcaseGallery() {
               ? 'اكتشف شاشات نظام الويب وجرّب تطبيق نبض للموبايل من خلال واجهات تفاعلية حقيقية.'
               : 'Explore Nabd web screens and try the mobile app through interactive interfaces.'}
           </p>
+        </div>
+
+        {/* View Mode Switch: Web Screens / Mobile App */}
+        <div className="relative z-10 flex justify-center mb-10">
+          <div className="inline-flex items-center gap-1.5 p-1.5 rounded-2xl bg-white border border-indigo-100 shadow-xl shadow-indigo-900/10">
+            {([
+              { mode: 'simulator', icon: Laptop, label: language === 'ar' ? 'شاشات الويب' : 'Web Screens' },
+              { mode: 'screenshot', icon: Smartphone, label: language === 'ar' ? 'تطبيق الموبايل' : 'Mobile App' },
+            ] as const).map(({ mode, icon: Icon, label }) => {
+              const isActive = viewMode === mode;
+              return (
+                <button
+                  key={mode}
+                  onClick={() => {
+                    setIsAutoTour(false);
+                    if (mode === 'screenshot' && viewMode !== 'screenshot') setActiveTab(MODULE_BY_MOBILE_SCREEN.home);
+                    setViewMode(mode);
+                  }}
+                  className={`relative flex items-center justify-center gap-2.5 px-5 sm:px-8 py-3 sm:py-3.5 rounded-xl text-sm sm:text-base font-bold transition-colors cursor-pointer ${
+                    isActive ? 'text-white' : 'text-slate-600 hover:text-[#3B51A3]'
+                  }`}
+                >
+                  {isActive && (
+                    <motion.span
+                      layoutId="gallery-view-pill"
+                      transition={{ type: 'spring', stiffness: 420, damping: 34 }}
+                      className="absolute inset-0 rounded-xl bg-gradient-to-r from-[#3B51A3] to-[#1E285A] shadow-lg shadow-[#3B51A3]/30"
+                    />
+                  )}
+                  <Icon className="relative w-5 h-5 shrink-0" />
+                  <span className="relative whitespace-nowrap">{label}</span>
+                </button>
+              );
+            })}
+          </div>
         </div>
 
         {/* Outer Tour Window Frame */}
@@ -509,38 +558,6 @@ export default function ShowcaseGallery() {
                 })}
               </div>
             </div>
-
-            {/* View Mode Toggle Controls */}
-            <div className="mt-6 pt-4 border-t border-slate-200 hidden lg:block">
-              <div className="bg-slate-200/80 p-1 rounded-xl flex items-center justify-between gap-1">
-                <button
-                  onClick={() => {
-                    setIsAutoTour(false);
-                    setViewMode('simulator');
-                  }}
-                  className={`flex-1 text-center py-2 rounded-lg text-[11px] font-bold transition-all cursor-pointer ${
-                    viewMode === 'simulator' 
-                      ? 'bg-white text-slate-900 shadow-xs' 
-                      : 'text-slate-600 hover:text-slate-800'
-                  }`}
-                >
-                  {language === 'ar' ? 'شاشات الويب' : 'Web Screens'}
-                </button>
-                <button
-                  onClick={() => {
-                    setIsAutoTour(false);
-                    setViewMode('screenshot');
-                  }}
-                  className={`flex-1 text-center py-2 rounded-lg text-[11px] font-bold transition-all cursor-pointer ${
-                    viewMode === 'screenshot' 
-                      ? 'bg-white text-slate-900 shadow-xs' 
-                      : 'text-slate-600 hover:text-slate-800'
-                  }`}
-                >
-                  {language === 'ar' ? 'تطبيق الموبايل' : 'Mobile App'}
-                </button>
-              </div>
-            </div>
           </div>
 
           {/* 2. Main Tour Content Window */}
@@ -574,21 +591,6 @@ export default function ShowcaseGallery() {
                 <span>{language === 'ar' ? (isAutoTour ? 'إيقاف الجولة' : 'تشغيل الجولة') : (isAutoTour ? 'Pause tour' : 'Play tour')}</span>
                 {isAutoTour && <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-emerald-500" />}
               </button>
-
-              {/* Mobile Toggle Switches */}
-              <div className="flex items-center gap-2 lg:hidden">
-                <button
-                  onClick={() => {
-                    setIsAutoTour(false);
-                    setViewMode(viewMode === 'simulator' ? 'screenshot' : 'simulator');
-                  }}
-                  className="px-3 py-1 bg-indigo-50 border border-indigo-200 text-[#3B51A3] rounded-lg text-[10px] font-bold"
-                >
-                  {viewMode === 'simulator' 
-                    ? (language === 'ar' ? 'تطبيق الموبايل' : 'Mobile App')
-                    : (language === 'ar' ? 'شاشات الويب' : 'Web Screens')}
-                </button>
-              </div>
             </div>
 
             {isAutoTour && viewMode === 'simulator' && (
@@ -620,7 +622,7 @@ export default function ShowcaseGallery() {
               
               <AnimatePresence mode="wait">
                 <motion.div
-                  key={activeTab + viewMode}
+                  key={viewMode === 'screenshot' ? 'mobile-app' : activeTab + viewMode}
                   initial={{ opacity: 0, x: 24, scale: 0.985 }}
                   animate={{ opacity: 1, x: 0, scale: 1 }}
                   exit={{ opacity: 0, x: -24, scale: 0.985 }}
@@ -648,7 +650,7 @@ export default function ShowcaseGallery() {
                           </div>
                         </div>
 
-                        <div className="relative min-h-[410px] px-3 pb-20 pt-4">
+                        <div className="relative h-[468px] overflow-hidden px-3 pb-20 pt-4">
                           <AnimatePresence mode="wait">
                             {mobileScreen === 'home' && (
                               <motion.div key="mobile-home" initial={{ opacity: 0, x: 22 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -22 }} className="space-y-3">
@@ -674,7 +676,7 @@ export default function ShowcaseGallery() {
                                   <div className="grid grid-cols-3 gap-2 text-center text-[8px] font-bold text-slate-600">
                                     <button className="rounded-xl bg-indigo-50 p-2"><Users className="mx-auto mb-1 h-4 w-4 text-indigo-500" />{language === 'ar' ? 'مريض' : 'Patient'}</button>
                                     <button className="rounded-xl bg-emerald-50 p-2"><Calendar className="mx-auto mb-1 h-4 w-4 text-emerald-500" />{language === 'ar' ? 'موعد' : 'Visit'}</button>
-                                    <button onClick={() => setMobileScreen('assistant')} className="rounded-xl bg-violet-50 p-2"><Bot className="mx-auto mb-1 h-4 w-4 text-violet-500" />{language === 'ar' ? 'المساعد' : 'AI'}</button>
+                                    <button onClick={() => openMobileScreen('assistant')} className="rounded-xl bg-violet-50 p-2"><Bot className="mx-auto mb-1 h-4 w-4 text-violet-500" />{language === 'ar' ? 'المساعد' : 'AI'}</button>
                                   </div>
                                 </div>
                               </motion.div>
@@ -693,7 +695,7 @@ export default function ShowcaseGallery() {
                                   <span className="mb-2 block text-[10px] font-bold text-slate-800">{language === 'ar' ? 'ملخص آخر زيارة' : 'Last visit summary'}</span>
                                   <p className="text-[9px] leading-5 text-slate-500">{language === 'ar' ? 'الحالة مستقرة مع تحسن ملحوظ. الاستمرار على الخطة الحالية وإعادة الفحص بعد أسبوعين.' : 'Stable condition with visible improvement. Continue the current plan and review in two weeks.'}</p>
                                 </div>
-                                <button onClick={() => setMobileScreen('assistant')} className="flex w-full items-center justify-center gap-2 rounded-2xl bg-[#3B51A3] py-3 text-[10px] font-bold text-white"><Sparkles className="h-3.5 w-3.5" />{language === 'ar' ? 'تحليل الحالة مع نبض' : 'Analyze with Nabd'}</button>
+                                <button onClick={() => openMobileScreen('assistant')} className="flex w-full items-center justify-center gap-2 rounded-2xl bg-[#3B51A3] py-3 text-[10px] font-bold text-white"><Sparkles className="h-3.5 w-3.5" />{language === 'ar' ? 'تحليل الحالة مع نبض' : 'Analyze with Nabd'}</button>
                               </motion.div>
                             )}
 
@@ -708,6 +710,27 @@ export default function ShowcaseGallery() {
                                 <div className="mt-auto flex items-center gap-2 rounded-2xl bg-white p-2 shadow-sm ring-1 ring-slate-100"><Mic className="h-4 w-4 text-[#3B51A3]" /><span className="flex-1 text-[8px] text-slate-400">{language === 'ar' ? 'اكتب أو تحدث مع نبض...' : 'Type or speak to Nabd...'}</span><button className="flex h-7 w-7 items-center justify-center rounded-xl bg-[#3B51A3] text-white"><Send className="h-3 w-3" /></button></div>
                               </motion.div>
                             )}
+
+                            {mobileScreen === 'module' && (
+                              <motion.div key={`mobile-module-${currentModule.id}`} initial={{ opacity: 0, x: 22 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -22 }} className="space-y-3">
+                                <div className="flex items-center gap-3 rounded-2xl bg-white p-3 shadow-sm ring-1 ring-slate-100">
+                                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl bg-indigo-100 text-[#3B51A3]"><currentModule.icon className="h-5 w-5" /></div>
+                                  <strong className="text-sm leading-5 text-slate-900">{language === 'ar' ? currentModule.title_ar : currentModule.title_en}</strong>
+                                </div>
+                                <p className="rounded-2xl bg-white p-3 text-[9px] leading-5 text-slate-500 shadow-sm ring-1 ring-slate-100">{language === 'ar' ? currentModule.desc_ar : currentModule.desc_en}</p>
+                                <div className="space-y-2">
+                                  {[0.8, 0.65, 0.72].map((width, i) => (
+                                    <div key={i} className="flex items-center gap-2.5 rounded-xl bg-white p-2.5 shadow-sm ring-1 ring-slate-100">
+                                      <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-indigo-50 text-[#3B51A3]"><currentModule.icon className="h-3.5 w-3.5" /></span>
+                                      <div className="flex-1 space-y-1.5">
+                                        <span className="block h-1.5 rounded-full bg-slate-200" style={{ width: `${width * 100}%` }} />
+                                        <span className="block h-1.5 w-1/2 rounded-full bg-slate-100" />
+                                      </div>
+                                    </div>
+                                  ))}
+                                </div>
+                              </motion.div>
+                            )}
                           </AnimatePresence>
 
                           <div className="absolute inset-x-3 bottom-3 grid grid-cols-3 rounded-2xl bg-white p-1.5 shadow-[0_8px_28px_rgba(30,40,90,0.14)] ring-1 ring-slate-100">
@@ -715,7 +738,7 @@ export default function ShowcaseGallery() {
                               { id: 'home' as const, icon: Home, label: language === 'ar' ? 'الرئيسية' : 'Home' },
                               { id: 'patient' as const, icon: Users, label: language === 'ar' ? 'المرضى' : 'Patients' },
                               { id: 'assistant' as const, icon: MessageSquare, label: language === 'ar' ? 'المساعد' : 'Assistant' },
-                            ].map((item) => <button key={item.id} onClick={() => setMobileScreen(item.id)} className={`flex flex-col items-center gap-1 rounded-xl py-2 text-[8px] font-bold transition-all ${mobileScreen === item.id ? 'bg-indigo-50 text-[#3B51A3]' : 'text-slate-400'}`}><item.icon className="h-4 w-4" />{item.label}</button>)}
+                            ].map((item) => <button key={item.id} onClick={() => openMobileScreen(item.id)} className={`flex flex-col items-center gap-1 rounded-xl py-2 text-[8px] font-bold transition-all ${mobileScreen === item.id ? 'bg-indigo-50 text-[#3B51A3]' : 'text-slate-400'}`}><item.icon className="h-4 w-4" />{item.label}</button>)}
                           </div>
                         </div>
                       </div>
