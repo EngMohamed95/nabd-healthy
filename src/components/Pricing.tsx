@@ -182,7 +182,7 @@ export default function Pricing() {
                   key={plan.Id}
                   initial={{ opacity: 0, y: 18 }}
                   whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
+                  viewport={{ once: false, margin: "-12% 0px" }}
                   transition={{ delay: index * 0.08 }}
                   className={`rounded-3xl p-6 border flex flex-col justify-between transition-all ${
                     isPopular

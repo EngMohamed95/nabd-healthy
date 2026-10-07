@@ -36,7 +36,7 @@ export default function AboutSection() {
         <motion.div
           initial={{ opacity: 0, y: 15 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: false, margin: "-12% 0px" }}
           className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#E9ECF5] border border-[#D5DAE8] text-[#4E60A2] text-xs font-bold mb-4 shadow-xs"
         >
           <Sparkles className="w-3.5 h-3.5" />
@@ -46,7 +46,7 @@ export default function AboutSection() {
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: false, margin: "-12% 0px" }}
           transition={{ delay: 0.1 }}
           className="text-3xl sm:text-5xl font-extrabold heading-display text-slate-900 tracking-tight max-w-4xl mx-auto leading-tight"
         >
@@ -60,7 +60,7 @@ export default function AboutSection() {
         <motion.div
           initial={{ opacity: 0, x: dir === 'rtl' ? 30 : -30 }}
           whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: false, margin: "-12% 0px" }}
           transition={{ duration: 0.6 }}
           className="lg:col-span-7 glass-card rounded-3xl border border-[#CFD5E4]/80 p-8 sm:p-12 flex flex-col justify-center relative overflow-hidden shadow-lg shadow-[#4E60A2]/5 min-h-[280px]"
         >
@@ -81,11 +81,11 @@ export default function AboutSection() {
               key={i}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
+              viewport={{ once: false, margin: "-12% 0px" }}
               transition={{ duration: 0.5, delay: i * 0.1 }}
               className="glass-card group rounded-2xl border border-[#CFD5E4]/80 p-5 hover:border-[#4E60A2]/50 transition-all duration-300 shadow-sm hover:shadow-md hover:-translate-y-0.5 text-start relative overflow-hidden flex items-start gap-4"
             >
-              <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-[#E9ECF5] to-white border border-[#D5DAE8] text-[#4E60A2] flex items-center justify-center shrink-0 group-hover:scale-110 group-hover:bg-[#4E60A2] group-hover:text-white transition-all shadow-2xs">
+              <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-[#E9ECF5] to-white border border-[#D5DAE8] text-[#4E60A2] flex items-center justify-center shrink-0 group-hover:scale-110 group-hover:from-[#DDE4F5] group-hover:to-[#EEF2FA] group-hover:border-[#849CC6] group-hover:text-[#1E285A] transition-all shadow-2xs">
                 <card.icon className="w-6 h-6" />
               </div>
 

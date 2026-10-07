@@ -77,7 +77,7 @@ export default function KPIAnalyticsSection() {
         <motion.div
           initial={{ opacity: 0, y: 15 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: false, margin: "-12% 0px" }}
           className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#E9ECF5] border border-[#D5DAE8] text-[#4E60A2] text-xs font-bold mb-4 shadow-xs"
         >
           <LayoutDashboard className="w-3.5 h-3.5" />
@@ -87,7 +87,7 @@ export default function KPIAnalyticsSection() {
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: false, margin: "-12% 0px" }}
           transition={{ delay: 0.1 }}
           className="text-3xl sm:text-5xl font-extrabold heading-display text-slate-900 tracking-tight max-w-4xl mx-auto leading-tight mb-4"
         >
@@ -97,7 +97,7 @@ export default function KPIAnalyticsSection() {
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: false, margin: "-12% 0px" }}
           transition={{ delay: 0.2 }}
           className="text-base sm:text-lg text-slate-650 max-w-3xl mx-auto leading-relaxed"
         >
@@ -147,7 +147,7 @@ export default function KPIAnalyticsSection() {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: false, margin: "-12% 0px" }}
           className="lg:col-span-4 glass-card rounded-3xl border border-[#CFD5E4]/80 p-6 text-start flex flex-col justify-between shadow-xs hover:border-[#4E60A2]/40 transition-all"
         >
           <div>
@@ -179,7 +179,7 @@ export default function KPIAnalyticsSection() {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: false, margin: "-12% 0px" }}
           transition={{ delay: 0.08 }}
           className="lg:col-span-4 glass-card rounded-3xl border border-[#CFD5E4]/80 p-6 text-start flex flex-col justify-between shadow-xs hover:border-[#4E60A2]/40 transition-all"
         >
@@ -214,7 +214,7 @@ export default function KPIAnalyticsSection() {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: false, margin: "-12% 0px" }}
           transition={{ delay: 0.16 }}
           className="lg:col-span-4 glass-card rounded-3xl border border-[#CFD5E4]/80 p-6 text-start flex flex-col justify-between shadow-xs hover:border-[#4E60A2]/40 transition-all"
         >
@@ -249,7 +249,7 @@ export default function KPIAnalyticsSection() {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: false, margin: "-12% 0px" }}
           transition={{ delay: 0.2 }}
           className="lg:col-span-3 glass-card rounded-3xl border border-[#CFD5E4]/80 p-5 text-start shadow-xs flex flex-col justify-between"
         >
@@ -270,7 +270,7 @@ export default function KPIAnalyticsSection() {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: false, margin: "-12% 0px" }}
           transition={{ delay: 0.24 }}
           className="lg:col-span-3 glass-card rounded-3xl border border-[#CFD5E4]/80 p-5 text-start shadow-xs flex flex-col justify-between"
         >
@@ -291,7 +291,7 @@ export default function KPIAnalyticsSection() {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: false, margin: "-12% 0px" }}
           transition={{ delay: 0.28 }}
           className="lg:col-span-3 glass-card rounded-3xl border border-[#CFD5E4]/80 p-5 text-start shadow-xs flex flex-col justify-between"
         >
@@ -312,7 +312,7 @@ export default function KPIAnalyticsSection() {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: false, margin: "-12% 0px" }}
           transition={{ delay: 0.32 }}
           className="lg:col-span-3 glass-card rounded-3xl border border-[#CFD5E4]/80 p-5 text-start shadow-xs flex flex-col justify-between"
         >

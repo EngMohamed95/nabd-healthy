@@ -85,7 +85,7 @@ export default function EcosystemSection() {
         <motion.div
           initial={{ opacity: 0, y: 15 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: false, margin: "-12% 0px" }}
           className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#E9ECF5] border border-[#D5DAE8] text-[#4E60A2] text-xs font-bold mb-4 shadow-xs"
         >
           <Network className="w-3.5 h-3.5" />
@@ -95,7 +95,7 @@ export default function EcosystemSection() {
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: false, margin: "-12% 0px" }}
           transition={{ delay: 0.1 }}
           className="text-3xl sm:text-5xl font-extrabold heading-display text-slate-900 tracking-tight max-w-4xl mx-auto leading-tight mb-4"
         >
@@ -105,7 +105,7 @@ export default function EcosystemSection() {
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: false, margin: "-12% 0px" }}
           transition={{ delay: 0.2 }}
           className="text-base sm:text-lg text-slate-650 max-w-3xl mx-auto leading-relaxed"
         >

@@ -1,5 +1,5 @@
-import { useEffect, useState, type PointerEvent } from 'react';
-import { motion, useMotionValue, useReducedMotion, useSpring } from 'motion/react';
+import { useEffect, useRef, useState, type PointerEvent } from 'react';
+import { motion, useMotionValue, useReducedMotion, useScroll, useSpring, useTransform } from 'motion/react';
 import { Activity, ArrowLeft, ArrowRight, Play, Sparkles } from 'lucide-react';
 import { useLanguage } from '../lib/LanguageContext';
 import { SHOW_PRICING } from '../lib/featureFlags';
@@ -12,6 +12,13 @@ export default function Hero() {
   const pointerY = useMotionValue(0);
   const glowX = useSpring(pointerX, { stiffness: 55, damping: 22 });
   const glowY = useSpring(pointerY, { stiffness: 55, damping: 22 });
+
+  // Scroll-linked parallax: content drifts down and fades as the hero scrolls away, and reverses on scroll up
+  const sectionRef = useRef<HTMLElement>(null);
+  const { scrollYProgress } = useScroll({ target: sectionRef, offset: ['start start', 'end start'] });
+  const contentY = useTransform(scrollYProgress, [0, 1], [0, 160]);
+  const contentOpacity = useTransform(scrollYProgress, [0, 0.75], [1, 0]);
+  const contentScale = useTransform(scrollYProgress, [0, 1], [1, 0.92]);
 
   const phrases = (t.hero as { typingPhrases?: string[] }).typingPhrases || [
     'دقة أكبر للمعلومات …',
@@ -63,6 +70,7 @@ export default function Hero() {
 
   return (
     <section
+      ref={sectionRef}
       className="relative flex w-full flex-col items-center justify-center overflow-hidden"
       onPointerMove={handlePointerMove}
       onPointerLeave={() => {
@@ -157,10 +165,14 @@ export default function Hero() {
         ))}
       </div>
 
-      <div className="relative z-10 mx-auto flex w-full max-w-6xl flex-col items-center justify-center px-4 pb-28 pt-44 text-center sm:px-6 sm:pb-36 sm:pt-52 lg:px-8">
+      <motion.div
+        style={reduceMotion ? undefined : { y: contentY, opacity: contentOpacity, scale: contentScale }}
+        className="relative z-10 mx-auto flex w-full max-w-6xl flex-col items-center justify-center px-4 pb-28 pt-44 text-center sm:px-6 sm:pb-36 sm:pt-52 lg:px-8"
+      >
         <motion.div
           initial={{ opacity: 0, y: 16, scale: 0.9 }}
-          animate={{ opacity: 1, y: 0, scale: 1 }}
+          whileInView={{ opacity: 1, y: 0, scale: 1 }}
+          viewport={{ once: false }}
           transition={{ duration: 0.65, ease: 'easeOut' }}
           className="mb-4 inline-flex items-center gap-3 rounded-full border border-[#C8D8F6]/35 bg-[#101836]/75 px-3.5 py-2 text-white shadow-[0_0_34px_rgba(132,156,198,0.32)] backdrop-blur-xl sm:mb-5 sm:px-4"
         >
@@ -196,7 +208,8 @@ export default function Hero() {
 
         <motion.h1
           initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: false }}
           transition={{ duration: 0.7, ease: 'easeOut' }}
           className="heading-display flex min-h-[120px] max-w-5xl flex-wrap items-center justify-center text-4xl font-extrabold leading-[1.35] tracking-tight text-white sm:min-h-[160px] sm:text-6xl lg:min-h-[190px] lg:text-7xl"
         >
@@ -208,7 +221,8 @@ export default function Hero() {
 
         <motion.p
           initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: false }}
           transition={{ duration: 0.7, delay: 0.15, ease: 'easeOut' }}
           className="mt-6 max-w-3xl text-base font-normal leading-relaxed text-slate-200 sm:text-lg lg:text-xl"
         >
@@ -217,7 +231,8 @@ export default function Hero() {
 
         <motion.div
           initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: false }}
           transition={{ duration: 0.7, delay: 0.25, ease: 'easeOut' }}
           className="mt-8 flex w-full flex-col items-center gap-4 sm:mt-10 sm:w-auto sm:flex-row"
         >
@@ -231,7 +246,7 @@ export default function Hero() {
             <span>{t.hero.bookDemo}</span>
           </a>
         </motion.div>
-      </div>
+      </motion.div>
     </section>
   );
 }

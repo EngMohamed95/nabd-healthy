@@ -64,7 +64,7 @@ export default function AccuracySafetySection() {
         <motion.div
           initial={{ opacity: 0, y: 15 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: false, margin: "-12% 0px" }}
           className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#E9ECF5] border border-[#D5DAE8] text-[#4E60A2] text-xs font-bold mb-4 shadow-xs"
         >
           <ShieldCheck className="w-3.5 h-3.5" />
@@ -74,7 +74,7 @@ export default function AccuracySafetySection() {
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: false, margin: "-12% 0px" }}
           transition={{ delay: 0.1 }}
           className="text-3xl sm:text-5xl font-extrabold heading-display text-slate-900 tracking-tight max-w-4xl mx-auto leading-tight mb-4"
         >
@@ -84,7 +84,7 @@ export default function AccuracySafetySection() {
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: false, margin: "-12% 0px" }}
           transition={{ delay: 0.2 }}
           className="text-base sm:text-lg text-slate-650 max-w-3xl mx-auto leading-relaxed"
         >
@@ -231,7 +231,7 @@ export default function AccuracySafetySection() {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: false, margin: "-12% 0px" }}
           className="glass-card p-6 sm:p-7 rounded-3xl border border-rose-200 bg-rose-50/20 text-start relative overflow-hidden"
         >
           <div className="flex items-center gap-2 text-xs font-bold text-rose-600 uppercase mb-3">
@@ -247,7 +247,7 @@ export default function AccuracySafetySection() {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: false, margin: "-12% 0px" }}
           transition={{ delay: 0.1 }}
           className="glass-card-active p-6 sm:p-7 rounded-3xl border-2 border-[#4E60A2] bg-white text-start relative overflow-hidden shadow-lg shadow-[#4E60A2]/10"
         >
@@ -270,7 +270,7 @@ export default function AccuracySafetySection() {
       <motion.div
         initial={{ opacity: 0, scale: 0.98 }}
         whileInView={{ opacity: 1, scale: 1 }}
-        viewport={{ once: true }}
+        viewport={{ once: false, margin: "-12% 0px" }}
         className="rounded-2xl p-4 sm:p-5 bg-gradient-to-r from-[#1E285A] to-[#4E60A2] text-white flex flex-col sm:flex-row items-center justify-between gap-4 shadow-md text-start"
       >
         <div className="flex items-center gap-3">

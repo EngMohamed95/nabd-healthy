@@ -43,7 +43,7 @@ export default function VisionSection() {
         <motion.div
           initial={{ opacity: 0, y: 15 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: false, margin: "-12% 0px" }}
           className="inline-flex items-center gap-2.5 px-5 py-2 rounded-full bg-white/10 border border-white/15 text-[#849CC6] text-sm sm:text-base font-extrabold mb-6 backdrop-blur-md"
         >
           <Globe2 className="w-4 h-4 sm:w-5 sm:h-5 text-[#849CC6]" />
@@ -54,7 +54,7 @@ export default function VisionSection() {
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: false, margin: "-12% 0px" }}
           transition={{ delay: 0.1 }}
           className="text-3xl sm:text-5xl font-extrabold heading-display text-white tracking-tight mb-6 leading-tight max-w-4xl mx-auto"
         >
@@ -65,7 +65,7 @@ export default function VisionSection() {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: false, margin: "-12% 0px" }}
           transition={{ delay: 0.15 }}
           className="p-6 sm:p-8 rounded-3xl bg-white/5 border border-white/10 backdrop-blur-md max-w-4xl mx-auto mb-10 text-start shadow-xl"
         >
@@ -81,7 +81,7 @@ export default function VisionSection() {
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: false, margin: "-12% 0px" }}
           transition={{ delay: 0.2 }}
           className="text-sm sm:text-base text-[#C6CCE3] max-w-3xl mx-auto leading-relaxed mb-12 font-normal"
         >
@@ -95,7 +95,7 @@ export default function VisionSection() {
               key={i}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
+              viewport={{ once: false, margin: "-12% 0px" }}
               transition={{ delay: 0.25 + i * 0.08 }}
               className="p-5 rounded-2xl bg-white/5 border border-white/10 hover:border-white/20 transition-all backdrop-blur-xs flex flex-col justify-between"
             >
@@ -118,7 +118,7 @@ export default function VisionSection() {
         <motion.div
           initial={{ opacity: 0, y: 15 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: false, margin: "-12% 0px" }}
           transition={{ delay: 0.4 }}
           className="inline-flex items-start sm:items-center gap-3 px-5 py-3.5 rounded-2xl bg-white/5 border border-white/10 text-xs text-[#C6CCE3] leading-relaxed max-w-2xl text-start shadow-xs"
         >

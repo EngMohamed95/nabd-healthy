@@ -15,7 +15,7 @@ export default function EfficiencyKPISection() {
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: false, margin: "-12% 0px" }}
           className="glass-card rounded-3xl border border-[#CFD5E4]/70 p-6 sm:p-8 text-start"
         >
           <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#E9ECF5] border border-[#D5DAE8] text-[#4E60A2] text-xs font-bold mb-4">
@@ -42,7 +42,7 @@ export default function EfficiencyKPISection() {
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: false, margin: "-12% 0px" }}
           transition={{ delay: 0.1 }}
           className="glass-card rounded-3xl border border-[#CFD5E4]/70 p-6 sm:p-8 text-start"
         >

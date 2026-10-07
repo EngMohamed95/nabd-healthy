@@ -45,7 +45,7 @@ export default function Testimonials() {
               key={i}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
+              viewport={{ once: false, margin: "-12% 0px" }}
               transition={{ delay: i * 0.12 }}
               className="glass-card rounded-3xl p-8 flex flex-col justify-between border border-[#CFD5E4]/70 relative group"
             >

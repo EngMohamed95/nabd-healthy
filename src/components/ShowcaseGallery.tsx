@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { createPortal } from 'react-dom';
 import { motion, AnimatePresence } from 'motion/react';
 import { useLanguage } from '../lib/LanguageContext';
 import { 
@@ -1069,9 +1070,9 @@ export default function ShowcaseGallery() {
       </div>
 
       {/* DIAGNOSTICS PORTAL UPLOAD / AI REPORT MODAL */}
-      <AnimatePresence>
+      {createPortal(<AnimatePresence>
         {uploadStep > 0 && selectedDiagPatient && (
-          <div className="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4">
+          <div className="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4 text-slate-800">
             <motion.div
               initial={{ scale: 0.95, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
@@ -1211,10 +1212,10 @@ export default function ShowcaseGallery() {
             </motion.div>
           </div>
         )}
-      </AnimatePresence>
+      </AnimatePresence>, document.body)}
 
       {/* FULL SCREEN LIGHTBOX MODAL */}
-      <AnimatePresence>
+      {createPortal(<AnimatePresence>
         {lightboxImg && (
           <motion.div
             initial={{ opacity: 0 }}
@@ -1242,7 +1243,7 @@ export default function ShowcaseGallery() {
             </span>
           </motion.div>
         )}
-      </AnimatePresence>
+      </AnimatePresence>, document.body)}
     </section>
   );
 }

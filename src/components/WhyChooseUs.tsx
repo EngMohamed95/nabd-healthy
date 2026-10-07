@@ -26,7 +26,7 @@ export default function WhyChooseUs() {
           <motion.h2 
             initial={{ opacity: 0, x: dir === 'rtl' ? 30 : -30 }}
             whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: false, margin: "-12% 0px" }}
             className="text-3xl sm:text-5xl font-extrabold heading-display mb-6 leading-tight text-slate-900 tracking-tight"
           >
             {t.whyChooseUs.titleLine1} <br/>
@@ -38,7 +38,7 @@ export default function WhyChooseUs() {
           <motion.p 
             initial={{ opacity: 0, x: dir === 'rtl' ? 30 : -30 }}
             whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: false, margin: "-12% 0px" }}
             transition={{ delay: 0.1 }}
             className="text-base sm:text-lg text-slate-600 mb-10 leading-relaxed font-sans"
           >
@@ -52,7 +52,7 @@ export default function WhyChooseUs() {
                 key={i}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
+                viewport={{ once: false, margin: "-12% 0px" }}
                 transition={{ delay: 0.15 + i * 0.08 }}
                 className="p-4 bg-white rounded-2xl border border-[#CFD5E4]/70 shadow-xs"
               >
@@ -83,7 +83,7 @@ export default function WhyChooseUs() {
           <motion.div 
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
+            viewport={{ once: false, margin: "-12% 0px" }}
             className="relative h-64 rounded-3xl overflow-hidden border border-[#CFD5E4] shadow-xl"
           >
             <img 
@@ -108,7 +108,7 @@ export default function WhyChooseUs() {
             <motion.div 
               initial={{ opacity: 0, x: dir === 'rtl' ? -20 : 20 }}
               whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
+              viewport={{ once: false, margin: "-12% 0px" }}
               className="glass-card p-5 rounded-2xl border border-red-200 bg-red-50/20"
             >
               <div className="flex items-center gap-2 text-xs text-red-600 font-bold mb-1.5 uppercase">
@@ -122,7 +122,7 @@ export default function WhyChooseUs() {
             <motion.div 
               initial={{ opacity: 0, x: dir === 'rtl' ? -20 : 20 }}
               whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
+              viewport={{ once: false, margin: "-12% 0px" }}
               transition={{ delay: 0.15 }}
               className="glass-card-active p-6 rounded-2xl border-2 border-[#4E60A2] shadow-xl relative"
             >

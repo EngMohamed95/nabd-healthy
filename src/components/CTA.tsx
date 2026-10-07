@@ -15,7 +15,7 @@ export default function CTA() {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: false, margin: "-12% 0px" }}
           className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white border border-[#D5DAE8] text-[#4E60A2] text-xs font-bold mb-6 shadow-xs"
         >
           <Sparkles className="w-4 h-4" />
@@ -25,7 +25,7 @@ export default function CTA() {
         <motion.h2 
           initial={{ opacity: 0, y: 25 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: false, margin: "-12% 0px" }}
           transition={{ delay: 0.1 }}
           className="text-4xl sm:text-6xl font-extrabold heading-display mb-6 text-slate-900 leading-tight tracking-tight"
         >
@@ -35,7 +35,7 @@ export default function CTA() {
         <motion.p 
           initial={{ opacity: 0, y: 25 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: false, margin: "-12% 0px" }}
           transition={{ delay: 0.2 }}
           className="text-base sm:text-xl text-slate-600 mb-10 max-w-2xl mx-auto leading-relaxed"
         >
@@ -45,7 +45,7 @@ export default function CTA() {
         <motion.div
            initial={{ opacity: 0, y: 25 }}
            whileInView={{ opacity: 1, y: 0 }}
-           viewport={{ once: true }}
+           viewport={{ once: false, margin: "-12% 0px" }}
            transition={{ delay: 0.3 }}
            className="flex flex-col sm:flex-row items-center justify-center gap-4"
         >

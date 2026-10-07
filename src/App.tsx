@@ -18,6 +18,7 @@ import Pricing from './components/Pricing';
 import VisionSection from './components/VisionSection';
 import CTA from './components/CTA';
 import Footer from './components/Footer';
+import ScrollReveal from './components/ScrollReveal';
 import { SHOW_PRICING } from './lib/featureFlags';
 
 export default function App() {
@@ -49,7 +50,13 @@ export default function App() {
       const el = document.querySelector(hash);
       if (!el) return;
       e.preventDefault();
-      lenis.scrollTo(el as HTMLElement, { offset: -96 });
+      // Use layout position (offsetTop) rather than getBoundingClientRect so in-progress
+      // scroll-reveal transforms don't skew the landing point.
+      let top = 0;
+      for (let node = el as HTMLElement | null; node; node = node.offsetParent as HTMLElement | null) {
+        top += node.offsetTop;
+      }
+      lenis.scrollTo(top - 96);
     };
     document.addEventListener('click', handleAnchorClick);
 
@@ -73,36 +80,38 @@ export default function App() {
           <Hero />
 
           {/* 1.5. فيديو تعريفي: جولة سريعة داخل منصة نبض */}
-          <VideoSection />
+          <ScrollReveal><VideoSection /></ScrollReveal>
 
           {/* 2. ماذا تقدم نبض؟: الركائز الـ 6 الأساسية */}
-          <Features />
+          <ScrollReveal><Features /></ScrollReveal>
 
           {/* 3. نبذة عن منصة نبض: المعرفة والتحليل والإدارة */}
-          <AboutSection />
+          <ScrollReveal><AboutSection /></ScrollReveal>
 
           {/* 7. وقت أقل للإجراءات... تركيز أكبر على المريض: المهام الـ 6 وتوفير 4 ساعات */}
-          <WorkflowEfficiencySection />
+          <ScrollReveal><WorkflowEfficiencySection /></ScrollReveal>
 
           {/* 8. التقارير والمؤشرات المهمة: لوحة المؤشرات الـ 7 المعتمدة بالوثيقة */}
-          <KPIAnalyticsSection />
+          <ScrollReveal><KPIAnalyticsSection /></ScrollReveal>
 
           {/* 9. منظومة نبض: المنظومات الـ 5 المترابطة بهندسة متصلة */}
-          <EcosystemSection />
+          <ScrollReveal><EcosystemSection /></ScrollReveal>
 
           {/* 11. معرض الشاشات الحقيقية */}
-          <ShowcaseGallery />
+          <ScrollReveal><ShowcaseGallery /></ScrollReveal>
 
           {/* 13. باقات الأسعار */}
-          {SHOW_PRICING && <Pricing />}
+          {SHOW_PRICING && <ScrollReveal><Pricing /></ScrollReveal>}
 
           {/* 14. منصة عالمية برؤية مستقبلية & رؤيتنا وميثاق المسؤولية الطبية */}
-          <VisionSection />
+          <ScrollReveal><VisionSection /></ScrollReveal>
 
           {/* 15. الدعوة للعمل: ابدأ تجربتك المجانية */}
-          <CTA />
+          <ScrollReveal><CTA /></ScrollReveal>
         </main>
-        <Footer />
+        <ScrollReveal enterOffset={['start end', 'end end']} exit={false}>
+          <Footer />
+        </ScrollReveal>
       </div>
     </div>
   );

@@ -44,7 +44,7 @@ export default function Features() {
       title: t.features.f5_title,
       desc: t.features.f5_desc,
       image: img11,
-      tag: "Reports & Services",
+      tag: "Medical Reports",
       colSpan: "md:col-span-6"
     },
     {
@@ -58,7 +58,7 @@ export default function Features() {
   ];
 
   return (
-    <section id="features" className="relative w-full max-w-7xl mx-auto py-24 px-4 sm:px-6 lg:px-8 overflow-x-hidden">
+    <section id="features" className="relative w-full max-w-7xl mx-auto pt-10 sm:pt-16 pb-24 px-4 sm:px-6 lg:px-8 overflow-x-hidden">
       {/* Background radial glow */}
       <div className="absolute top-1/3 end-0 w-[500px] h-[500px] bg-[#849CC6]/10 rounded-full blur-[140px] pointer-events-none" />
 
@@ -84,7 +84,7 @@ export default function Features() {
               key={i}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-50px" }}
+              viewport={{ once: false, margin: "-12% 0px" }}
               transition={{ duration: 0.5, delay: i * 0.08 }}
               className={`glass-card rounded-3xl ${feat.colSpan} relative overflow-hidden flex flex-col justify-between group border border-[#CFD5E4]/70 p-6 sm:p-8 min-h-[360px]`}
             >

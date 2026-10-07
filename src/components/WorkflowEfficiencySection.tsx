@@ -60,7 +60,7 @@ export default function WorkflowEfficiencySection() {
         <motion.div
           initial={{ opacity: 0, y: 15 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: false, margin: "-12% 0px" }}
           className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#E9ECF5] border border-[#D5DAE8] text-[#4E60A2] text-xs font-bold mb-4 shadow-xs"
         >
           <Clock3 className="w-3.5 h-3.5" />
@@ -70,7 +70,7 @@ export default function WorkflowEfficiencySection() {
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: false, margin: "-12% 0px" }}
           transition={{ delay: 0.1 }}
           className="text-3xl sm:text-5xl font-extrabold heading-display text-slate-900 tracking-tight max-w-4xl mx-auto leading-tight mb-4"
         >
@@ -80,7 +80,7 @@ export default function WorkflowEfficiencySection() {
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: false, margin: "-12% 0px" }}
           transition={{ delay: 0.2 }}
           className="text-base sm:text-lg text-slate-650 max-w-3xl mx-auto leading-relaxed"
         >
@@ -93,7 +93,7 @@ export default function WorkflowEfficiencySection() {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: false, margin: "-12% 0px" }}
           className="glass-card p-6 rounded-3xl border border-[#CFD5E4]/80 text-start relative overflow-hidden shadow-xs hover:border-[#4E60A2]/40 transition-colors"
         >
           <div className="text-3xl sm:text-5xl font-extrabold text-[#4E60A2] heading-display mb-2">
@@ -110,7 +110,7 @@ export default function WorkflowEfficiencySection() {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: false, margin: "-12% 0px" }}
           transition={{ delay: 0.1 }}
           className="glass-card p-6 rounded-3xl border border-[#CFD5E4]/80 text-start relative overflow-hidden shadow-xs hover:border-[#4E60A2]/40 transition-colors"
         >
@@ -128,7 +128,7 @@ export default function WorkflowEfficiencySection() {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: false, margin: "-12% 0px" }}
           transition={{ delay: 0.2 }}
           className="glass-card p-6 rounded-3xl border border-[#CFD5E4]/80 text-start relative overflow-hidden shadow-xs hover:border-[#4E60A2]/40 transition-colors"
         >
@@ -158,7 +158,7 @@ export default function WorkflowEfficiencySection() {
               key={i}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
+              viewport={{ once: false, margin: "-12% 0px" }}
               transition={{ delay: i * 0.08 }}
               className="glass-card rounded-2xl border border-[#CFD5E4]/80 p-5 text-start hover:border-[#4E60A2]/50 transition-all hover:shadow-md hover:-translate-y-0.5 group flex flex-col justify-between"
             >
