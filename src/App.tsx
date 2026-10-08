@@ -80,7 +80,7 @@ export default function App() {
           <Hero />
 
           {/* 1.5. فيديو تعريفي: جولة سريعة داخل منصة نبض */}
-          <ScrollReveal><VideoSection /></ScrollReveal>
+          <ScrollReveal enter={false}><VideoSection /></ScrollReveal>
 
           {/* 2. ماذا تقدم نبض؟: الركائز الـ 6 الأساسية */}
           <ScrollReveal><Features /></ScrollReveal>

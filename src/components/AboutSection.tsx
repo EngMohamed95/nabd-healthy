@@ -1,9 +1,9 @@
 import { motion } from 'motion/react';
-import { Sparkles, BrainCircuit, Zap, HeartPulse, ArrowUpRight } from 'lucide-react';
+import { Sparkles, BrainCircuit, Zap, HeartPulse, ArrowUpRight, ShieldAlert } from 'lucide-react';
 import { useLanguage } from '../lib/LanguageContext';
 
 export default function AboutSection() {
-  const { t, dir } = useLanguage();
+  const { t } = useLanguage();
 
   const highlightCards = [
     {
@@ -54,28 +54,28 @@ export default function AboutSection() {
         </motion.h2>
       </div>
 
-      {/* Main Grid: Narrative Column + 3 Interactive Value Cards */}
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
-        {/* Narrative & Mission Column (7 cols) */}
+      {/* Main Stack: Narrative card on top, 3 value cards side by side below */}
+      <div className="max-w-5xl mx-auto flex flex-col gap-6">
+        {/* Narrative & Mission Card */}
         <motion.div
-          initial={{ opacity: 0, x: dir === 'rtl' ? 30 : -30 }}
-          whileInView={{ opacity: 1, x: 0 }}
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: false, margin: "-12% 0px" }}
           transition={{ duration: 0.6 }}
-          className="lg:col-span-7 glass-card rounded-3xl border border-[#CFD5E4]/80 p-8 sm:p-12 flex flex-col justify-center relative overflow-hidden shadow-lg shadow-[#4E60A2]/5 min-h-[280px]"
+          className="glass-card rounded-3xl border border-[#CFD5E4]/80 p-8 sm:p-12 flex flex-col justify-center relative overflow-hidden shadow-lg shadow-[#4E60A2]/5"
         >
           {/* Subtle watermarked pulse waveform */}
           <div className="absolute -top-12 end-0 w-64 h-64 bg-[#4E60A2]/5 rounded-full blur-3xl pointer-events-none" />
 
-          <div className="relative z-10 text-start">
+          <div className="relative z-10 text-center">
             <p className="text-base sm:text-xl lg:text-2xl text-slate-800 leading-relaxed font-medium">
               {t.about.p2}
             </p>
           </div>
         </motion.div>
 
-        {/* 3 Pillars Column (5 cols) */}
-        <div className="lg:col-span-5 flex flex-col justify-between gap-4">
+        {/* 3 Pillars Row */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           {highlightCards.map((card, i) => (
             <motion.div
               key={i}
@@ -83,32 +83,44 @@ export default function AboutSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: false, margin: "-12% 0px" }}
               transition={{ duration: 0.5, delay: i * 0.1 }}
-              className="glass-card group rounded-2xl border border-[#CFD5E4]/80 p-5 hover:border-[#4E60A2]/50 transition-all duration-300 shadow-sm hover:shadow-md hover:-translate-y-0.5 text-start relative overflow-hidden flex items-start gap-4"
+              className="glass-card group rounded-2xl border border-[#CFD5E4]/80 p-6 hover:border-[#4E60A2]/50 transition-all duration-300 shadow-sm hover:shadow-md hover:-translate-y-0.5 text-center relative overflow-hidden flex flex-col items-center gap-3"
             >
               <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-[#E9ECF5] to-white border border-[#D5DAE8] text-[#4E60A2] flex items-center justify-center shrink-0 group-hover:scale-110 group-hover:from-[#DDE4F5] group-hover:to-[#EEF2FA] group-hover:border-[#849CC6] group-hover:text-[#1E285A] transition-all shadow-2xs">
                 <card.icon className="w-6 h-6" />
               </div>
 
-              <div className="flex-1 min-w-0">
-                <div className="flex items-center justify-between gap-2 mb-1">
-                  <h3 className="text-sm sm:text-base font-bold text-slate-900 group-hover:text-[#4E60A2] transition-colors">
-                    {card.title}
-                  </h3>
-                  <span className="text-[10px] font-bold font-mono px-2 py-0.5 rounded-md bg-[#4E60A2]/10 text-[#4E60A2] shrink-0">
-                    {card.badge}
-                  </span>
-                </div>
-                <p className="text-xs text-slate-600 leading-relaxed">
-                  {card.desc}
-                </p>
-              </div>
+              <h3 className="text-base font-bold text-slate-900 group-hover:text-[#4E60A2] transition-colors">
+                {card.title}
+              </h3>
+              <span className="text-[10px] font-bold font-mono px-2 py-0.5 rounded-md bg-[#4E60A2]/10 text-[#4E60A2]">
+                {card.badge}
+              </span>
+              <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                {card.desc}
+              </p>
 
-              <div className="opacity-0 group-hover:opacity-100 transition-opacity text-[#4E60A2] shrink-0 pt-1">
+              <div className="absolute top-4 end-4 opacity-0 group-hover:opacity-100 transition-opacity text-[#4E60A2]">
                 <ArrowUpRight className="w-4 h-4" />
               </div>
             </motion.div>
           ))}
         </div>
+
+        {/* Medical Ethics & Disclaimer Card */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: false, margin: "-12% 0px" }}
+          transition={{ duration: 0.5, delay: 0.3 }}
+          className="glass-card group rounded-2xl border border-[#CFD5E4]/80 p-6 hover:border-[#4E60A2]/50 transition-all duration-300 shadow-sm hover:shadow-md hover:-translate-y-0.5 text-center relative overflow-hidden flex flex-col items-center gap-3"
+        >
+          <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-[#E9ECF5] to-white border border-[#D5DAE8] text-[#4E60A2] flex items-center justify-center shrink-0 group-hover:scale-110 group-hover:from-[#DDE4F5] group-hover:to-[#EEF2FA] group-hover:border-[#849CC6] group-hover:text-[#1E285A] transition-all shadow-2xs">
+            <ShieldAlert className="w-6 h-6" />
+          </div>
+          <p className="text-xs sm:text-sm text-slate-600 leading-relaxed max-w-3xl">
+            {t.vision.disclaimer}
+          </p>
+        </motion.div>
       </div>
     </section>
   );

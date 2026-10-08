@@ -47,11 +47,11 @@ const MOBILE_SCREEN_BY_MODULE: Record<string, keyof typeof MODULE_BY_MOBILE_SCRE
 
 export default function ShowcaseGallery() {
   const { language } = useLanguage();
-  const [activeTab, setActiveTab] = useState<string>('diagnostics');
-  const [viewMode, setViewMode] = useState<'screenshot' | 'simulator'>('simulator');
+  const [activeTab, setActiveTab] = useState<string>(MODULE_BY_MOBILE_SCREEN.home);
+  const [viewMode, setViewMode] = useState<'screenshot' | 'simulator'>('screenshot');
   const [activeHotspot, setActiveHotspot] = useState<number | null>(null);
   const [lightboxImg, setLightboxImg] = useState<string | null>(null);
-  const [isAutoTour, setIsAutoTour] = useState(true);
+  const [isAutoTour, setIsAutoTour] = useState(false);
 
   // Diagnostics Live Simulator States
   const [diagSearch, setDiagSearch] = useState<string>('');
@@ -482,12 +482,12 @@ export default function ShowcaseGallery() {
           </p>
         </div>
 
-        {/* View Mode Switch: Web Screens / Mobile App */}
+        {/* View Mode Switch: Mobile App (default) / Web Screens */}
         <div className="relative z-10 flex justify-center mb-10">
           <div className="inline-flex items-center gap-1.5 p-1.5 rounded-2xl bg-white border border-indigo-100 shadow-xl shadow-indigo-900/10">
             {([
-              { mode: 'simulator', icon: Laptop, label: language === 'ar' ? 'شاشات الويب' : 'Web Screens' },
               { mode: 'screenshot', icon: Smartphone, label: language === 'ar' ? 'تطبيق الموبايل' : 'Mobile App' },
+              { mode: 'simulator', icon: Laptop, label: language === 'ar' ? 'شاشات الويب' : 'Web Screens' },
             ] as const).map(({ mode, icon: Icon, label }) => {
               const isActive = viewMode === mode;
               return (

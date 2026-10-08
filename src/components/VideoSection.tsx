@@ -7,8 +7,26 @@ export default function VideoSection() {
   const { t, dir } = useLanguage();
 
   return (
-    <section id="video" className="relative w-full max-w-7xl mx-auto pt-24 pb-10 sm:pb-16 px-4 sm:px-6 lg:px-8 overflow-hidden">
+    <section id="video" className="relative w-full max-w-7xl mx-auto pt-12 sm:pt-16 pb-10 sm:pb-16 px-4 sm:px-6 lg:px-8 overflow-hidden">
       <div className="absolute top-1/2 start-1/2 -translate-x-1/2 rtl:translate-x-1/2 -translate-y-1/2 w-[700px] h-[400px] bg-[#4E60A2]/10 rounded-full blur-[140px] pointer-events-none" />
+
+      {/* Centered header: badge, then title */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: false }}
+        transition={{ duration: 0.6 }}
+        className="relative z-10 flex flex-col items-center text-center mb-10 lg:mb-12"
+      >
+        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#E9ECF5] border border-[#D5DAE8] text-[#4E60A2] text-xs font-bold shadow-xs mb-5">
+          <PlayCircle className="w-3.5 h-3.5" />
+          <span>{t.video.badge}</span>
+        </div>
+
+        <h2 className="text-3xl sm:text-5xl font-extrabold heading-display text-slate-900 tracking-tight leading-tight">
+          {t.video.title}
+        </h2>
+      </motion.div>
 
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center relative z-10">
         {/* Text Column */}
@@ -19,15 +37,6 @@ export default function VideoSection() {
           transition={{ duration: 0.6 }}
           className="lg:col-span-5 text-start"
         >
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#E9ECF5] border border-[#D5DAE8] text-[#4E60A2] text-xs font-bold mb-5 shadow-xs">
-            <PlayCircle className="w-3.5 h-3.5" />
-            <span>{t.video.badge}</span>
-          </div>
-
-          <h2 className="text-3xl sm:text-5xl font-extrabold heading-display text-slate-900 tracking-tight leading-tight mb-4">
-            {t.video.title}
-          </h2>
-
           <p className="text-base sm:text-lg text-slate-600 leading-relaxed mb-6 max-w-xl">
             {t.video.desc}
           </p>

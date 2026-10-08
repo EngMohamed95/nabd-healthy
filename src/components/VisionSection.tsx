@@ -1,5 +1,5 @@
 import { motion } from 'motion/react';
-import { Globe2, ShieldAlert, Languages, Scale, Stethoscope, Lock } from 'lucide-react';
+import { Globe2, Languages, Scale, Stethoscope, Lock } from 'lucide-react';
 import { useLanguage } from '../lib/LanguageContext';
 
 export default function VisionSection() {
@@ -89,7 +89,7 @@ export default function VisionSection() {
         </motion.p>
 
         {/* Global Architecture Pillars */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-14 text-start">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 text-start">
           {globalHighlights.map((item, i) => (
             <motion.div
               key={i}
@@ -113,18 +113,6 @@ export default function VisionSection() {
             </motion.div>
           ))}
         </div>
-
-        {/* Medical Ethics & Disclaimer Banner */}
-        <motion.div
-          initial={{ opacity: 0, y: 15 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: false, margin: "-12% 0px" }}
-          transition={{ delay: 0.4 }}
-          className="inline-flex items-start sm:items-center gap-3 px-5 py-3.5 rounded-2xl bg-white/5 border border-white/10 text-xs text-[#C6CCE3] leading-relaxed max-w-2xl text-start shadow-xs"
-        >
-          <ShieldAlert className="w-4 h-4 text-amber-300 shrink-0 mt-0.5 sm:mt-0" />
-          <span>{t.vision.disclaimer}</span>
-        </motion.div>
       </div>
     </section>
   );

@@ -4,6 +4,7 @@ import { Activity, ArrowLeft, ArrowRight, Play, Sparkles } from 'lucide-react';
 import { useLanguage } from '../lib/LanguageContext';
 import { SHOW_PRICING } from '../lib/featureFlags';
 import { nabdCover } from '../images';
+import HeroNetwork from './HeroNetwork';
 
 export default function Hero() {
   const { t, dir, language } = useLanguage();
@@ -86,6 +87,7 @@ export default function Hero() {
           style={{ backgroundImage: `url(${nabdCover})` }}
         />
         <div className="absolute inset-0 bg-gradient-to-b from-[#0B1030]/85 via-[#141838]/65 to-[#0B1030]/90" />
+        <HeroNetwork />
 
         <motion.div
           aria-hidden="true"
@@ -112,46 +114,6 @@ export default function Hero() {
           <span className="absolute left-[12%] top-[8%] h-2.5 w-2.5 rounded-full bg-[#BFD0F1] shadow-[0_0_22px_rgba(191,208,241,0.95)]" />
           <span className="absolute bottom-[16%] right-[5%] h-1.5 w-1.5 rounded-full bg-white/80 shadow-[0_0_16px_rgba(255,255,255,0.8)]" />
         </motion.div>
-
-        <svg
-          aria-hidden="true"
-          viewBox="0 0 1200 260"
-          preserveAspectRatio="none"
-          className="absolute inset-x-0 top-[34%] h-[260px] w-full opacity-90 sm:top-[38%]"
-        >
-          <defs>
-            <linearGradient id="hero-pulse-gradient" x1="0" y1="0" x2="1" y2="0">
-              <stop offset="0%" stopColor="#849CC6" stopOpacity="0" />
-              <stop offset="48%" stopColor="#DCE7FF" stopOpacity="0.95" />
-              <stop offset="100%" stopColor="#849CC6" stopOpacity="0" />
-            </linearGradient>
-            <filter id="hero-pulse-glow" x="-20%" y="-100%" width="140%" height="300%">
-              <feGaussianBlur stdDeviation="5" result="blur" />
-              <feMerge>
-                <feMergeNode in="blur" />
-                <feMergeNode in="SourceGraphic" />
-              </feMerge>
-            </filter>
-          </defs>
-          <path
-            d="M0 132 H410 L445 132 L466 98 L491 178 L521 52 L550 144 L575 118 L602 132 H1200"
-            fill="none"
-            stroke="rgba(190,211,250,0.26)"
-            strokeWidth="2.5"
-          />
-          <motion.path
-            d="M0 132 H410 L445 132 L466 98 L491 178 L521 52 L550 144 L575 118 L602 132 H1200"
-            fill="none"
-            stroke="url(#hero-pulse-gradient)"
-            strokeWidth="5"
-            strokeLinecap="round"
-            strokeDasharray="170 1030"
-            filter="url(#hero-pulse-glow)"
-            initial={{ strokeDashoffset: 1200 }}
-            animate={reduceMotion ? { strokeDashoffset: 420 } : { strokeDashoffset: [1200, -1200] }}
-            transition={{ duration: 5.5, repeat: Infinity, ease: 'linear' }}
-          />
-        </svg>
 
         {[18, 50, 82].map((position, index) => (
           <motion.span
@@ -211,7 +173,7 @@ export default function Hero() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: false }}
           transition={{ duration: 0.7, ease: 'easeOut' }}
-          className="heading-display flex min-h-[120px] max-w-5xl flex-wrap items-center justify-center text-4xl font-extrabold leading-[1.35] tracking-tight text-white sm:min-h-[160px] sm:text-6xl lg:min-h-[190px] lg:text-7xl"
+          className="heading-display flex min-h-[100px] max-w-5xl flex-wrap items-center justify-center text-4xl font-extrabold leading-[1.35] tracking-tight text-white sm:min-h-[150px] sm:text-6xl lg:min-h-[100px] lg:text-7xl"
         >
           <span className="bg-gradient-to-r from-white via-[#C7D3ED] to-[#849CC6] bg-clip-text text-transparent drop-shadow-md">
             {currentText || '\u00A0'}
@@ -219,12 +181,52 @@ export default function Hero() {
           <span className="ms-2 inline-block h-[0.82em] w-[3px] rounded-full bg-[#849CC6] align-middle shadow-[0_0_16px_rgba(132,156,198,0.9)] animate-pulse sm:ms-3 sm:w-[5px]" aria-hidden="true" />
         </motion.h1>
 
+        <svg
+          aria-hidden="true"
+          viewBox="0 40 1200 150"
+          preserveAspectRatio="none"
+          className="my-2 h-[56px] w-[calc(100vw-20px)] max-w-none shrink-0 opacity-90 sm:h-[72px]"
+        >
+          <defs>
+            <linearGradient id="hero-pulse-gradient" x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0%" stopColor="#849CC6" stopOpacity="0" />
+              <stop offset="50%" stopColor="#DCE7FF" stopOpacity="0.95" />
+              <stop offset="100%" stopColor="#849CC6" stopOpacity="0" />
+            </linearGradient>
+            <filter id="hero-pulse-glow" x="-20%" y="-100%" width="140%" height="300%">
+              <feGaussianBlur stdDeviation="5" result="blur" />
+              <feMerge>
+                <feMergeNode in="blur" />
+                <feMergeNode in="SourceGraphic" />
+              </feMerge>
+            </filter>
+          </defs>
+          <path
+            d="M0 132 H487 L522 132 L543 98 L568 178 L598 52 L627 144 L652 118 L679 132 H1200"
+            fill="none"
+            stroke="rgba(190,211,250,0.26)"
+            strokeWidth="2.5"
+          />
+          <motion.path
+            d="M0 132 H487 L522 132 L543 98 L568 178 L598 52 L627 144 L652 118 L679 132 H1200"
+            fill="none"
+            stroke="url(#hero-pulse-gradient)"
+            strokeWidth="5"
+            strokeLinecap="round"
+            strokeDasharray="170 1030"
+            filter="url(#hero-pulse-glow)"
+            initial={{ strokeDashoffset: 1200 }}
+            animate={reduceMotion ? { strokeDashoffset: 420 } : { strokeDashoffset: [1200, -1200] }}
+            transition={{ duration: 5.5, repeat: Infinity, ease: 'linear' }}
+          />
+        </svg>
+
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: false }}
           transition={{ duration: 0.7, delay: 0.15, ease: 'easeOut' }}
-          className="mt-6 max-w-3xl text-base font-normal leading-relaxed text-slate-200 sm:text-lg lg:text-xl"
+          className="max-w-3xl text-base font-normal leading-relaxed text-slate-200 sm:text-lg lg:text-xl"
         >
           {t.hero.desc}
         </motion.p>
