@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main # Change this to your main branch if it's different (e.g., master)
+  workflow_dispatch:
 
 jobs:
   build-and-deploy:
@@ -26,14 +27,22 @@ jobs:
       - name: Build Project
         run: npm run build
 
-      # Hostinger's shared-hosting FTP firewall blocks connections from
-      # GitHub Actions' runner IP ranges (control-socket timeout), and this
-      # account has no SSH/SFTP access to fall back to. Pushing the built
-      # site to a dedicated branch avoids that network path entirely: this
-      # step only talks to github.com over HTTPS. Hostinger's own "Git"
-      # auto-deploy (hPanel > Websites > Advanced > Git) then pulls from
-      # this branch itself, so Hostinger initiates the connection instead
-      # of GitHub Actions reaching in.
+      # Upload dist/ straight to nabdassist.com's public_html. Hostinger's
+      # Git auto-deploy is unavailable for this site (it's managed from an
+      # agency account, which disables Git deployment), so FTP is the only
+      # path in. If the FTP firewall rejects GitHub's runner IPs this step
+      # times out instead of hanging the job.
+      - name: Deploy to Hostinger via FTP
+        run: npm run deploy
+        timeout-minutes: 10
+        env:
+          FTP_SERVER: ${{ secrets.FTP_SERVER }}
+          FTP_USERNAME: ${{ secrets.FTP_USERNAME }}
+          FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
+          FTP_REMOTE_DIR: /
+
+      # Keep a copy of each build on the deploy branch as a record of what
+      # was shipped.
       - name: Publish build to deploy branch
         uses: peaceiris/actions-gh-pages@v4
         with:
