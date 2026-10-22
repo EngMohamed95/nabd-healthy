@@ -50,7 +50,7 @@ export default function CTA() {
            className="flex flex-col sm:flex-row items-center justify-center gap-4"
         >
           <a
-            href="https://aidocotr.runasp.net/login"
+            href="https://app.nabdassist.com/login"
             target="_blank"
             rel="noreferrer"
             className="w-full sm:w-auto flex items-center justify-center gap-2.5 px-9 py-4 bg-gradient-to-r from-[#4E60A2] to-[#1E285A] hover:from-[#5E70B2] hover:to-[#283264] text-white rounded-2xl text-sm font-bold shadow-xl shadow-[#4E60A2]/30 hover:shadow-[#4E60A2]/45 hover:scale-105 transition-all"

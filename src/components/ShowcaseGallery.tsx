@@ -573,7 +573,7 @@ export default function ShowcaseGallery() {
 
               {/* Mockup Address Bar */}
               <div className="w-96 max-w-full bg-slate-100 rounded-lg py-1 px-3 text-[10px] text-slate-500 text-center font-mono border border-slate-200 hidden sm:block">
-                {viewMode === 'simulator' ? `https://app.nabd.com/clinic/${currentModule.id}` : 'NABD MOBILE APP'}
+                {viewMode === 'simulator' ? `https://app.nabdassist.com/clinic/${currentModule.id}` : 'NABD MOBILE APP'}
               </div>
 
               <button

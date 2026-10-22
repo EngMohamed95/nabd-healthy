@@ -144,7 +144,7 @@ export default function Navbar() {
 
           {/* Login Link (desktop) */}
           <a
-            href="https://aidocotr.runasp.net/login"
+            href="https://app.nabdassist.com/login"
             target="_blank"
             rel="noreferrer"
             className="hidden xl:flex items-center gap-1.5 text-xs sm:text-sm font-bold text-slate-300 hover:text-white px-2.5 py-1.5 transition-colors"
@@ -203,7 +203,7 @@ export default function Navbar() {
               ))}
               <div className="pt-3 mt-2 border-t border-white/10 flex flex-col gap-2">
                 <a
-                  href="https://aidocotr.runasp.net/login"
+                  href="https://app.nabdassist.com/login"
                   target="_blank"
                   rel="noreferrer"
                   className="flex items-center justify-center gap-2 w-full py-2.5 text-xs font-bold text-white bg-white/10 rounded-xl"

@@ -224,7 +224,7 @@ export default function Pricing() {
                   </div>
 
                   <a
-                    href="https://aidocotr.runasp.net/login"
+                    href="https://app.nabdassist.com/login"
                     className={`w-full py-3.5 rounded-2xl text-xs font-bold transition-all flex items-center justify-center gap-2 ${
                       isPopular
                         ? 'bg-[#4E60A2] hover:bg-[#1E285A] text-white shadow-lg shadow-[#4E60A2]/25 hover:shadow-[#4E60A2]/40 hover:scale-[1.02]'
