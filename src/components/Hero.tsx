@@ -83,7 +83,7 @@ export default function Hero() {
         <div
           role="img"
           aria-label={language === 'ar' ? 'غلاف منصة نبض الطبية' : 'Nabd medical platform cover'}
-          className="absolute inset-0 bg-cover bg-center bg-fixed"
+          className="absolute inset-0 bg-cover bg-center bg-fixed supports-[-webkit-touch-callout:none]:bg-scroll"
           style={{ backgroundImage: `url(${nabdCover})` }}
         />
         <div className="absolute inset-0 bg-gradient-to-b from-[#0B1030]/85 via-[#141838]/65 to-[#0B1030]/90" />
