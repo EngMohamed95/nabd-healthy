@@ -105,16 +105,6 @@ export default function Hero() {
           className="absolute -top-[15%] h-[130%] w-28 -skew-x-12 bg-gradient-to-r from-transparent via-[#D9E7FF] to-transparent blur-2xl sm:w-44"
         />
 
-        <motion.div
-          aria-hidden="true"
-          animate={reduceMotion ? undefined : { rotate: 360 }}
-          transition={{ duration: 34, repeat: Infinity, ease: 'linear' }}
-          className="absolute left-1/2 top-[43%] h-[23rem] w-[23rem] -translate-x-1/2 -translate-y-1/2 rounded-full border border-dashed border-[#C8D8F6]/40 shadow-[0_0_45px_rgba(132,156,198,0.12)] sm:h-[38rem] sm:w-[38rem]"
-        >
-          <span className="absolute left-[12%] top-[8%] h-2.5 w-2.5 rounded-full bg-[#BFD0F1] shadow-[0_0_22px_rgba(191,208,241,0.95)]" />
-          <span className="absolute bottom-[16%] right-[5%] h-1.5 w-1.5 rounded-full bg-white/80 shadow-[0_0_16px_rgba(255,255,255,0.8)]" />
-        </motion.div>
-
         {[18, 50, 82].map((position, index) => (
           <motion.span
             key={position}
