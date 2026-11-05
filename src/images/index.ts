@@ -5,7 +5,7 @@ import img4 from './WhatsApp Image 2026-05-16 at 11.25.15 AM.jpeg';
 import img6 from './WhatsApp Image 2026-05-16 at 11.25.22 AM.jpeg';
 import img7 from './WhatsApp Image 2026-05-16 at 11.31.59 AM (1).jpeg';
 import img11 from './WhatsApp Image 2026-05-16 at 11.31.59 AM.jpeg';
-import nabdCover from './nabd_cover.png';
+import nabdCover from './nabd_cover.jpg';
 import appMainPage from './app-screens/main-page.png';
 import appMedicalExaminations from './app-screens/medical-examinations.png';
 import appPatients from './app-screens/patients.png';

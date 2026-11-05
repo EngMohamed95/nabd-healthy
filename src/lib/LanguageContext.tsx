@@ -10,10 +10,27 @@ interface LanguageContextType {
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
 
-export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [language, setLanguage] = useState<Language>('ar'); // Default to Arabic as requested
+/** Arabic lives at "/", English at "/en/" — each URL is a separately indexable page. */
+export const pathForLanguage = (lang: Language) => (lang === 'en' ? '/en/' : '/');
+
+const languageFromPath = (): Language =>
+  typeof window !== 'undefined' && /^\/en(\/|$)/.test(window.location.pathname) ? 'en' : 'ar';
+
+export const LanguageProvider: React.FC<{ children: React.ReactNode; initialLanguage?: Language }> = ({
+  children,
+  initialLanguage,
+}) => {
+  const [language, setLanguageState] = useState<Language>(() => initialLanguage ?? languageFromPath());
 
   const dir = language === 'ar' ? 'rtl' : 'ltr';
+
+  const setLanguage = (lang: Language) => {
+    setLanguageState(lang);
+    const path = pathForLanguage(lang);
+    if (window.location.pathname !== path) {
+      window.history.replaceState(null, '', path + window.location.hash);
+    }
+  };
 
   useEffect(() => {
     document.documentElement.dir = dir;

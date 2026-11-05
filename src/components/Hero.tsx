@@ -165,7 +165,9 @@ export default function Hero() {
           transition={{ duration: 0.7, ease: 'easeOut' }}
           className="heading-display flex min-h-[100px] max-w-5xl flex-wrap items-center justify-center text-4xl font-extrabold leading-[1.35] tracking-tight text-white sm:min-h-[150px] sm:text-6xl lg:min-h-[100px] lg:text-7xl"
         >
-          <span className="bg-gradient-to-r from-white via-[#C7D3ED] to-[#849CC6] bg-clip-text text-transparent drop-shadow-md">
+          {/* The typing effect starts empty, so the h1's real text (for search engines and screen readers) lives here. */}
+          <span className="sr-only">{`${t.navbar.brand} \u2014 ${t.hero.title1} ${t.hero.title2}`}</span>
+          <span aria-hidden="true" className="bg-gradient-to-r from-white via-[#C7D3ED] to-[#849CC6] bg-clip-text text-transparent drop-shadow-md">
             {currentText || '\u00A0'}
           </span>
           <span className="ms-2 inline-block h-[0.82em] w-[3px] rounded-full bg-[#849CC6] align-middle shadow-[0_0_16px_rgba(132,156,198,0.9)] animate-pulse sm:ms-3 sm:w-[5px]" aria-hidden="true" />

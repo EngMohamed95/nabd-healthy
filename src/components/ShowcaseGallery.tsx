@@ -645,7 +645,7 @@ export default function ShowcaseGallery() {
                             <strong className="text-sm">{language === 'ar' ? 'أحمد محمد' : 'Ahmed Mohamed'}</strong>
                           </div>
                           <div className="flex items-center gap-2">
-                            <button className="relative flex h-8 w-8 items-center justify-center rounded-xl bg-white/10"><Bell className="h-3.5 w-3.5" /><span className="absolute end-1 top-1 h-1.5 w-1.5 rounded-full bg-rose-400" /></button>
+                            <button aria-label={language === 'ar' ? 'الإشعارات' : 'Notifications'} className="relative flex h-8 w-8 items-center justify-center rounded-xl bg-white/10"><Bell className="h-3.5 w-3.5" /><span className="absolute end-1 top-1 h-1.5 w-1.5 rounded-full bg-rose-400" /></button>
                             <div className="flex h-8 w-8 items-center justify-center rounded-xl bg-white text-[#3B51A3]"><UserRound className="h-4 w-4" /></div>
                           </div>
                         </div>
@@ -1093,7 +1093,7 @@ export default function ShowcaseGallery() {
       </div>
 
       {/* DIAGNOSTICS PORTAL UPLOAD / AI REPORT MODAL */}
-      {createPortal(<AnimatePresence>
+      {typeof document !== 'undefined' && createPortal(<AnimatePresence>
         {uploadStep > 0 && selectedDiagPatient && (
           <div className="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4 text-slate-800">
             <motion.div
@@ -1238,7 +1238,7 @@ export default function ShowcaseGallery() {
       </AnimatePresence>, document.body)}
 
       {/* FULL SCREEN LIGHTBOX MODAL */}
-      {createPortal(<AnimatePresence>
+      {typeof document !== 'undefined' && createPortal(<AnimatePresence>
         {lightboxImg && (
           <motion.div
             initial={{ opacity: 0 }}
