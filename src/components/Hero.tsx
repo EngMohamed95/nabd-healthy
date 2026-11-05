@@ -1,9 +1,10 @@
-import { useEffect, useRef, useState, type PointerEvent } from 'react';
+import { useEffect, useRef, useState, type CSSProperties, type PointerEvent } from 'react';
 import { motion, useMotionValue, useReducedMotion, useScroll, useSpring, useTransform } from 'motion/react';
 import { Activity, ArrowLeft, ArrowRight, Play, Sparkles } from 'lucide-react';
 import { useLanguage } from '../lib/LanguageContext';
 import { SHOW_PRICING } from '../lib/featureFlags';
-import { nabdCover } from '../images';
+import { preload } from 'react-dom';
+import { heroCoverDesktop, heroCoverMobile } from '../images';
 import HeroNetwork from './HeroNetwork';
 
 export default function Hero() {
@@ -25,6 +26,10 @@ export default function Hero() {
     'دقة أكبر للمعلومات …',
     'وقت أقل للإجراءات …',
   ];
+
+  // The hero background is the LCP element; fetch the right size first, at high priority.
+  preload(heroCoverMobile, { as: 'image', fetchPriority: 'high', media: '(max-width: 767px)' });
+  preload(heroCoverDesktop, { as: 'image', fetchPriority: 'high', media: '(min-width: 768px)' });
 
   const [phraseIndex, setPhraseIndex] = useState(0);
   const [currentText, setCurrentText] = useState('');
@@ -83,8 +88,8 @@ export default function Hero() {
         <div
           role="img"
           aria-label={language === 'ar' ? 'غلاف منصة نبض الطبية' : 'Nabd medical platform cover'}
-          className="absolute inset-0 bg-cover bg-center bg-fixed supports-[-webkit-touch-callout:none]:bg-scroll"
-          style={{ backgroundImage: `url(${nabdCover})` }}
+          className="absolute inset-0 bg-cover bg-center bg-[image:var(--cover-sm)] md:bg-[image:var(--cover-lg)] bg-fixed supports-[-webkit-touch-callout:none]:bg-scroll"
+          style={{ '--cover-sm': `url(${heroCoverMobile})`, '--cover-lg': `url(${heroCoverDesktop})` } as CSSProperties}
         />
         <div className="absolute inset-0 bg-gradient-to-b from-[#0B1030]/85 via-[#141838]/65 to-[#0B1030]/90" />
         <HeroNetwork />

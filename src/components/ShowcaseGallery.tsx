@@ -46,6 +46,9 @@ const MOBILE_SCREEN_BY_MODULE: Record<string, keyof typeof MODULE_BY_MOBILE_SCRE
 };
 
 export default function ShowcaseGallery() {
+  // Portals target document.body, which only exists after hydration.
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => setMounted(true), []);
   const { language } = useLanguage();
   const [activeTab, setActiveTab] = useState<string>(MODULE_BY_MOBILE_SCREEN.home);
   const [viewMode, setViewMode] = useState<'screenshot' | 'simulator'>('screenshot');
@@ -1045,6 +1048,8 @@ export default function ShowcaseGallery() {
                             <img
                               src={currentModule.img}
                               alt={language === 'ar' ? currentModule.title_ar : currentModule.title_en}
+                              loading="lazy"
+                              decoding="async"
                               className="h-full max-h-[520px] w-full object-contain transition-transform duration-700 group-hover:scale-[1.015]"
                             />
                             <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#1E285A]/10 via-transparent to-transparent" />
@@ -1093,7 +1098,7 @@ export default function ShowcaseGallery() {
       </div>
 
       {/* DIAGNOSTICS PORTAL UPLOAD / AI REPORT MODAL */}
-      {typeof document !== 'undefined' && createPortal(<AnimatePresence>
+      {mounted && createPortal(<AnimatePresence>
         {uploadStep > 0 && selectedDiagPatient && (
           <div className="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4 text-slate-800">
             <motion.div
@@ -1238,7 +1243,7 @@ export default function ShowcaseGallery() {
       </AnimatePresence>, document.body)}
 
       {/* FULL SCREEN LIGHTBOX MODAL */}
-      {typeof document !== 'undefined' && createPortal(<AnimatePresence>
+      {mounted && createPortal(<AnimatePresence>
         {lightboxImg && (
           <motion.div
             initial={{ opacity: 0 }}

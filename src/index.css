@@ -1,9 +1,9 @@
 @import "tailwindcss";
 
 @theme {
-  --font-sans: "Outfit", "Inter", sans-serif;
+  --font-sans: "Outfit", sans-serif;
   --font-display: "Space Grotesk", "Outfit", sans-serif;
-  --font-arabic: "Cairo", "Tajawal", sans-serif;
+  --font-arabic: "Cairo", sans-serif;
 
   --color-primary: #4E60A2;
   --color-primary-dark: #1E285A;

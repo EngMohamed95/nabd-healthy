@@ -1,7 +1,7 @@
 import { motion } from 'motion/react';
 import { PlayCircle, CheckCircle2, ArrowLeft, ArrowRight, Sparkles } from 'lucide-react';
 import { useLanguage } from '../lib/LanguageContext';
-import { nabdCover } from '../images';
+import { heroCoverDesktop } from '../images';
 
 export default function VideoSection() {
   const { t, dir } = useLanguage();
@@ -72,7 +72,8 @@ export default function VideoSection() {
           <div className="relative rounded-3xl overflow-hidden border-2 border-[#CFD5E4] bg-slate-900 shadow-2xl shadow-[#4E60A2]/20">
             <video
               src="/nabd video.mp4"
-              poster={nabdCover}
+              poster={heroCoverDesktop}
+              preload="none"
               controls
               playsInline
               className="w-full aspect-video object-cover block"

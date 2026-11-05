@@ -112,6 +112,10 @@ export default function Features() {
                 <img 
                   src={feat.image} 
                   alt={feat.title}
+                  loading="lazy"
+                  decoding="async"
+                  width={840}
+                  height={460}
                   className="w-full h-full object-cover opacity-85 group-hover:scale-105 group-hover:opacity-100 transition-all duration-700" 
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent" />
