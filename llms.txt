@@ -1,0 +1,15 @@
+# Nabd (نبض)
+
+> Nabd is an AI-powered medical platform for doctors and clinics. It helps doctors write structured medical reports, manage patients, clinics, assistants, waiting lists, lab tests, scans and prescriptions, and track clinic KPIs — in Arabic and English.
+
+## Pages
+
+- [Home (Arabic)](https://nabdassist.com/): Full product overview in Arabic.
+- [Home (English)](https://nabdassist.com/en/): Full product overview in English.
+- [Web app](https://app.nabdassist.com/): Sign in or start a free trial.
+
+## Key facts
+
+- Audience: doctors, clinics and medical practices.
+- Languages: Arabic (default) and English.
+- Platform: web application.
