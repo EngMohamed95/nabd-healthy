@@ -27,7 +27,7 @@ export default function Footer() {
           </p>
 
           <a 
-            href="https://app.nabdassist.com" 
+            href="https://app.nabdassist.com/" 
             target="_blank" 
             rel="noreferrer"
             className="inline-flex items-center gap-1.5 text-xs font-bold text-[#4E60A2] hover:underline"
@@ -65,7 +65,7 @@ export default function Footer() {
             الوصول المباشر إلى واجهة الطبيب، قائمة الانتظار، وطباعة الروشتات.
           </p>
           <a
-            href="https://app.nabdassist.com/login"
+            href="https://app.nabdassist.com/"
             target="_blank"
             rel="noreferrer"
             className="inline-flex items-center justify-center gap-2 w-full py-2.5 bg-[#4E60A2] hover:bg-[#1E285A] text-white text-xs font-bold rounded-xl transition-all shadow-xs"
