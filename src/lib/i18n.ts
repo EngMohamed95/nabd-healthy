@@ -291,7 +291,11 @@ export const translations = {
       hipaa: "معايير الأمان و HIPAA",
       privacy: "سياسة الخصوصية",
       terms: "شروط الاستخدام",
-      loginApp: "الدخول للبرنامج"
+      loginApp: "الدخول للبرنامج",
+      about: "عن المنصة",
+      contact: "تواصل معنا",
+      appDesc: "الوصول المباشر إلى واجهة الطبيب، قائمة الانتظار، وطباعة الروشتات.",
+      openApp: "فتح برنامج نبض السريري"
     }
   },
   en: {
@@ -581,10 +585,14 @@ export const translations = {
       liveDemo: "Clinical Lab",
       pricing: "Pricing",
       security: "Security & Compliance",
-      hipaa: "HIPAA & Privacy Standards",
+      hipaa: "Security & HIPAA Standards",
       privacy: "Privacy Policy",
       terms: "Terms of Service",
-      loginApp: "Launch Web App"
+      loginApp: "Launch Web App",
+      about: "About",
+      contact: "Contact",
+      appDesc: "Direct access to the doctor's workspace, the waiting list, and prescription printing.",
+      openApp: "Open the Nabd Clinical App"
     }
   }
 };

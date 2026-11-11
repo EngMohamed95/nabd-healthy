@@ -1,12 +1,13 @@
 import { useState, useEffect, useMemo, useRef } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Globe, Menu, X, LogIn } from 'lucide-react';
-import { useLanguage } from '../lib/LanguageContext';
+import { useLanguage, useHomeHref } from '../lib/LanguageContext';
 import logoImg from '../images/nabd_logo.png';
 import { SHOW_PRICING } from '../lib/featureFlags';
 
 export default function Navbar() {
-  const { language, setLanguage, t } = useLanguage();
+  const { language, setLanguage, t, page } = useLanguage();
+  const homeHref = useHomeHref();
   const [activeSection, setActiveSection] = useState<string>("#");
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
@@ -83,7 +84,7 @@ export default function Navbar() {
 
         {/* Right side in RTL: Brand Logo & Title */}
         <a
-          href="#"
+          href={homeHref("#")}
           onClick={() => handleNavClick("#")}
           className="flex items-center gap-3 shrink-0 group"
         >
@@ -107,11 +108,11 @@ export default function Navbar() {
         {/* Center: Navigation Links with Active Underline Indicator */}
         <div className="hidden lg:flex items-center gap-3 sm:gap-4 xl:gap-7">
           {navLinks.map((link) => {
-            const isActive = activeSection === link.href;
+            const isActive = page === 'home' && activeSection === link.href;
             return (
               <a
                 key={link.href}
-                href={link.href}
+                href={homeHref(link.href)}
                 onClick={() => handleNavClick(link.href)}
                 className={`relative px-3 py-1.5 text-xs sm:text-sm font-bold transition-colors duration-150 whitespace-nowrap ${
                   isActive ? 'text-white' : 'text-slate-300 hover:text-white'
@@ -155,7 +156,7 @@ export default function Navbar() {
 
           {/* Action Button styled as the sleek dark-glass pill button */}
           <a
-            href={SHOW_PRICING ? "#pricing" : "#cta"}
+            href={homeHref(SHOW_PRICING ? "#pricing" : "#cta")}
             onClick={() => handleNavClick(SHOW_PRICING ? "#pricing" : "#cta")}
             className="flex items-center justify-center px-4 sm:px-5 py-2 sm:py-2.5 rounded-xl bg-white/10 hover:bg-white/20 border border-white/20 text-white text-xs sm:text-sm font-bold transition-all shadow-sm active:scale-95 whitespace-nowrap backdrop-blur-md"
           >
@@ -187,13 +188,13 @@ export default function Navbar() {
               {navLinks.map((link) => (
                 <a
                   key={link.href}
-                  href={link.href}
+                  href={homeHref(link.href)}
                   onClick={() => {
                     handleNavClick(link.href);
                     setMobileMenuOpen(false);
                   }}
                   className={`px-3 py-2 text-xs font-bold rounded-xl transition-all ${
-                    activeSection === link.href
+                    page === 'home' && activeSection === link.href
                       ? 'text-white bg-white/15'
                       : 'text-slate-300 hover:text-white hover:bg-white/10'
                   }`}
@@ -212,7 +213,7 @@ export default function Navbar() {
                   <span>{t.navbar.login}</span>
                 </a>
                 <a
-                  href={SHOW_PRICING ? "#pricing" : "#cta"}
+                  href={homeHref(SHOW_PRICING ? "#pricing" : "#cta")}
                   onClick={() => {
                     handleNavClick(SHOW_PRICING ? "#pricing" : "#cta");
                     setMobileMenuOpen(false);

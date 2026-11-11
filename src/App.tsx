@@ -19,9 +19,13 @@ import VisionSection from './components/VisionSection';
 import CTA from './components/CTA';
 import Footer from './components/Footer';
 import ScrollReveal from './components/ScrollReveal';
+import LegalPage from './components/LegalPage';
 import { SHOW_PRICING } from './lib/featureFlags';
+import { useLanguage } from './lib/LanguageContext';
 
 export default function App() {
+  const { page } = useLanguage();
+
   useEffect(() => {
     const lenis = new Lenis({
       duration: 1.2,
@@ -75,6 +79,11 @@ export default function App() {
       {/* Main Content Container */}
       <div className="relative z-10 w-full flex flex-col items-center">
         <Navbar />
+        {page !== 'home' ? (
+          <main className="relative z-10 flex flex-col items-center w-full">
+            <LegalPage id={page} />
+          </main>
+        ) : (
         <main className="relative z-10 flex flex-col items-center w-full">
           {/* 1. Hero: نبض - منصة الطبيب الذكية + الركائز الـ 4 */}
           <Hero />
@@ -109,6 +118,7 @@ export default function App() {
           {/* 15. الدعوة للعمل: ابدأ تجربتك المجانية */}
           <ScrollReveal><CTA /></ScrollReveal>
         </main>
+        )}
         <ScrollReveal enterOffset={['start end', 'end end']} exit={false}>
           <Footer />
         </ScrollReveal>

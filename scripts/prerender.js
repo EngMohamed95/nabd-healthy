@@ -1,5 +1,6 @@
-// Post-build step: turns the client-rendered SPA into two static, crawlable pages
-// (/ in Arabic, /en/ in English) with full SEO tags, and writes sitemap.xml.
+// Post-build step: turns the client-rendered SPA into static, crawlable pages with full SEO tags
+// (/ in Arabic, /en/ in English, plus the legal pages /privacy/, /terms/, /security/ under each),
+// and writes sitemap.xml.
 // Runs after `vite build` (client) and `vite build --ssr` (server bundle).
 import fs from 'node:fs'
 import path from 'node:path'
@@ -41,6 +42,19 @@ const esc = (s) => s.replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g
 
 function structuredData(p) {
   const url = SITE + p.path
+  if (p.page !== 'home') {
+    return {
+      '@context': 'https://schema.org',
+      '@type': 'WebPage',
+      '@id': `${url}#webpage`,
+      url,
+      name: p.title,
+      description: p.description,
+      inLanguage: p.lang,
+      isPartOf: { '@type': 'WebSite', '@id': `${SITE}/#website`, url: `${SITE}/` },
+      publisher: { '@type': 'Organization', '@id': `${SITE}/#organization`, name: 'Nabd', url: `${SITE}/` },
+    }
+  }
   return {
     '@context': 'https://schema.org',
     '@graph': [
@@ -86,16 +100,22 @@ function structuredData(p) {
   }
 }
 
+// Arabic and English versions of the same page, for hreflang links.
+const siblings = (p) => allPages.filter((q) => q.page === p.page)
+const arabicOf = (p) => siblings(p).find((q) => q.lang === 'ar')
+
 function headFor(p) {
   const url = SITE + p.path
-  const other = p.lang === 'ar' ? pages.en : pages.ar
+  const ar = arabicOf(p)
+  const en = siblings(p).find((q) => q.lang === 'en')
+  const other = p.lang === 'ar' ? en : ar
   return `<title>${esc(p.title)}</title>
     <meta name="description" content="${esc(p.description)}" />
     <meta name="robots" content="index, follow, max-image-preview:large" />
     <link rel="canonical" href="${url}" />
-    <link rel="alternate" hreflang="ar" href="${SITE}${pages.ar.path}" />
-    <link rel="alternate" hreflang="en" href="${SITE}${pages.en.path}" />
-    <link rel="alternate" hreflang="x-default" href="${SITE}${pages.ar.path}" />
+    <link rel="alternate" hreflang="ar" href="${SITE}${ar.path}" />
+    <link rel="alternate" hreflang="en" href="${SITE}${en.path}" />
+    <link rel="alternate" hreflang="x-default" href="${SITE}${ar.path}" />
 
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="${esc(p.siteName)}" />
@@ -120,7 +140,24 @@ function headFor(p) {
     <script type="application/ld+json">${JSON.stringify(structuredData(p)).replace(/</g, '\\u003c')}</script>`
 }
 
-const { render } = await import(pathToFileURL(serverEntry).href)
+const { render, LEGAL_PAGES, legalContent } = await import(pathToFileURL(serverEntry).href)
+
+const allPages = [
+  ...Object.values(pages).map((p) => ({ ...p, page: 'home' })),
+  ...LEGAL_PAGES.flatMap((page) =>
+    Object.values(pages).map((p) => {
+      const doc = legalContent[p.lang][page]
+      return {
+        ...p,
+        page,
+        path: `${p.path}${page}/`,
+        title: doc.metaTitle,
+        description: doc.metaDescription,
+        imageAlt: doc.title,
+      }
+    }),
+  ),
+]
 const template = fs.readFileSync(path.join(dist, 'index.html'), 'utf8')
 const seoBlock = /<!--seo:start-->[\s\S]*?<!--seo:end-->/
 
@@ -128,11 +165,11 @@ if (!seoBlock.test(template) || !template.includes('<!--app-html-->')) {
   throw new Error('dist/index.html is missing the <!--seo:start/end--> or <!--app-html--> markers')
 }
 
-for (const p of Object.values(pages)) {
+for (const p of allPages) {
   const html = template
     .replace(/<html lang="[^"]*" dir="[^"]*">/, `<html lang="${p.lang}" dir="${p.dir}">`)
     .replace(seoBlock, headFor(p))
-    .replace('<!--app-html-->', render(p.lang))
+    .replace('<!--app-html-->', render(p.lang, p.page))
   const outDir = path.join(dist, p.path)
   fs.mkdirSync(outDir, { recursive: true })
   fs.writeFileSync(path.join(outDir, 'index.html'), html)
@@ -140,14 +177,14 @@ for (const p of Object.values(pages)) {
 }
 
 const today = new Date().toISOString().slice(0, 10)
-const alternates = Object.values(pages)
+const alternates = (page) => siblings(page)
   .map((p) => `    <xhtml:link rel="alternate" hreflang="${p.lang}" href="${SITE}${p.path}" />`)
-  .concat(`    <xhtml:link rel="alternate" hreflang="x-default" href="${SITE}${pages.ar.path}" />`)
+  .concat(`    <xhtml:link rel="alternate" hreflang="x-default" href="${SITE}${arabicOf(page).path}" />`)
   .join('\n')
 const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
-${Object.values(pages)
-  .map((p) => `  <url>\n    <loc>${SITE}${p.path}</loc>\n    <lastmod>${today}</lastmod>\n${alternates}\n  </url>`)
+${allPages
+  .map((p) => `  <url>\n    <loc>${SITE}${p.path}</loc>\n    <lastmod>${today}</lastmod>\n${alternates(p)}\n  </url>`)
   .join('\n')}
 </urlset>
 `

@@ -7,6 +7,8 @@
   RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
   # /en -> /en/
   RewriteRule ^en$ /en/ [L,R=301]
+  # /privacy -> /privacy/ (same for terms, security, and their /en/ versions)
+  RewriteRule ^(en/)?(privacy|terms|security)$ /$1$2/ [L,R=301]
 </IfModule>
 
 <IfModule mod_deflate.c>

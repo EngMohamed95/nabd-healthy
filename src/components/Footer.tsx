@@ -1,10 +1,11 @@
-import { useLanguage } from '../lib/LanguageContext';
+import { useLanguage, useHomeHref, pathFor } from '../lib/LanguageContext';
 import { SHOW_PRICING } from '../lib/featureFlags';
 import { ShieldCheck, Heart, Sparkles, ExternalLink } from 'lucide-react';
 import logoImg from '../images/nabd_logo.png';
 
 export default function Footer() {
   const { t, language } = useLanguage();
+  const homeHref = useHomeHref();
 
   return (
     <footer className="w-full py-14 border-t border-[#CFD5E4]/60 mt-20 relative z-10 bg-white/90 backdrop-blur-xl text-start">
@@ -41,10 +42,11 @@ export default function Footer() {
         <div className="md:col-span-2">
           <h4 className="text-slate-900 font-bold text-sm mb-4">{t.footer.quickLinks}</h4>
           <ul className="space-y-2.5 text-xs font-medium text-slate-600">
-            <li><a href="#features" className="hover:text-[#4E60A2] transition-colors">{t.footer.features}</a></li>
-            <li><a href="#demo" className="hover:text-[#4E60A2] transition-colors">{t.footer.liveDemo}</a></li>
-            <li><a href="#requisition" className="hover:text-[#4E60A2] transition-colors">{t.navbar.requisition}</a></li>
-            {SHOW_PRICING && <li><a href="#pricing" className="hover:text-[#4E60A2] transition-colors">{t.footer.pricing}</a></li>}
+            <li><a href={homeHref('#features')} className="hover:text-[#4E60A2] transition-colors">{t.footer.features}</a></li>
+            <li><a href={homeHref('#about')} className="hover:text-[#4E60A2] transition-colors">{t.footer.about}</a></li>
+            <li><a href={homeHref('#gallery')} className="hover:text-[#4E60A2] transition-colors">{t.navbar.gallery}</a></li>
+            {SHOW_PRICING && <li><a href={homeHref('#pricing')} className="hover:text-[#4E60A2] transition-colors">{t.footer.pricing}</a></li>}
+            <li><a href={homeHref('#cta')} className="hover:text-[#4E60A2] transition-colors">{t.footer.contact}</a></li>
           </ul>
         </div>
 
@@ -52,9 +54,9 @@ export default function Footer() {
         <div className="md:col-span-2">
           <h4 className="text-slate-900 font-bold text-sm mb-4">{t.footer.security}</h4>
           <ul className="space-y-2.5 text-xs font-medium text-slate-600">
-            <li><a href="#" className="hover:text-[#4E60A2] transition-colors">{t.footer.hipaa}</a></li>
-            <li><a href="#" className="hover:text-[#4E60A2] transition-colors">{t.footer.privacy}</a></li>
-            <li><a href="#" className="hover:text-[#4E60A2] transition-colors">{t.footer.terms}</a></li>
+            <li><a href={pathFor(language, 'security')} className="hover:text-[#4E60A2] transition-colors">{t.footer.hipaa}</a></li>
+            <li><a href={pathFor(language, 'privacy')} className="hover:text-[#4E60A2] transition-colors">{t.footer.privacy}</a></li>
+            <li><a href={pathFor(language, 'terms')} className="hover:text-[#4E60A2] transition-colors">{t.footer.terms}</a></li>
           </ul>
         </div>
 
@@ -62,7 +64,7 @@ export default function Footer() {
         <div className="md:col-span-3">
           <h4 className="text-slate-900 font-bold text-sm mb-4">{t.footer.loginApp}</h4>
           <p className="text-xs text-slate-500 mb-4">
-            الوصول المباشر إلى واجهة الطبيب، قائمة الانتظار، وطباعة الروشتات.
+            {t.footer.appDesc}
           </p>
           <a
             href="https://app.nabdassist.com/"
@@ -70,7 +72,7 @@ export default function Footer() {
             rel="noreferrer"
             className="inline-flex items-center justify-center gap-2 w-full py-2.5 bg-[#4E60A2] hover:bg-[#1E285A] text-white text-xs font-bold rounded-xl transition-all shadow-xs"
           >
-            <span>فتح برنامج نبض السريري</span>
+            <span>{t.footer.openApp}</span>
             <ExternalLink className="w-3.5 h-3.5" />
           </a>
         </div>
