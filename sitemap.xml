@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>https://nabdassist.com/</loc>
+    <lastmod>2026-11-11</lastmod>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://nabdassist.com/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://nabdassist.com/en/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://nabdassist.com/" />
+  </url>
+  <url>
+    <loc>https://nabdassist.com/en/</loc>
+    <lastmod>2026-11-11</lastmod>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://nabdassist.com/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://nabdassist.com/en/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://nabdassist.com/" />
+  </url>
+  <url>
+    <loc>https://nabdassist.com/privacy/</loc>
+    <lastmod>2026-11-11</lastmod>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://nabdassist.com/privacy/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://nabdassist.com/en/privacy/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://nabdassist.com/privacy/" />
+  </url>
+  <url>
+    <loc>https://nabdassist.com/en/privacy/</loc>
+    <lastmod>2026-11-11</lastmod>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://nabdassist.com/privacy/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://nabdassist.com/en/privacy/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://nabdassist.com/privacy/" />
+  </url>
+  <url>
+    <loc>https://nabdassist.com/terms/</loc>
+    <lastmod>2026-11-11</lastmod>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://nabdassist.com/terms/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://nabdassist.com/en/terms/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://nabdassist.com/terms/" />
+  </url>
+  <url>
+    <loc>https://nabdassist.com/en/terms/</loc>
+    <lastmod>2026-11-11</lastmod>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://nabdassist.com/terms/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://nabdassist.com/en/terms/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://nabdassist.com/terms/" />
+  </url>
+  <url>
+    <loc>https://nabdassist.com/security/</loc>
+    <lastmod>2026-11-11</lastmod>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://nabdassist.com/security/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://nabdassist.com/en/security/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://nabdassist.com/security/" />
+  </url>
+  <url>
+    <loc>https://nabdassist.com/en/security/</loc>
+    <lastmod>2026-11-11</lastmod>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://nabdassist.com/security/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://nabdassist.com/en/security/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://nabdassist.com/security/" />
+  </url>
+</urlset>
